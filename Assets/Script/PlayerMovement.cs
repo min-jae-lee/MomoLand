@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
-
+    
+    
     
 
     void Start()
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        
 
     }
 
@@ -68,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Jump();
         Attack1();
+        Attack2();
+        
     }
 
     //점프-연속점프 2회로 제한
@@ -76,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             jumpCount++;
-            Debug.Log(jumpCount);
+            
             //가속도가 점프에 영향 없도록 점프전 velocity값 제로
             playerRigidbody.velocity = Vector3.zero;
             playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
@@ -94,18 +98,20 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCount = 0;
             playerAnimator.SetBool("Jump", false);
-            Debug.Log(jumpCount);
+            
 
         }
     }
 
     void Attack1()
     {
-        if(playerInput.attack1 == true)
-        {
-            playerAnimator.SetBool("Attack1", true);
-        }
-        
+        playerAnimator.SetBool("Attack1", playerInput.attack1);
+    }
+
+    
+    void Attack2()
+    {
+        playerAnimator.SetBool("Attack2", playerInput.attack2);
     }
 
 
