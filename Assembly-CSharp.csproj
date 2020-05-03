@@ -71,17 +71,36 @@
     <Compile Include="Assets\Map-Source\Scripts\TowerHP.cs" />
     <Compile Include="Assets\Map-Source\Scripts\TowerTrigger.cs" />
     <Compile Include="Assets\Map-Source\Scripts\WaveSpawn.cs" />
+    <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\HpBarCanvas.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Sword.cs" />
     <Compile Include="Assets\Script\TurtleShell.cs" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Character-etc\Character-SdChan\Readme_Optimize_SD Kohaku-Chanz.txt" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\readme.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Map-Source\INFO\Info.txt" />
     <None Include="Assets\Map-Source\Materials\Scene\sky.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Character-etc\Character-Avelyn\readme.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Administrator/Desktop/m/MomoLand/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

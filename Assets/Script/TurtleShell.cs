@@ -9,9 +9,13 @@ public class TurtleShell : MonoBehaviour
     public int maxHp = 100; 
     public Image hpBar;
     public Text hpText;
+    public Transform dmgHudPos;
+    public GameObject dmgHud;
     private int curHp;
     private bool dead = false;
     private Animator turtleAnimator;
+    private int getDmg;
+    
     
 
     void Start()
@@ -44,7 +48,11 @@ public class TurtleShell : MonoBehaviour
         {
             turtleAnimator.SetTrigger("GetHit");
             Sword script = other.GetComponent<Sword>();
-            curHp -= script.GetDamage();
+            getDmg = script.GetDamage();
+            curHp -= getDmg;
+            GameObject damageHud = Instantiate(dmgHud);
+            damageHud.transform.position = dmgHudPos.position;
+            damageHud.GetComponent<DmgTmp>().damage = getDmg;
             //HP바에 HP값 적용
             hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
             hpText.text =curHp.ToString()+"/"+maxHp.ToString();
