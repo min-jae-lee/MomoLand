@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-
     //움직임,회전 속도, 점프 강도
     public float moveSpeed = 2f;
     public float rotateSpeed = 200f;
     public float jumpPower = 200f;
 
+    //공격력,체력,연타간격
+    public int hp = 100;
+    public int attack1Power = 10;
+    public int attack2Power = 20;
+    private float attack1Time = 1f; //공격1연타간격
+    private float attack1LastTime; //마지막 타격시점
+    private float attack2Time = 1.6f; //공격1연타간격
+    private float attack2LastTime; //마지막 타격시점
+
+    //무기 콜라이더
+    public BoxCollider attackCheckCol;
+
     //케릭터 점프 횟수
     private int jumpCount = 0;
     
 
-    
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
+    private Sword sword;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
     
-    
-    
-
     void Start()
     {
         //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
+        sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        
+
+        //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
+        attackCheckCol.enabled = false;
 
     }
 
@@ -69,9 +79,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Jump();
-        Attack1();
-        Attack2();
-        
+        Attack();
+      
     }
 
     //점프-연속점프 2회로 제한
@@ -90,30 +99,40 @@ public class PlayerMovement : MonoBehaviour
 
     //바닥 접촉 체크,점프횟수 초기화
     void OnCollisionEnter(Collision collision)
-    {
-
-        
+    {       
         //첫번째 접촉 면적의 y각도 값이 0.7 이상이면(각도가 완만하면) 점프 횟수 초기화
         if (collision.contacts[0].normal.y > 0.7f)
         {
             jumpCount = 0;
-            playerAnimator.SetBool("Jump", false);
-            
-
+            playerAnimator.SetBool("Jump", false);           
         }
     }
 
-    void Attack1()
+    void Attack()
     {
-        playerAnimator.SetBool("Attack1", playerInput.attack1);
+        //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
+        if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time)
+        {
+            attack1LastTime = Time.time;
+            playerAnimator.SetBool("Attack1", true);
+            attackCheckCol.enabled = true;
+            sword.SetDamage(attack1Power);
+        }
+        else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time)
+        {
+            attack2LastTime = Time.time;
+            playerAnimator.SetBool("Attack2", true);
+            attackCheckCol.enabled = true;
+            sword.SetDamage(attack2Power);
+        }
+        //공격키 떼면 무기콜라이더 비활성화
+        else
+        {
+            playerAnimator.SetBool("Attack1", false);
+            playerAnimator.SetBool("Attack2", false);
+            attackCheckCol.enabled = false;
+        }
+        
     }
-
-    
-    void Attack2()
-    {
-        playerAnimator.SetBool("Attack2", playerInput.attack2);
-    }
-
-
 
 }

@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-
-    private BoxCollider boxCollider;
-
-    void Start()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-        
-    }
+    private int damage;
 
     void Update()
     {
         
     }
 
+    public int GetDamage()
+    {
+        return damage;
+    }
 
-
+    //플레이어의 공격력
+    public void SetDamage(int dmg)
+    {
+        damage = dmg;
+    }
 
 }
