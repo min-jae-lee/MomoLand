@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Sword : MonoBehaviour
 {
     private int damage;
-
-    void Update()
-    {
-        
-    }
+    public List<Monster> hittedMonsters = new List<Monster>();
 
     public int GetDamage()
     {

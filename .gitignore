@@ -2,3 +2,5 @@ Library/
 *.zip
 *.psd
 Temp/
+obj/Debug/
+.vs/

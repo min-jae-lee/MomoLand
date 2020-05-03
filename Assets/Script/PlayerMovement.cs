@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
-
     }
 
     //Rigidbody를 이용한 움직임을 위해 물리갱신주기(기본0.02초) FixedUpdate 사용 
@@ -116,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
         if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time)
         {
+            sword.hittedMonsters.Clear();
             attack1LastTime = Time.time;
             playerAnimator.SetBool("Attack1", true);
             attackCheckCol.enabled = true;
@@ -124,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time)
         {
+            sword.hittedMonsters.Clear();
             attack2LastTime = Time.time;
             playerAnimator.SetBool("Attack2", true);
             attackCheckCol.enabled = true;
