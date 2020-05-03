@@ -23,13 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
     //케릭터 점프 횟수
     private int jumpCount = 0;
-    
 
+
+    //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
     private Sword sword;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
-
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Move 애니메이션에 Input값 적용
         playerAnimator.SetFloat("Move", playerInput.move);
-        
+
 
     }
 
@@ -73,14 +73,14 @@ public class PlayerMovement : MonoBehaviour
         float rotateValue = playerInput.rotate * rotateSpeed * Time.deltaTime;
         //리지드바디에 회전값 저장
         playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, rotateValue, 0);
-        
+
     }
 
     void Update()
     {
         Jump();
         Attack();
-      
+
     }
 
     //점프-연속점프 2회로 제한
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             jumpCount++;
-            
+
             //가속도가 점프에 영향 없도록 점프전 velocity값 제로
             playerRigidbody.velocity = Vector3.zero;
             playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
@@ -99,28 +99,17 @@ public class PlayerMovement : MonoBehaviour
 
     //바닥 접촉 체크,점프횟수 초기화
     void OnCollisionEnter(Collision collision)
-   {
-
+    {
         //첫번째 접촉 면적의 y각도 값이 0.7 이상이면(각도가 완만하면) 점프 횟수 초기화
         if (collision.contacts[0].normal.y > 0.7f)
         {
             jumpCount = 0;
-
-            playerAnimator.SetBool("Jump", false);           
-
             playerAnimator.SetBool("Jump", false);
-            Debug.Log(jumpCount);
-
-
-
-
         }
     }
 
     void Attack()
     {
-
-
         //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
         if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time)
         {
@@ -143,14 +132,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("Attack2", false);
             attackCheckCol.enabled = false;
         }
-        if(playerInput.attack1 == true)
-        {
-            playerAnimator.SetBool("Attack1", true);
-
-        }
-        
-
-        playerAnimator.SetBool("Attack1", playerInput.attack1);        
 
     }
 
