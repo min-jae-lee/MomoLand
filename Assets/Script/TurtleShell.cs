@@ -8,6 +8,7 @@ public class TurtleShell : MonoBehaviour
 {
     public int maxHp = 100; 
     public Image hpBar;
+    public Text hpText;
     private int curHp;
     private bool dead = false;
     private Animator turtleAnimator;
@@ -46,6 +47,7 @@ public class TurtleShell : MonoBehaviour
             curHp -= script.GetDamage();
             //HP바에 HP값 적용
             hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+            hpText.text =curHp.ToString()+"/"+maxHp.ToString();
             Debug.Log(curHp);
             //HP가 0이 되었을시 Die메소드 실행
             if (curHp <= 0)

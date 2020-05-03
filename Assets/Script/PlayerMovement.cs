@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class PlayerMovement : MonoBehaviour
 {
     //움직임,회전 속도, 점프 강도
