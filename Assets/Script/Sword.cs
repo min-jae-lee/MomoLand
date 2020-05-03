@@ -7,7 +7,7 @@ public class Sword : MonoBehaviour
 {
     private int damage;
     public List<Monster> hittedMonsters = new List<Monster>();
-
+    
     public int GetDamage()
     {
         return damage;

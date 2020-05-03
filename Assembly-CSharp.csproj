@@ -73,6 +73,7 @@
     <Compile Include="Assets\Map-Source\Scripts\WaveSpawn.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\HpBarCanvas.cs" />
+    <Compile Include="Assets\Script\HpSlider.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\PlayerMovement.cs" />

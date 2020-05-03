@@ -22,6 +22,7 @@ public class Monster : MonoBehaviour
     {
         monsterAnimator = GetComponent<Animator>();
         curHp = maxHp;
+        hpText.text = Name+"\n"+curHp.ToString() + "/" + maxHp.ToString();
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
     }
 
@@ -31,25 +32,26 @@ public class Monster : MonoBehaviour
     {
         if (other.tag == "Sword" && dead == false)
         {
-            Sword script = other.GetComponent<Sword>();
-
+            Sword script = other.GetComponent<Sword>();     
+            
+            //타격 한번당 중복 충돌 방지
             if (script.hittedMonsters.Contains(this) == true)
                 return;
-
-            monsterAnimator.SetTrigger("GetHit");
             script.hittedMonsters.Add(this);
+
+            monsterAnimator.SetTrigger("GetHit");            
             getDmg = script.GetDamage();
             curHp -= getDmg;
 
             ///curHp가 음수로 가는 걸 방지
-            curHp = Mathf.Max(curHp, 0);
+            curHp = Mathf.Max(curHp, 0);            
 
             GameObject damageHud = Instantiate(dmgHud);
             damageHud.transform.position = dmgHudPos.position;
             damageHud.GetComponent<DmgTmp>().damage = getDmg;
             //HP바에 HP값 적용
             hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
-            hpText.text = curHp.ToString() + "/" + maxHp.ToString();
+            hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
             Debug.Log(curHp);
             //HP가 0이 되었을시 Die메소드 실행
             if (curHp <= 0)

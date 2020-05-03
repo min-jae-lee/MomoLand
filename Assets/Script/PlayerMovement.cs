@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -13,13 +14,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpPower = 200f;
 
     //공격력,체력,연타간격
-    public int hp = 100;
+    public int maxHp = 100;
+    public int curHp;
     public int attack1Power = 10;
     public int attack2Power = 20;
     private float attack1Time = 0.7f; //공격1연타간격
     private float attack1LastTime; //마지막 타격시점
     private float attack2Time = 1.4f; //공격1연타간격
     private float attack2LastTime; //마지막 타격시점
+    
 
     //무기 콜라이더
     public BoxCollider attackCheckCol;
@@ -27,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     //케릭터 점프 횟수
     private int jumpCount = 0;
 
+    //HP슬라이더
+    public Slider hpSlider;
 
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
@@ -36,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        curHp = maxHp;
+
         //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
@@ -82,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Jump();
         Attack();
+        HpSlider();
 
     }
 
@@ -113,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
-        if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time)
+        if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time && Time.time >= attack2LastTime + attack2Time)
         {
             sword.hittedMonsters.Clear();
             attack1LastTime = Time.time;
@@ -122,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             sword.SetDamage(attack1Power);            
             StartCoroutine(AttackOff());
         }
-        else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time)
+        else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time && Time.time >= attack1LastTime + attack1Time)
         {
             sword.hittedMonsters.Clear();
             attack2LastTime = Time.time;
@@ -148,6 +156,12 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 2f;
         yield return new WaitForSeconds(0.4f);
         attackCheckCol.enabled = false;
+    }
+
+    void HpSlider()
+    {
+        hpSlider.maxValue = maxHp;
+        hpSlider.value = curHp;
     }
     
 
