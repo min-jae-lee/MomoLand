@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     //HP슬라이더
     public Slider hpSlider;
+    public Text hpText;
 
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
@@ -90,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         Attack();
         HpSlider();
+        Die();
 
     }
 
@@ -162,7 +164,17 @@ public class PlayerMovement : MonoBehaviour
     {
         hpSlider.maxValue = maxHp;
         hpSlider.value = curHp;
+        hpText.text = "HP: " + curHp.ToString() + "/" + maxHp.ToString();
+        if (curHp <= 0)
+            curHp = 0;
     }
     
+    void Die()
+    {
+        if(curHp <= 0)
+        {
+            playerAnimator.SetTrigger("Die");
+        }
+    }
 
 }
