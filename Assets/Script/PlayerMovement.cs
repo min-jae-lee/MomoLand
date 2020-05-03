@@ -116,23 +116,32 @@ public class PlayerMovement : MonoBehaviour
             attack1LastTime = Time.time;
             playerAnimator.SetBool("Attack1", true);
             attackCheckCol.enabled = true;
-            sword.SetDamage(attack1Power);
+            sword.SetDamage(attack1Power);            
+            StartCoroutine(ColOff());
         }
         else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time)
         {
             attack2LastTime = Time.time;
             playerAnimator.SetBool("Attack2", true);
             attackCheckCol.enabled = true;
-            sword.SetDamage(attack2Power);
+            sword.SetDamage(attack2Power);            
+            StartCoroutine(ColOff());
         }
-        //공격키 떼면 무기콜라이더 비활성화
+
+        //공격키 떼면 공격 애니메이션 비활성화      
         else
         {
             playerAnimator.SetBool("Attack1", false);
             playerAnimator.SetBool("Attack2", false);
-            attackCheckCol.enabled = false;
         }
-
     }
+
+    //무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
+    IEnumerator ColOff()
+    {
+        yield return new WaitForSeconds(0.5f);
+        attackCheckCol.enabled = false;
+    }
+    
 
 }

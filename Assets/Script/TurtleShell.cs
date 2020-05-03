@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class TurtleShell : MonoBehaviour
 {
-    public int maxHp = 100;
-    public int curHp;
+    public int maxHp = 100; 
     public Image hpBar;
+    private int curHp;
     private bool dead = false;
     private Animator turtleAnimator;
     
