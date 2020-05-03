@@ -17,7 +17,7 @@ public class DmgTmp : MonoBehaviour
         text = GetComponent<TextMeshPro>();
         text.text = damage.ToString();
         alpha = text.color;
-        Invoke("DestroyObject", desTime);
+        StartCoroutine(DestroyObject());
     }
 
     
@@ -28,8 +28,11 @@ public class DmgTmp : MonoBehaviour
         text.color = alpha;
     }
 
-    void DestroyObject()
+    
+    IEnumerator DestroyObject()
     {
+        //3초뒤 오브젝스 삭제
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
 }

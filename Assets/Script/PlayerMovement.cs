@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public int hp = 100;
     public int attack1Power = 10;
     public int attack2Power = 20;
-    private float attack1Time = 1f; //공격1연타간격
+    private float attack1Time = 0.7f; //공격1연타간격
     private float attack1LastTime; //마지막 타격시점
-    private float attack2Time = 1.6f; //공격1연타간격
+    private float attack2Time = 1.4f; //공격1연타간격
     private float attack2LastTime; //마지막 타격시점
 
     //무기 콜라이더
@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("Attack1", true);
             attackCheckCol.enabled = true;
             sword.SetDamage(attack1Power);            
-            StartCoroutine(ColOff());
+            StartCoroutine(AttackOff());
         }
         else if (Input.GetButton("Fire2") && Time.time >= attack2LastTime + attack2Time)
         {
@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("Attack2", true);
             attackCheckCol.enabled = true;
             sword.SetDamage(attack2Power);            
-            StartCoroutine(ColOff());
+            StartCoroutine(AttackOff());
         }
 
         //공격키 떼면 공격 애니메이션 비활성화      
@@ -140,10 +140,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
-    IEnumerator ColOff()
+    //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
+    IEnumerator AttackOff()
     {
-        yield return new WaitForSeconds(0.5f);
+        moveSpeed = 0;
+        yield return new WaitForSeconds(0.2f);
+        moveSpeed = 2f;
+        yield return new WaitForSeconds(0.4f);
         attackCheckCol.enabled = false;
     }
     
