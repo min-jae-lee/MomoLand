@@ -17,6 +17,9 @@ public class PlayerInput : MonoBehaviour
         //입력키값 저장
         move = Input.GetAxis(moveAxis);
         rotate = Input.GetAxis(rotateAxis);
+        attack1 = Input.GetButton(attack1Button);
+        attack2 = Input.GetButton(attack2Button);
+
 
     }
 }

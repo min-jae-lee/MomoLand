@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
+
     //움직임,회전 속도, 점프 강도
     public float moveSpeed = 2f;
     public float rotateSpeed = 200f;
@@ -25,12 +27,11 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCount = 0;
     
 
-    //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
     private Sword sword;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
-    
+
     void Start()
     {
         //각 컴퍼넌트 가져오기
@@ -99,17 +100,24 @@ public class PlayerMovement : MonoBehaviour
 
     //바닥 접촉 체크,점프횟수 초기화
     void OnCollisionEnter(Collision collision)
-    {       
+    { 
         //첫번째 접촉 면적의 y각도 값이 0.7 이상이면(각도가 완만하면) 점프 횟수 초기화
         if (collision.contacts[0].normal.y > 0.7f)
         {
             jumpCount = 0;
+
             playerAnimator.SetBool("Jump", false);           
+
+            playerAnimator.SetBool("Jump", false);
+            Debug.Log(jumpCount);
+
+
         }
     }
 
     void Attack()
     {
+
         //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
         if (Input.GetButton("Fire1") && Time.time >= attack1LastTime + attack1Time)
         {
@@ -131,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("Attack1", false);
             playerAnimator.SetBool("Attack2", false);
             attackCheckCol.enabled = false;
+        }
+        if(playerInput.attack1 == true)
+        {
+            playerAnimator.SetBool("Attack1", true);
+
         }
         
     }
