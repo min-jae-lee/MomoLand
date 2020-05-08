@@ -16,6 +16,8 @@ public class Monster : MonoBehaviour
     protected int curHp;
     protected bool dead = false;
     protected Animator monsterAnimator;
+    protected Rigidbody monsterRigidbody;
+    protected Transform monsterTransform;
     protected int getDmg;
 
     protected virtual void Start()
