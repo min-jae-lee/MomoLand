@@ -11,10 +11,8 @@ public class TurtleShell : Monster
 {
     public override string Name { get => "거북이"; }
     public float moveSpeed;
-    //자동순찰 범위 변수
-    public float moveRange;
-    //플레이어 인식거리
-    public float reactDist;
+    //플레이어 인식 범위
+    public float reactRange;
     private Transform _transform;
     private GameObject player;
     private Vector3 playerPos;
@@ -29,15 +27,19 @@ public class TurtleShell : Monster
     private Vector3 targetLook;
     private NavMeshAgent nav;
 
+    IEnumerator coroutine;
 
     protected override void Start()
     {
         base.Start();
         _transform = GetComponent<Transform>();
         nav = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player");        
+        player = GameObject.FindWithTag("Player");
+        playerPos = player.transform.position;
+        playerDist = Vector3.Distance(_transform.position, playerPos);
         startPos = _transform.position;
-        StartCoroutine(MoveCtrl());
+        coroutine = MoveCtrl();
+        StartCoroutine(coroutine);
     }
 
     void FixedUpdate()
@@ -48,33 +50,28 @@ public class TurtleShell : Monster
     void Update()
     {
         DistChk();
+        playerDist = Vector3.Distance(_transform.position, playerPos);
         playerPos = player.transform.position;
     }
 
     IEnumerator MoveCtrl()
     {
-        //몬스터의 순찰 목표 좌표를 랜덤을 설정
-        float posY = _transform.position.y;
-        float ranX = Random.Range(-1f, 1f);
-        float ranZ = Random.Range(-1f, 1f);
-        targetPos = new Vector3(_transform.position.x + ranX, posY, _transform.position.z + ranZ);
-
-        //몬스터 생성 위치를 기준으로 지정한 범위내에서만 순찰
-        if (Vector3.Distance(startPos, targetPos) <= moveRange)
+        while (true)
         {
+            //몬스터의 순찰 목표 좌표를 지정된 제한 구역안에서 랜덤으로 설정
+            float posY = _transform.position.y;
+            float ranX = Random.Range(-1f, 1f);
+            float ranZ = Random.Range(-1f, 1f);
+            targetPos = new Vector3(startPos.x + ranX, posY, startPos.z + ranZ);
             targetLook = targetPos - _transform.position;
             moveType = Random.Range(0, 3);
-            moveRanTime = Random.Range(3, 7);
+            moveRanTime = Random.Range(3, 5);
             Debug.Log("몬스터 행동타입은" + moveType + "입니다. 0:휴식 1~2:이동");
             Debug.Log("몬스터가" + moveRanTime + "초 후 다음 행동을 진행합니다.");
-            Debug.Log("몬스터와 플레이어의 거리는"+playerDist+"입니다");
+            Debug.Log("몬스터와 플레이어의 거리는" + playerDist + "입니다");
             yield return new WaitForSeconds(moveRanTime);
-            StartCoroutine(MoveCtrl());
         }
-        //지정한 범위를 벗어날시 목표 좌표 재설정
-        else
-            StartCoroutine(MoveCtrl());
-        
+
     }
 
 
@@ -86,7 +83,7 @@ public class TurtleShell : Monster
             _transform.position = Vector3.MoveTowards(_transform.position, targetPos, moveSpeed * Time.deltaTime);
             _transform.rotation = Quaternion.LookRotation(targetLook);
         }
-        
+
         else
             _transform.position += Vector3.zero;
     }
@@ -94,9 +91,13 @@ public class TurtleShell : Monster
     //플레이어와의 거리체크와 반응
     void DistChk()
     {
-        
-        playerDist = Vector3.Distance(_transform.position, playerPos);
+        if (playerDist <= reactRange)
+        {
+            moveType = 0;
+            StopCoroutine(coroutine);
+            nav.SetDestination(playerPos);
 
+        }
 
     }
 
