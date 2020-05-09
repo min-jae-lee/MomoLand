@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 //Monster 상속
 public class TurtleShell : Monster
@@ -12,27 +13,42 @@ public class TurtleShell : Monster
     public float moveSpeed;
     //자동순찰 범위 변수
     public float moveRange;
+    //플레이어 인식거리
+    public float reactDist;
     private Transform _transform;
+    private GameObject player;
+    private Vector3 playerPos;
+    //몬스터와 플레이어와의 거리
+    private float playerDist;
     //자동순찰 간격시간 랜덤 변수
     private float moveRanTime;
     //자동순찰 랜덤 행동 변수 0:휴식, 1~2:순찰 (순찰 횟수의 확률을 높이고자 선택지를 2개로 주었음)
     private int moveType = 0;
-    Vector3 startPos;
-    Vector3 targetPos;
-    Vector3 targetLook;
+    private Vector3 startPos;
+    private Vector3 targetPos;
+    private Vector3 targetLook;
+    private NavMeshAgent nav;
 
 
     protected override void Start()
     {
         base.Start();
         _transform = GetComponent<Transform>();
+        nav = GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("Player");        
         startPos = _transform.position;
         StartCoroutine(MoveCtrl());
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Move();
+    }
+
+    void Update()
+    {
+        DistChk();
+        playerPos = player.transform.position;
     }
 
     IEnumerator MoveCtrl()
@@ -51,6 +67,7 @@ public class TurtleShell : Monster
             moveRanTime = Random.Range(3, 7);
             Debug.Log("몬스터 행동타입은" + moveType + "입니다. 0:휴식 1~2:이동");
             Debug.Log("몬스터가" + moveRanTime + "초 후 다음 행동을 진행합니다.");
+            Debug.Log("몬스터와 플레이어의 거리는"+playerDist+"입니다");
             yield return new WaitForSeconds(moveRanTime);
             StartCoroutine(MoveCtrl());
         }
@@ -74,7 +91,14 @@ public class TurtleShell : Monster
             _transform.position += Vector3.zero;
     }
 
+    //플레이어와의 거리체크와 반응
+    void DistChk()
+    {
+        
+        playerDist = Vector3.Distance(_transform.position, playerPos);
 
+
+    }
 
 
 
