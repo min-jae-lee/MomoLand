@@ -18,6 +18,8 @@ public class TurtleShell : Monster
     private Vector3 playerPos;
     //몬스터와 플레이어와의 거리
     private float playerDist;
+    //몬스터와 몬스터의 초기생성위치 거리
+    private float monFromStartPos;
     //자동순찰 간격시간 랜덤 변수
     private float moveRanTime;
     //자동순찰 랜덤 행동 변수 0:휴식, 1~2:순찰 (순찰 횟수의 확률을 높이고자 선택지를 2개로 주었음)
@@ -54,6 +56,7 @@ public class TurtleShell : Monster
     {
         DistChk();
         playerDist = Vector3.Distance(_transform.position, playerPos);
+        monFromStartPos = Vector3.Distance(_transform.position, startPos);
         playerPos = player.transform.position;
 
     }
@@ -75,6 +78,7 @@ public class TurtleShell : Monster
             Debug.Log("몬스터 행동타입은" + moveType + "입니다. 0:휴식 1~2:이동");
             Debug.Log("몬스터가" + moveRanTime + "초 후 다음 행동을 진행합니다.");
             Debug.Log("몬스터와 플레이어의 거리는" + playerDist + "입니다");
+            Debug.Log("몬스터의 초기생성위치와의 거리는" + monFromStartPos + "입니다");
             yield return new WaitForSeconds(moveRanTime);
             
         }
@@ -94,19 +98,28 @@ public class TurtleShell : Monster
         else
             _transform.position += Vector3.zero;
     }
-    //플레이어와의 거리체크와 반응
+
+    //반응범위체크
     void DistChk()
     {
+        //범위안에 플레이어 들어올시 추적
         if (playerDist <= reactRange)
         {
             moveType = 0;
             moveOnOff = false;
             nav.SetDestination(playerPos);
         }
-
-        else
+        //범위에서 플레이어 나갈시 생성위치로 복귀
+        else if (playerDist > reactRange)
+        {
+            
+            if (monFromStartPos >= 0.5f)
+            {
+                nav.SetDestination(startPos);
+            }
             moveOnOff = true;
-
+        }
+        
     }
     
 
