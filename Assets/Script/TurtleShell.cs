@@ -26,12 +26,14 @@ public class TurtleShell : Monster
     private Vector3 targetPos;
     private Vector3 targetLook;
     private NavMeshAgent nav;
+    private bool moveOnOff=true;
 
     IEnumerator coroutine;
 
     protected override void Start()
     {
         base.Start();
+       
         _transform = GetComponent<Transform>();
         nav = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
@@ -40,8 +42,9 @@ public class TurtleShell : Monster
         startPos = _transform.position;
         coroutine = MoveCtrl();
         StartCoroutine(coroutine);
+       
     }
-
+ 
     void FixedUpdate()
     {
         Move();
@@ -52,12 +55,15 @@ public class TurtleShell : Monster
         DistChk();
         playerDist = Vector3.Distance(_transform.position, playerPos);
         playerPos = player.transform.position;
+
     }
 
     IEnumerator MoveCtrl()
+
     {
         while (true)
         {
+            yield return new WaitUntil(() => moveOnOff);
             //몬스터의 순찰 목표 좌표를 지정된 제한 구역안에서 랜덤으로 설정
             float posY = _transform.position.y;
             float ranX = Random.Range(-1f, 1f);
@@ -70,6 +76,7 @@ public class TurtleShell : Monster
             Debug.Log("몬스터가" + moveRanTime + "초 후 다음 행동을 진행합니다.");
             Debug.Log("몬스터와 플레이어의 거리는" + playerDist + "입니다");
             yield return new WaitForSeconds(moveRanTime);
+            
         }
 
     }
@@ -87,19 +94,21 @@ public class TurtleShell : Monster
         else
             _transform.position += Vector3.zero;
     }
-
     //플레이어와의 거리체크와 반응
     void DistChk()
     {
         if (playerDist <= reactRange)
         {
             moveType = 0;
-            StopCoroutine(coroutine);
+            moveOnOff = false;
             nav.SetDestination(playerPos);
-
         }
 
+        else
+            moveOnOff = true;
+
     }
+    
 
 
 
