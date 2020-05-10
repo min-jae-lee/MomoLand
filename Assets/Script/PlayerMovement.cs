@@ -116,11 +116,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //바닥 접촉 체크,점프횟수 초기화
-    void OnCollisionEnter(Collision collision)
+    public void OnGround(int layer)
     {
         if (jumpCount != 0)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+            if (layer == LayerMask.NameToLayer("Floor"))
             {
                 jumpCount = 0;
                 playerAnimator.SetTrigger("Drop");
