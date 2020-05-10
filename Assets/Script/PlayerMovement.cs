@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-
 public class PlayerMovement : MonoBehaviour
 {
     //움직임,회전 속도, 점프 강도
@@ -155,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = 0;
         yield return new WaitForSeconds(0.2f);
-        moveSpeed = 2f;
+        moveSpeed = 3f;
         yield return new WaitForSeconds(0.4f);
         attackCheckCol.enabled = false;
     }

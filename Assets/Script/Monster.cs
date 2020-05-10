@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class Monster : MonoBehaviour
     protected Animator monsterAnimator;
     protected Rigidbody monsterRigidbody;
     protected Transform monsterTransform;
+    protected NavMeshAgent nav;
     protected int getDmg;
 
     protected virtual void Start()
     {
         monsterAnimator = GetComponent<Animator>();
+        nav = GetComponent<NavMeshAgent>();
         curHp = maxHp;
         hpText.text = Name+"\n"+curHp.ToString() + "/" + maxHp.ToString();
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
@@ -66,6 +69,7 @@ public class Monster : MonoBehaviour
     //코루틴, 몬스터가 죽은후 3초 지연 뒤에 오브젝트 삭제
     protected virtual IEnumerator Die()
     {
+        nav.enabled = false;
         monsterAnimator.SetTrigger("Die");
         Debug.Log($"{name}이/가 사망하셨습니다.");
         dead = true;

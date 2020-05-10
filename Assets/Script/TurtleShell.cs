@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
+
 //Monster 상속
 public class TurtleShell : Monster
 {
@@ -27,26 +28,24 @@ public class TurtleShell : Monster
     private Vector3 startPos;
     private Vector3 targetPos;
     private Vector3 targetLook;
-    private NavMeshAgent nav;
-    private bool moveOnOff=true;
+    private bool moveOnOff = true;
 
     IEnumerator coroutine;
 
     protected override void Start()
     {
         base.Start();
-       
+
         _transform = GetComponent<Transform>();
-        nav = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         playerPos = player.transform.position;
         playerDist = Vector3.Distance(_transform.position, playerPos);
         startPos = _transform.position;
         coroutine = MoveCtrl();
         StartCoroutine(coroutine);
-       
+
     }
- 
+
     void FixedUpdate()
     {
         Move();
@@ -80,7 +79,7 @@ public class TurtleShell : Monster
             Debug.Log("몬스터와 플레이어의 거리는" + playerDist + "입니다");
             Debug.Log("몬스터의 초기생성위치와의 거리는" + monFromStartPos + "입니다");
             yield return new WaitForSeconds(moveRanTime);
-            
+
         }
 
     }
@@ -102,26 +101,28 @@ public class TurtleShell : Monster
     //반응범위체크
     void DistChk()
     {
-        //범위안에 플레이어 들어올시 추적
-        if (playerDist <= reactRange)
+        if (dead == false)
         {
-            moveType = 0;
-            moveOnOff = false;
-            nav.SetDestination(playerPos);
-        }
-        //범위에서 플레이어 나갈시 생성위치로 복귀
-        else if (playerDist > reactRange)
-        {
-            
-            if (monFromStartPos >= 0.5f)
+            //범위안에 플레이어 들어올시 추적
+            if (playerDist <= reactRange)
             {
-                nav.SetDestination(startPos);
+                moveType = 0;
+                moveOnOff = false;
+                nav.SetDestination(playerPos);
             }
-            moveOnOff = true;
+            //범위에서 플레이어 나갈시 생성위치로 복귀
+            else if (playerDist > reactRange)
+            {
+
+                if (monFromStartPos >= 0.5f)
+                {
+                    nav.SetDestination(startPos);
+                }
+                moveOnOff = true;
+            }
         }
-        
     }
-    
+
 
 
 
