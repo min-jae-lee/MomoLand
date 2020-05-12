@@ -71,8 +71,9 @@
     <Compile Include="Assets\Map-Source\Scripts\TowerHP.cs" />
     <Compile Include="Assets\Map-Source\Scripts\TowerTrigger.cs" />
     <Compile Include="Assets\Map-Source\Scripts\WaveSpawn.cs" />
+    <Compile Include="Assets\Script\AttackChk.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
-    <Compile Include="Assets\Script\ExclamationCollider.cs" />
+    <Compile Include="Assets\Script\ExclamationChk.cs" />
     <Compile Include="Assets\Script\GroundCheck.cs" />
     <Compile Include="Assets\Script\HpBarCanvas.cs" />
     <Compile Include="Assets\Script\HpSlider.cs" />

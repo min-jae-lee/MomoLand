@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour
     public Text hpText;
     public Transform dmgHudPos;
     public GameObject dmgHud;
+    public float attackDelay;
 
     protected int curHp;
     protected bool dead = false;

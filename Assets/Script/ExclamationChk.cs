@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExclamationCollider : MonoBehaviour
+public class ExclamationChk : MonoBehaviour
 {
     public Image exclamation;
  
