@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     public Transform dmgHudPos;
     public GameObject dmgHud;
     public float attackDelay;
+    public int damage;
 
     protected int curHp;
     protected bool dead = false;
