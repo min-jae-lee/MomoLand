@@ -59,7 +59,7 @@ public class Monster : MonoBehaviour
             //HP바에 HP값 적용
             hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
             hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
-            Debug.Log(curHp);
+            Debug.Log("몬스터의 HP:"+curHp);
             //HP가 0이 되었을시 Die메소드 실행
             if (curHp <= 0)
             {

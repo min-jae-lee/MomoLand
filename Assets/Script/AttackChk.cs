@@ -37,7 +37,7 @@ public class AttackChk : MonoBehaviour
 
     IEnumerator Attack()
     {
-        Debug.Log("공격");
+        Debug.Log("몬스터의공격! 공격력은"+turtleShell.damage+"입니다");
         GameObject damageHud = Instantiate(dmgHud);
         damageHud.transform.position = playerDmgHudPos.position;       
         damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;

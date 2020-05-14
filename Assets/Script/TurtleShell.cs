@@ -14,6 +14,14 @@ public class TurtleShell : Monster
     public float moveSpeed;
     //플레이어 인식 범위
     public float reactRange;
+    public SkinnedMeshRenderer _skinnedMeshRenderer;
+    public Color colorA;
+    public Color colorB;
+    public float colorT;
+    private Material mat;
+    private bool colorBool = false;
+    private int burserkDmg;
+
     private Transform _transform;
     private GameObject player;
     private Vector3 playerPos;
@@ -35,7 +43,8 @@ public class TurtleShell : Monster
     protected override void Start()
     {
         base.Start();
-
+        mat = _skinnedMeshRenderer.materials[0];
+        burserkDmg = damage * 2; //버스크 모드의 데미지는 평상시 데미지의 *2
         _transform = GetComponent<Transform>();
         player = GameObject.FindWithTag("Player");
         playerPos = player.transform.position;
@@ -54,6 +63,7 @@ public class TurtleShell : Monster
     void Update()
     {
         DistChk();
+        Burserk();
         playerDist = Vector3.Distance(_transform.position, playerPos);
         monFromStartPos = Vector3.Distance(_transform.position, startPos);
         playerPos = player.transform.position;
@@ -122,6 +132,43 @@ public class TurtleShell : Monster
             }
         }
     }
+
+    //HP 40이하로 내려가면 메쉬렌더 컬러변경과 공격력UP
+    void Burserk()
+    {
+        if(curHp <= 40)
+        {
+            
+            if (colorBool == false)
+            {
+                colorT += 2 * Time.deltaTime;
+            }
+
+            if (colorBool == true)
+            {
+                colorT -= 2 * Time.deltaTime;
+            }
+
+            if(colorT > 1)
+            {
+                colorBool = true;
+            }
+
+            if(colorT < 0)
+            {
+                colorBool = false;
+            }
+            mat.color = Color.Lerp(colorA, colorB, colorT);
+            
+            if(damage <  burserkDmg) //버서커 모드 공격력까지만 UP
+            {
+                damage *= 2;
+            }
+        }
+    }
+
+
+  
 
 
 
