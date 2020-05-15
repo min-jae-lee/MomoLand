@@ -15,7 +15,6 @@ public class Monster : MonoBehaviour
     public GameObject dmgHud;
     public float attackDelay;
     public int damage;
-
     protected int curHp;
     protected bool dead = false;
     protected Animator monsterAnimator;
@@ -23,11 +22,14 @@ public class Monster : MonoBehaviour
     protected Transform monsterTransform;
     protected NavMeshAgent nav;
     protected int getDmg;
+    protected AttackChk attackChk;
+    
 
     protected virtual void Start()
     {
         monsterAnimator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        attackChk = GameObject.Find("AttackChkCol").GetComponent<AttackChk> ();
         curHp = maxHp;
         hpText.text = Name+"\n"+curHp.ToString() + "/" + maxHp.ToString();
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
@@ -74,6 +76,7 @@ public class Monster : MonoBehaviour
         nav.enabled = false;
         monsterAnimator.SetTrigger("Die");
         Debug.Log($"{name}이/가 사망하셨습니다.");
+        attackChk.isAtk = false;
         dead = true;
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);

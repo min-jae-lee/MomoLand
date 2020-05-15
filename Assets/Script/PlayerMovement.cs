@@ -17,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public int attack1Power = 10;
     public int attack2Power = 20;
 
-
-
     public AnimationClip attack1Anim; //공격1 애니메이션
     public AnimationClip attack2Anim; //공격2 애니메이션
 
@@ -40,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private Sword sword;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
+    
 
     void Start()
     {
@@ -51,9 +50,6 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         
-
-
-
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
     }
@@ -173,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     void Die()
     {
         if(curHp <= 0)
-        {
+        {           
             playerAnimator.SetTrigger("Die");
         }
     }

@@ -9,6 +9,7 @@ public class AttackChk : MonoBehaviour
     private float attackDelay;
     private Animator monAnimator;
     private PlayerMovement playerMovement;
+    public bool isAtk=true;
     public GameObject dmgHud;
     public Transform playerDmgHudPos;
 
@@ -22,31 +23,38 @@ public class AttackChk : MonoBehaviour
 
     void Update()
     {
-
+        
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             playerMovement = other.GetComponent<PlayerMovement>();
-            StartCoroutine(Attack());
-
+            if (playerMovement.curHp > 0)
+            {
+                StartCoroutine(Attack());
+            }
         }
     }
 
     IEnumerator Attack()
     {
-        Debug.Log("몬스터의공격! 공격력은"+turtleShell.damage+"입니다");
-        GameObject damageHud = Instantiate(dmgHud);
-        damageHud.transform.position = playerDmgHudPos.position;       
-        damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
-     
-        playerMovement.curHp -= turtleShell.damage;
-        monAnimator.SetTrigger("Attack");
-        yield return new WaitForSeconds(attackDelay);
+        while (true)
+        {
+            if (playerMovement.curHp <= 0)
+                isAtk = false;
+            yield return new WaitUntil(() => isAtk);            
+            Debug.Log("몬스터의공격! 공격력은" + turtleShell.damage + "입니다");
+            GameObject damageHud = Instantiate(dmgHud);
+            damageHud.transform.position = playerDmgHudPos.position;
+            damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
 
-        StartCoroutine(Attack());
+            playerMovement.curHp -= turtleShell.damage;
+            monAnimator.SetTrigger("Attack");
+            yield return new WaitForSeconds(attackDelay);
+        }
 
     }
 

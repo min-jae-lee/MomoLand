@@ -14,6 +14,7 @@ public class TurtleShell : Monster
     public float moveSpeed;
     //플레이어 인식 범위
     public float reactRange;
+    //버서커모드시 몬스터 컬러 변경 변수들   
     public SkinnedMeshRenderer _skinnedMeshRenderer;
     public Color colorA;
     public Color colorB;
@@ -136,9 +137,14 @@ public class TurtleShell : Monster
     //HP 40이하로 내려가면 메쉬렌더 컬러변경과 공격력UP
     void Burserk()
     {
-        if(curHp <= 40)
+        if (curHp <= 40)
         {
-            
+            if(curHp <= 0)
+            {
+                mat.color = colorA;
+                return;
+            }
+
             if (colorBool == false)
             {
                 colorT += 2 * Time.deltaTime;
@@ -149,18 +155,18 @@ public class TurtleShell : Monster
                 colorT -= 2 * Time.deltaTime;
             }
 
-            if(colorT > 1)
+            if (colorT > 1)
             {
                 colorBool = true;
             }
 
-            if(colorT < 0)
+            if (colorT < 0)
             {
                 colorBool = false;
             }
             mat.color = Color.Lerp(colorA, colorB, colorT);
-            
-            if(damage <  burserkDmg) //버서커 모드 공격력까지만 UP
+
+            if (damage < burserkDmg) //버서커 모드 공격력까지만 UP
             {
                 damage *= 2;
             }
@@ -168,7 +174,7 @@ public class TurtleShell : Monster
     }
 
 
-  
+
 
 
 
