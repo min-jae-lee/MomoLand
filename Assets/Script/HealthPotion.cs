@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPotion : MonoBehaviour
 {
-    private int healValue=30;
+    public int healValue=30;
     private PlayerMovement playerMovement;
     public GameObject healHud;
     public Transform playerDmgHudPos;
