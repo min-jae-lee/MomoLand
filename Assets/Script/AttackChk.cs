@@ -36,6 +36,7 @@ public class AttackChk : MonoBehaviour
             playerAnimator = other.GetComponent<Animator>();
             if (playerMovement.curHp > 0)
             {
+                isAtk = true;
                 StartCoroutine(Attack());
             }
         }
@@ -62,6 +63,14 @@ public class AttackChk : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
         }
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            isAtk = false;
+        }
     }
 
 }
