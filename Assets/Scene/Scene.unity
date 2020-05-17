@@ -1058,7 +1058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: -0.09888053, y: -0.85753876, z: 0.1797383, w: -0.47174576}
+  m_LocalRotation: {x: -0.09888052, y: -0.85753876, z: 0.17973828, w: -0.47174576}
   m_LocalPosition: {x: -11.32, y: 7.73, z: 12.450001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2404,6 +2404,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!114 &631934537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631934534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efa70ed87b8de6478ac2e1c963dc438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healHud: {fileID: 5977068248128603472, guid: 111f5065458a78140874dbbe29a0a2dd, type: 3}
+  playerDmgHudPos: {fileID: 917429749}
 --- !u!1001 &640864353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4146,7 +4160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: -0.09888053, y: -0.85753876, z: 0.1797383, w: -0.47174576}
+  m_LocalRotation: {x: -0.09888052, y: -0.85753876, z: 0.17973828, w: -0.47174576}
   m_LocalPosition: {x: -11.32, y: 7.73, z: 12.450001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
