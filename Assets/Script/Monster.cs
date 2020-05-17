@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour
     public GameObject healPotion;
     public float attackDelay;
     public int damage;
+    public BoxCollider _boxCollider;
     protected int curHp;
     protected bool dead = false;
     protected Animator monsterAnimator;
@@ -67,8 +68,10 @@ public class Monster : MonoBehaviour
             if (curHp <= 0)
             {
                 StartCoroutine(Die());
+                _boxCollider.enabled = false;
                 GameObject heallingPotion = Instantiate(healPotion);
                 heallingPotion.transform.position = GameObject.FindObjectOfType<TurtleShell>().monPos;
+                
             }
         }
     }
