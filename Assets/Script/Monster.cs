@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour
     public Text hpText;
     public Transform dmgHudPos;
     public GameObject dmgHud;
+    public GameObject healPotion;
     public float attackDelay;
     public int damage;
     protected int curHp;
@@ -66,6 +67,8 @@ public class Monster : MonoBehaviour
             if (curHp <= 0)
             {
                 StartCoroutine(Die());
+                GameObject heallingPotion = Instantiate(healPotion);
+                heallingPotion.transform.position = GameObject.FindObjectOfType<TurtleShell>().monPos;
             }
         }
     }

@@ -22,6 +22,7 @@ public class TurtleShell : Monster
     private Material mat;
     private bool colorBool = false;
     private int burserkDmg;
+    public Vector3 monPos;
 
     private Transform _transform;
     private GameObject player;
@@ -63,6 +64,7 @@ public class TurtleShell : Monster
 
     void Update()
     {
+        monPos = _transform.position;
         DistChk();
         Burserk();
         playerDist = Vector3.Distance(_transform.position, playerPos);
@@ -172,15 +174,6 @@ public class TurtleShell : Monster
             }
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 }

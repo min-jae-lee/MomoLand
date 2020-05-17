@@ -1058,7 +1058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: -0.09888053, y: -0.85753876, z: 0.1797383, w: -0.47174576}
+  m_LocalRotation: {x: -0.09888052, y: -0.85753876, z: 0.17973828, w: -0.47174576}
   m_LocalPosition: {x: -11.32, y: 7.73, z: 12.450001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2278,7 +2278,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
       propertyPath: m_Name
-      value: Bottle_Health
+      value: HealthPotion
       objectReference: {fileID: 0}
     - target: {fileID: 4000010690109084, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2418,7 +2418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healValue: 30
   healHud: {fileID: 5977068248128603472, guid: 111f5065458a78140874dbbe29a0a2dd, type: 3}
-  playerDmgHudPos: {fileID: 917429749}
 --- !u!1001 &640864353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4161,7 +4160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: -0.09888053, y: -0.85753876, z: 0.1797383, w: -0.47174576}
+  m_LocalRotation: {x: -0.09888052, y: -0.85753876, z: 0.17973828, w: -0.47174576}
   m_LocalPosition: {x: -11.32, y: 7.73, z: 12.450001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5551,6 +5550,11 @@ PrefabInstance:
       propertyPath: attackChk
       value: 
       objectReference: {fileID: 1203938127}
+    - target: {fileID: 219856178, guid: 3aec22b5d3f3c2947bb81040b56e5f96, type: 3}
+      propertyPath: healPotion
+      value: 
+      objectReference: {fileID: 8721733648630143618, guid: 0c19afcdc7f840145b69a068d929181c,
+        type: 3}
     - target: {fileID: 219856180, guid: 3aec22b5d3f3c2947bb81040b56e5f96, type: 3}
       propertyPath: m_Speed
       value: 1

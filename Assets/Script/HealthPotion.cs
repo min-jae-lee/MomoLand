@@ -7,11 +7,11 @@ public class HealthPotion : MonoBehaviour
     public int healValue=30;
     private PlayerMovement playerMovement;
     public GameObject healHud;
-    public Transform playerDmgHudPos;
+    private Transform playerDmgHudPos;
 
-    void Start()
+    protected virtual void Start()
     {
-        
+        playerDmgHudPos = GameObject.Find("PlayerDmgHudPos").transform;
     }
 
     
