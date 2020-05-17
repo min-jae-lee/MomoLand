@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private Sword sword;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
-    
 
     void Start()
     {
@@ -93,7 +92,6 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         Attack();
         HpSlider();
-        Die();
     }
 
     //점프-연속점프 2회로 제한
@@ -164,14 +162,6 @@ public class PlayerMovement : MonoBehaviour
         hpText.text = "HP: " + curHp.ToString() + "/" + maxHp.ToString();
         if (curHp <= 0)
             curHp = 0;
-    }
-    
-    void Die()
-    {
-        if(curHp <= 0)
-        {           
-            playerAnimator.SetTrigger("Die");
-        }
     }
 
 }

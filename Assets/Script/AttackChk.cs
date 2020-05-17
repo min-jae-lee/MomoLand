@@ -8,6 +8,7 @@ public class AttackChk : MonoBehaviour
     private TurtleShell turtleShell;
     private float attackDelay;
     private Animator monAnimator;
+    private Animator playerAnimator;
     private PlayerMovement playerMovement;
     public bool isAtk=true;
     public GameObject dmgHud;
@@ -32,6 +33,7 @@ public class AttackChk : MonoBehaviour
         if (other.tag == "Player")
         {
             playerMovement = other.GetComponent<PlayerMovement>();
+            playerAnimator = other.GetComponent<Animator>();
             if (playerMovement.curHp > 0)
             {
                 StartCoroutine(Attack());
@@ -43,8 +45,7 @@ public class AttackChk : MonoBehaviour
     {
         while (true)
         {
-            if (playerMovement.curHp <= 0)
-                isAtk = false;
+
             yield return new WaitUntil(() => isAtk);            
             Debug.Log("몬스터의공격! 공격력은" + turtleShell.damage + "입니다");
             GameObject damageHud = Instantiate(dmgHud);
@@ -53,6 +54,11 @@ public class AttackChk : MonoBehaviour
 
             playerMovement.curHp -= turtleShell.damage;
             monAnimator.SetTrigger("Attack");
+            if (playerMovement.curHp <= 0)
+            {
+                isAtk = false;
+                playerAnimator.SetTrigger("Die");
+            }
             yield return new WaitForSeconds(attackDelay);
         }
 
