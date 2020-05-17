@@ -162,6 +162,8 @@ public class PlayerMovement : MonoBehaviour
         hpText.text = "HP: " + curHp.ToString() + "/" + maxHp.ToString();
         if (curHp <= 0)
             curHp = 0;
+        if (curHp >= 100)
+            curHp = 100;
     }
 
 }
