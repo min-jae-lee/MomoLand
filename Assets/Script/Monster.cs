@@ -31,7 +31,7 @@ public class Monster : MonoBehaviour
     {
         monsterAnimator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        attackChk = GameObject.Find("AttackChkCol").GetComponent<AttackChk> ();
+        attackChk = transform.Find("AttackChkCol").GetComponent<AttackChk> ();
         curHp = maxHp;
         hpText.text = Name+"\n"+curHp.ToString() + "/" + maxHp.ToString();
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
@@ -70,7 +70,7 @@ public class Monster : MonoBehaviour
                 StartCoroutine(Die());
                 _boxCollider.enabled = false;
                 GameObject heallingPotion = Instantiate(healPotion);
-                heallingPotion.transform.position = GameObject.FindObjectOfType<TurtleShell>().monPos;
+                heallingPotion.transform.position = GetComponent<TurtleShell>().monPos;
                 
             }
         }

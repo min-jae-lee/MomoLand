@@ -13,9 +13,9 @@ public class DroppedHealthPotion : HealthPotion
     protected override void Start()
     {
         base.Start();
-        forceX = Random.Range(1, 3);
+        forceX = Random.Range(-3, 3);
         forceY = Random.Range(7, 10);
-        forceZ = Random.Range(1, 3);
+        forceZ = Random.Range(-3, 3);
         _rigidbody.AddForce(new Vector3(forceX, forceY, forceZ),ForceMode.Impulse);
         _sphereCollider.enabled = false;
         StartCoroutine(ColOnOff());

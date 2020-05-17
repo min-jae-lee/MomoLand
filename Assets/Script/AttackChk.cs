@@ -16,9 +16,9 @@ public class AttackChk : MonoBehaviour
 
     void Start()
     {
-        turtleShell = GameObject.Find("TurtleShell").GetComponent<TurtleShell>();
+        turtleShell = transform.parent.GetComponent<TurtleShell>();
         attackDelay = turtleShell.attackDelay;
-        monAnimator = GameObject.Find("TurtleShell").GetComponent<Animator>();
+        monAnimator = transform.parent.GetComponent<Animator>();
     }
 
 
