@@ -58,6 +58,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.26
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &917429748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917429749}
+  m_Layer: 0
+  m_Name: PlayerDmgHudPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917429749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917429748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0.95, z: -0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4086279202973348}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012999645634934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,10 +1603,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4086279202973348}
   - component: {fileID: 95922273507661854}
-  - component: {fileID: 2043341293}
   - component: {fileID: 2043341295}
-  - component: {fileID: 2043341294}
   - component: {fileID: 2043341296}
+  - component: {fileID: 2043341293}
+  - component: {fileID: 2043341294}
+  - component: {fileID: 997347390765308145}
   m_Layer: 0
   m_Name: RPGHeroHP
   m_TagString: Player
@@ -1592,12 +1623,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556040939566342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.641927, y: 0, z: 0}
   m_LocalScale: {x: 0.50000036, y: 0.5, z: 0.50000036}
   m_Children:
   - {fileID: 4757707443811996}
   - {fileID: 4306585200491458}
   - {fileID: 294322591}
+  - {fileID: 917429749}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1620,6 +1652,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &2043341295
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556040939566342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2043341296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556040939566342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932319dea495c5842a26471b8bac0060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAxis: Vertical
+  rotateAxis: Horizontal
 --- !u!54 &2043341293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1636,20 +1696,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &2043341295
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556040939566342}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2043341294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,7 +1720,7 @@ MonoBehaviour:
   attackCheckCol: {fileID: 1686627457}
   hpSlider: {fileID: 0}
   hpText: {fileID: 0}
---- !u!114 &2043341296
+--- !u!114 &997347390765308145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
