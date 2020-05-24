@@ -24,15 +24,16 @@ public class Grass_1_24 : MonoBehaviour
     }
 
     IEnumerator Move1()
-    {  
+    {
+        
         while (true)
         {
             yield return new WaitUntil(() => move1Bool);
             yield return new WaitForSeconds(0.01f);
             _transform.Translate(new Vector3(move1 * Time.deltaTime, 0, 0));
-            if (_transform.position.x >= -7.5f)
+            if (_transform.position.x >= -7.35f)
             {
-                Debug.Log(_transform.position.x);
+                yield return new WaitForSeconds(1.5f);
                 move1Bool = false;
                 move2Bool = true;
           
@@ -43,13 +44,15 @@ public class Grass_1_24 : MonoBehaviour
     }
     IEnumerator Move2()
     {
+        yield return new WaitForSeconds(3f);
         while (true)
         {
             yield return new WaitUntil(() => move2Bool);
             yield return new WaitForSeconds(0.01f);
             _transform.Translate(new Vector3(move2 * Time.deltaTime, 0, 0));
-            if (_transform.position.x <= -12.7f)
+            if (_transform.position.x <= -12.85f)
             {
+                yield return new WaitForSeconds(1.5f);
                 move2Bool = false;
                 move1Bool = true;
             }
