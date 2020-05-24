@@ -193,5 +193,14 @@ public class PlayerMovement : MonoBehaviour
             curHp = 100;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DieGround")
+        {
+            dead = true;
+            playerAnimator.SetTrigger("Die");
+        }
+    }
+
 
 }

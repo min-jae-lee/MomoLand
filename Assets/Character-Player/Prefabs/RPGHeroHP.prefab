@@ -1607,7 +1607,6 @@ GameObject:
   - component: {fileID: 2043341296}
   - component: {fileID: 2043341293}
   - component: {fileID: 2043341294}
-  - component: {fileID: 997347390765308145}
   m_Layer: 0
   m_Name: RPGHeroHP
   m_TagString: Player
@@ -1720,20 +1719,6 @@ MonoBehaviour:
   attackCheckCol: {fileID: 1686627457}
   hpSlider: {fileID: 0}
   hpText: {fileID: 0}
---- !u!114 &997347390765308145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556040939566342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932319dea495c5842a26471b8bac0060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAxis: Vertical
-  rotateAxis: Horizontal
 --- !u!1 &1613396906338018
 GameObject:
   m_ObjectHideFlags: 0
