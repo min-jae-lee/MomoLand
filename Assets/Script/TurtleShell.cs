@@ -87,10 +87,6 @@ public class TurtleShell : Monster
             targetLook = targetPos - _transform.position;
             moveType = Random.Range(0, 3);
             moveRanTime = Random.Range(3, 5);
-            Debug.Log("몬스터 행동타입은" + moveType + "입니다. 0:휴식 1~2:이동");
-            Debug.Log("몬스터가" + moveRanTime + "초 후 다음 행동을 진행합니다.");
-            Debug.Log("몬스터와 플레이어의 거리는" + playerDist + "입니다");
-            Debug.Log("몬스터의 초기생성위치와의 거리는" + monFromStartPos + "입니다");
             yield return new WaitForSeconds(moveRanTime);
 
         }

@@ -12,6 +12,7 @@ public class AttackChk : MonoBehaviour
     private PlayerMovement playerMovement;
     public bool isAtk = true;
     public bool canAttack = true;
+    public bool canAttackSpeed = true;
     public GameObject dmgHud;
     public Transform playerDmgHudPos;
 
@@ -31,6 +32,7 @@ public class AttackChk : MonoBehaviour
             if (playerMovement.curHp > 0)
             {
                 isAtk = true;
+                canAttackSpeed = true;
                 StartCoroutine(AttackRoutine());
             }
         }
@@ -48,12 +50,12 @@ public class AttackChk : MonoBehaviour
     IEnumerator AttackSpeedRoutine()
     {
         yield return new WaitForSeconds(attackDelay);
+        yield return new WaitUntil(() => canAttackSpeed); //콜라이더범위 벗어나도 canAttack이 True로 바뀌면 공격한번 더 하는 버그 수정 목적
         canAttack = true;
     }
 
     private void Attack()
     {
-        Debug.Log("몬스터의공격! 공격력은" + turtleShell.damage + "입니다");
         GameObject damageHud = Instantiate(dmgHud);
         damageHud.transform.position = playerDmgHudPos.position;
         damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
@@ -73,6 +75,7 @@ public class AttackChk : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            canAttackSpeed = false;
             isAtk = false;
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grass_1_24 : MonoBehaviour
+public class GroundMove : MonoBehaviour
 {
     public float move1;
     public float move2;
