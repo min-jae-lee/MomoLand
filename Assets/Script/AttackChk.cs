@@ -65,7 +65,7 @@ public class AttackChk : MonoBehaviour
         if (playerMovement.curHp <= 0)
         {
             isAtk = false;
-            playerAnimator.SetTrigger("Die");
+            canAttackSpeed = false;
         }
 
         canAttack = false;

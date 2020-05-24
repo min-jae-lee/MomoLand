@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public AnimationClip attack2Anim; //공격2 애니메이션
 
     private bool isMovable = true; // 이동 컨트롤 플레그 변수
-    
+    private bool dead = false;
 
     //무기 콜라이더
     public BoxCollider attackCheckCol;
@@ -63,27 +63,36 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if (isMovable == false) return;
-        //앞뒤이동, 물리처리무시(벽뚫고나감 등)를 방지하기 위해 Rigidbody.MovePosition 사용
-        //FixedUpdate에 속해있기 때문에 Time.deltaTime은 자동으로 fixedDeltaTime값을 출력함
-        Vector3 moveValue = playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
+        if(dead == false)
+        {
+            if (isMovable == false) return;
+            //앞뒤이동, 물리처리무시(벽뚫고나감 등)를 방지하기 위해 Rigidbody.MovePosition 사용
+            //FixedUpdate에 속해있기 때문에 Time.deltaTime은 자동으로 fixedDeltaTime값을 출력함
+            Vector3 moveValue = playerInput.move * transform.forward * moveSpeed * Time.deltaTime;
 
-        //리지드바디 앞뒤이동값 적용
-        playerRigidbody.MovePosition(playerRigidbody.position + moveValue);
+            //리지드바디 앞뒤이동값 적용
+            playerRigidbody.MovePosition(playerRigidbody.position + moveValue);
 
-        //Move 애니메이션에 Input값 적용
-        playerAnimator.SetFloat("Move", playerInput.move);
+            //Move 애니메이션에 Input값 적용
+            playerAnimator.SetFloat("Move", playerInput.move);
+        }
+
 
 
     }
 
     void Rotate()
     {
-        if (isMovable == false) return;
-        //회전값 저장
-        float rotateValue = playerInput.rotate * rotateSpeed * Time.deltaTime;
-        //리지드바디에 회전값 저장
-        playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, rotateValue, 0);
+        if(dead == false)
+        {
+            if (isMovable == false) return;
+            //회전값 저장
+            float rotateValue = playerInput.rotate * rotateSpeed * Time.deltaTime;
+            //리지드바디에 회전값 저장
+            playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, rotateValue, 0);
+
+        }
+
 
     }
 
@@ -97,16 +106,20 @@ public class PlayerMovement : MonoBehaviour
     //점프-연속점프 2회로 제한
     void Jump()
     {
-        if (isMovable == false) return;
-
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+        if(dead == false)
         {
-            if (jumpCount == 0) playerAnimator.SetTrigger("Jump");
-            //가속도가 점프에 영향 없도록 점프전 velocity값 제로
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
-            jumpCount++;
+            if (isMovable == false) return;
+
+            if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+            {
+                if (jumpCount == 0) playerAnimator.SetTrigger("Jump");
+                //가속도가 점프에 영향 없도록 점프전 velocity값 제로
+                playerRigidbody.velocity = Vector3.zero;
+                playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
+                jumpCount++;
+            }
         }
+
     }
 
     //바닥 접촉 체크,점프횟수 초기화
@@ -124,28 +137,37 @@ public class PlayerMovement : MonoBehaviour
 
     void Attack()
     {
-        //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
-        if (Input.GetButton("Fire1") && attackCheckCol.enabled == false)
+        if(dead == false)
         {
-            sword.hittedMonsters.Clear();
-            playerAnimator.SetTrigger("Attack1");
-            attackCheckCol.enabled = true;
-            sword.SetDamage(attack1Power);            
-            StartCoroutine(AttackOff(attack1Anim.length));
+            //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
+            if (Input.GetButton("Fire1") && attackCheckCol.enabled == false)
+            {
+                sword.hittedMonsters.Clear();
+                playerAnimator.SetTrigger("Attack1");
+                attackCheckCol.enabled = true;
+                sword.SetDamage(attack1Power);
+                StartCoroutine(AttackOff(attack1Anim.length));
+            }
+            else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false)
+            {
+                sword.hittedMonsters.Clear();
+                playerAnimator.SetTrigger("Attack2");
+                attackCheckCol.enabled = true;
+                sword.SetDamage(attack2Power);
+                StartCoroutine(AttackOff(attack2Anim.length));
+            }
         }
-        else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false)
-        {
-            sword.hittedMonsters.Clear();
-            playerAnimator.SetTrigger("Attack2");
-            attackCheckCol.enabled = true;
-            sword.SetDamage(attack2Power);            
-            StartCoroutine(AttackOff(attack2Anim.length));
-        }
+
     }
 
     public void Damaged(int damage)
     {
         curHp -= damage;
+        if(curHp <= 0)
+        {
+            dead = true;
+            playerAnimator.SetTrigger("Die");
+        }
     }
 
     //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
@@ -170,5 +192,6 @@ public class PlayerMovement : MonoBehaviour
         if (curHp >= 100)
             curHp = 100;
     }
+
 
 }
