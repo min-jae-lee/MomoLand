@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public Slider hpSlider;
     public Text hpText;
 
+    //게임오버UI
+    public GameObject gameOverUI;
+
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
     private Sword sword;
@@ -167,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dead = true;
             playerAnimator.SetTrigger("Die");
+            gameOverUI.SetActive(true);
         }
     }
 
@@ -199,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dead = true;
             playerAnimator.SetTrigger("Die");
+            gameOverUI.SetActive(true);
         }
     }
 

@@ -1719,6 +1719,7 @@ MonoBehaviour:
   attackCheckCol: {fileID: 1686627457}
   hpSlider: {fileID: 0}
   hpText: {fileID: 0}
+  gameOverUI: {fileID: 0}
 --- !u!1 &1613396906338018
 GameObject:
   m_ObjectHideFlags: 0
