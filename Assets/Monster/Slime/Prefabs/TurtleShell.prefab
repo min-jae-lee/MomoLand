@@ -267,6 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAtk: 1
+  canAttack: 1
+  canAttackSpeed: 1
   dmgHud: {fileID: 4123880007559542278, guid: 2ca23781b9d53a24ba81bcf93484cead, type: 3}
   playerDmgHudPos: {fileID: 0}
 --- !u!1 &1440759450
