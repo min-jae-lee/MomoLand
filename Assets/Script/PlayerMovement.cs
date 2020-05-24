@@ -143,6 +143,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Damaged(int damage)
+    {
+        curHp -= damage;
+    }
+
     //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
     IEnumerator AttackOff(float attackSpeed)
     {

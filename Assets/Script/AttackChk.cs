@@ -10,7 +10,8 @@ public class AttackChk : MonoBehaviour
     private Animator monAnimator;
     private Animator playerAnimator;
     private PlayerMovement playerMovement;
-    public bool isAtk=true;
+    public bool isAtk = true;
+    public bool canAttack = true;
     public GameObject dmgHud;
     public Transform playerDmgHudPos;
 
@@ -21,13 +22,6 @@ public class AttackChk : MonoBehaviour
         monAnimator = transform.parent.GetComponent<Animator>();
     }
 
-
-    void Update()
-    {
-        
-    }
-
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -37,32 +31,42 @@ public class AttackChk : MonoBehaviour
             if (playerMovement.curHp > 0)
             {
                 isAtk = true;
-                StartCoroutine(Attack());
+                StartCoroutine(AttackRoutine());
             }
         }
     }
 
-    IEnumerator Attack()
+    IEnumerator AttackRoutine()
     {
-        while (true)
+        while (isAtk)
         {
+            yield return new WaitUntil(() => canAttack);
+            Attack();
+            StartCoroutine(AttackSpeedRoutine());
+        }
+    }
+    IEnumerator AttackSpeedRoutine()
+    {
+        yield return new WaitForSeconds(attackDelay);
+        canAttack = true;
+    }
 
-            yield return new WaitUntil(() => isAtk);            
-            Debug.Log("몬스터의공격! 공격력은" + turtleShell.damage + "입니다");
-            GameObject damageHud = Instantiate(dmgHud);
-            damageHud.transform.position = playerDmgHudPos.position;
-            damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
+    private void Attack()
+    {
+        Debug.Log("몬스터의공격! 공격력은" + turtleShell.damage + "입니다");
+        GameObject damageHud = Instantiate(dmgHud);
+        damageHud.transform.position = playerDmgHudPos.position;
+        damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
 
-            playerMovement.curHp -= turtleShell.damage;
-            monAnimator.SetTrigger("Attack");
-            if (playerMovement.curHp <= 0)
-            {
-                isAtk = false;
-                playerAnimator.SetTrigger("Die");
-            }
-            yield return new WaitForSeconds(attackDelay);
+        playerMovement.Damaged(turtleShell.damage);
+        monAnimator.SetTrigger("Attack");
+        if (playerMovement.curHp <= 0)
+        {
+            isAtk = false;
+            playerAnimator.SetTrigger("Die");
         }
 
+        canAttack = false;
     }
 
     void OnTriggerExit(Collider other)
