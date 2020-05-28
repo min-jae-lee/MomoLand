@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - Sword
   - DieGround
+  - Sky1
   layers:
   - Default
   - TransparentFX
