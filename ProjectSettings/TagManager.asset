@@ -10,6 +10,7 @@ TagManager:
   - Sword
   - DieGround
   - Sky1
+  - Sky2
   layers:
   - Default
   - TransparentFX

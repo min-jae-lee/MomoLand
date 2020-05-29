@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Scrolling : MonoBehaviour
 {
-    private float scrollingSpeed = 3f;
+    private float scrollingSpeed1 = 3f;
+    private float scrollingSpeed2 = 5f;
     private float width;
-    private float move1=1;
-    private float move2=2;
+    private float move1=1f;
+    private float move3=2f;
     RectTransform rectTransform;
 
 
@@ -18,7 +19,7 @@ public class Scrolling : MonoBehaviour
         //스크롤링할 배경이미지의 가로값저장 (UI 이미지)
         width = rectTransform.rect.width;
         // 스크롤링 배경이미지 2개중 1개를 시작과 동시에 우측으로 가로값 만큼 이동
-        if (gameObject.tag == "Sky1")
+        if (gameObject.tag == "Sky1" || gameObject.tag == "Sky2")
         {
             Reposition(move1);
         }
@@ -27,13 +28,18 @@ public class Scrolling : MonoBehaviour
     void Update()
     {
         // 배경이미지 왼쪽으로 스크롤링
-        transform.Translate(Vector3.left * scrollingSpeed * Time.deltaTime);
+        if(gameObject.tag == "Sky2")
+        {
+            transform.Translate(Vector3.left * scrollingSpeed2 * Time.deltaTime);
+        }
+        else
+            transform.Translate(Vector3.left * scrollingSpeed1 * Time.deltaTime);
         //스크롤링중에 x위치값이 가로크기보다 좌측으로 벗어날시 Reposition 메소드 실행
         //꽉찬 화면을 위해 앵커를 걸었기 때문에 포지션은 anchoredPosition으로 계산
         if (rectTransform.anchoredPosition.x <= -width)
         {
-            
-            Reposition(move2);
+
+            Reposition(move3);
             
         }
     }
