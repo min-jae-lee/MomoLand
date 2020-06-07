@@ -87,6 +87,7 @@
     <Compile Include="Assets\Script\Scrolling.cs" />
     <Compile Include="Assets\Script\StartManager.cs" />
     <Compile Include="Assets\Script\Sword.cs" />
+    <Compile Include="Assets\Script\TouchText.cs" />
     <Compile Include="Assets\Script\TurtleShell.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\Unitychan_chara_eye.shader" />

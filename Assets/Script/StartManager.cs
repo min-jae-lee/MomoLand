@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
+
+    
     
     void Start()
     {
@@ -19,4 +21,6 @@ public class StartManager : MonoBehaviour
             SceneManager.LoadScene("Scene");
         }
     }
+
+   
 }
