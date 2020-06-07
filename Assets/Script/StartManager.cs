@@ -7,7 +7,6 @@ public class StartManager : MonoBehaviour
 {
 
     
-    
     void Start()
     {
         
@@ -18,7 +17,8 @@ public class StartManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("Scene");
+
+            SceneManager.LoadScene("Loading");
         }
     }
 
