@@ -63,14 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Map-Source\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\EnemyBullet.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\EnemyHp.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\Tower.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\TowerBullet.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\TowerHP.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\TowerTrigger.cs" />
-    <Compile Include="Assets\Map-Source\Scripts\WaveSpawn.cs" />
     <Compile Include="Assets\Script\AttackChk.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
@@ -100,8 +92,8 @@
     <None Include="Assets\Character-etc\Character-SdChan\Shader\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\Map-Source\INFO\Info.txt" />
-    <None Include="Assets\Map-Source\Materials\Scene\sky.shader" />
+    <None Include="Assets\Map-Source\Baker House\Readme.txt" />
+    <None Include="Assets\Map-Source\ForestGround\Materials\Scene\sky.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
