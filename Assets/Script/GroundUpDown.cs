@@ -49,7 +49,7 @@ public class GroundUpDown : MonoBehaviour
             _transform.Translate(new Vector3(0, moveSpeed2 * Time.deltaTime, 0));
             if (player != null)
                 player.transform.position += new Vector3(0, moveSpeed2 * Time.deltaTime, 0);
-            if (_transform.position.y <= 5.285f)
+            if (_transform.position.y <= 5.31f)
             {
                 yield return new WaitForSeconds(1.5f);
                 move2Bool = false;
