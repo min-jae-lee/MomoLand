@@ -11,6 +11,7 @@ TagManager:
   - DieGround
   - Sky1
   - Sky2
+  - GroundUpDown
   layers:
   - Default
   - TransparentFX

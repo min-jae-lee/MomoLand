@@ -8,19 +8,44 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.OnGround(other.gameObject.layer);
-        var script = other.GetComponent<GroundMove>();
-        if (script != null)
+        if (other.tag == "GroundUpDown")
         {
-            script.SetPlayer(player);
+            player.OnGround(other.gameObject.layer);
+            var script = other.GetComponent<GroundUpDown>();
+            if (script != null)
+            {
+                script.SetPlayer(player);
+            }
+            return;
+        }
+        else
+        {
+            player.OnGround(other.gameObject.layer);
+            var script = other.GetComponent<GroundMove>();
+            if (script != null)
+            {
+                script.SetPlayer(player);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        var script = other.GetComponent<GroundMove>();
-        if (script != null)
+        if(other.tag == "GroundUpDown")
         {
-            script.SetPlayer(null);
+            var script = other.GetComponent<GroundUpDown>();
+            if (script != null)
+            {
+                script.SetPlayer(null);
+            }
         }
+        else
+        {
+            var script = other.GetComponent<GroundMove>();
+            if (script != null)
+            {
+                script.SetPlayer(null);
+            }
+        }
+
     }
 }
