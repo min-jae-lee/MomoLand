@@ -78,8 +78,8 @@
     <Compile Include="Assets\Script\HpSlider.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
+    <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
-    <Compile Include="Assets\Script\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Scrolling.cs" />
     <Compile Include="Assets\Script\StartManager.cs" />
     <Compile Include="Assets\Script\Sword.cs" />

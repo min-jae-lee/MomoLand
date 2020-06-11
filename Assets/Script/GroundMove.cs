@@ -9,7 +9,7 @@ public class GroundMove : MonoBehaviour
     private bool move1Bool=true;
     private bool move2Bool=false;
     private Transform _transform;
-    private PlayerMovement player;
+    private Player player;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class GroundMove : MonoBehaviour
         StartCoroutine(Move2());
     }
 
-    public void SetPlayer(PlayerMovement _player)
+    public void SetPlayer(Player _player)
     {
         player = _player;
     }

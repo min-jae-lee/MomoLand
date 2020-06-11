@@ -7,6 +7,7 @@ public class Fruit : MonoBehaviour
 
     public float moveSpeed1;
     public float moveSpeed2;
+    public float damage=30f;
     private bool leftRight;
 
     void Start()

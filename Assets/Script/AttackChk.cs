@@ -9,7 +9,7 @@ public class AttackChk : MonoBehaviour
     private float attackDelay;
     private Animator monAnimator;
     private Animator playerAnimator;
-    private PlayerMovement playerMovement;
+    private Player player;
     public bool isAtk = true;
     public bool canAttack = true;
     public bool canAttackSpeed = true;
@@ -27,9 +27,9 @@ public class AttackChk : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerMovement = other.GetComponent<PlayerMovement>();
+            player = other.GetComponent<Player>();
             playerAnimator = other.GetComponent<Animator>();
-            if (playerMovement.curHp > 0)
+            if (player.curHp > 0)
             {
                 isAtk = true;
                 canAttackSpeed = true;
@@ -60,9 +60,9 @@ public class AttackChk : MonoBehaviour
         damageHud.transform.position = playerDmgHudPos.position;
         damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
 
-        playerMovement.Damaged(turtleShell.damage);
+        player.Damaged(turtleShell.damage);
         monAnimator.SetTrigger("Attack");
-        if (playerMovement.curHp <= 0)
+        if (player.curHp <= 0)
         {
             isAtk = false;
             canAttackSpeed = false;

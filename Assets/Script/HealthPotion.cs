@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPotion : MonoBehaviour
 {
     public int healValue=30;
-    private PlayerMovement playerMovement;
+    private Player player;
     public GameObject healHud;
     private Transform playerDmgHudPos;
 
@@ -28,8 +28,8 @@ public class HealthPotion : MonoBehaviour
             heallingHud.transform.position = playerDmgHudPos.position;
             heallingHud.GetComponent<HealTmp>().heal = healValue;
 
-            playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.curHp += healValue;
+            player = other.GetComponent<Player>();
+            player.curHp += healValue;
             Destroy(gameObject);
         }
     }
