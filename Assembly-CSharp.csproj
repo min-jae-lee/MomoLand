@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
     <Compile Include="Assets\Script\ExclamationChk.cs" />
     <Compile Include="Assets\Script\Fruit.cs" />
+    <Compile Include="Assets\Script\FruitTree.cs" />
     <Compile Include="Assets\Script\GroundCheck.cs" />
     <Compile Include="Assets\Script\GroundMove.cs" />
     <Compile Include="Assets\Script\GroundUpDown.cs" />

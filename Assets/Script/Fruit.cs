@@ -7,37 +7,42 @@ public class Fruit : MonoBehaviour
 
     public float moveSpeed1;
     public float moveSpeed2;
+    private bool leftRight;
 
     void Start()
     {
-        Debug.Log(transform.position.z);
+        if (transform.position.z >= -13.5f)
+        {
+            leftRight = true;
+        }
+        else leftRight = false;
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-        Debug.Log(transform.position.z);
+    {  
         Move();
     }
     void Move()
     {
-        if(gameObject.tag=="lFruit")
+        if (leftRight == true)
         {
             transform.Translate(new Vector3(0, moveSpeed1 * Time.deltaTime, 0));
-            if(transform.position.z <= -13.5f)
+            if(transform.position.z <= -14f)
             {
                 Destroy(gameObject);
             }
         }
-        if (gameObject.tag == "rFruit")
+        else
         {
             transform.Translate(new Vector3(0, moveSpeed2 * Time.deltaTime, 0 ));
-            if (transform.position.z >= -9f)
+            if (transform.position.z >= -9.5f)
             {
                 Destroy(gameObject);
             }
         }
-
-
     }
+
+
 }

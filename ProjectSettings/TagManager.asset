@@ -12,7 +12,6 @@ TagManager:
   - Sky1
   - Sky2
   - GroundUpDown
-  - lFruit
   layers:
   - Default
   - TransparentFX
