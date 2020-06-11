@@ -7,8 +7,10 @@ public class Fruit : MonoBehaviour
 
     public float moveSpeed1;
     public float moveSpeed2;
-    public float damage=30f;
+    public int damage=30;
     private bool leftRight;
+    private Player player;
+    
 
     void Start()
     {
@@ -45,5 +47,17 @@ public class Fruit : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            player = other.GetComponent<Player>();
+            player.Damaged(damage);
+            player.DamagedColor();
+            Destroy(gameObject);
+            
+            
+        }
+    }
 
 }

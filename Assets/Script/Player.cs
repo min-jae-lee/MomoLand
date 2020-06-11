@@ -38,6 +38,14 @@ public class Player : MonoBehaviour
     public GameObject dmgHud;
     public Transform playerDmgHudPos;
 
+    //컬러
+    public SkinnedMeshRenderer playerRenderer;
+    private Material mat;
+    public Color colorA;
+    public Color colorB;
+    public Color colorC;
+    private float curTime;
+
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
     private Sword sword;
@@ -53,7 +61,8 @@ public class Player : MonoBehaviour
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        
+        mat = playerRenderer.materials[0];
+
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
     }
@@ -174,9 +183,30 @@ public class Player : MonoBehaviour
         if (curHp <= 0)
         {
             dead = true;
+            tag = "Untagged";
             playerAnimator.SetTrigger("Die");
             gameOverUI.SetActive(true);
         }
+    }
+
+    public void DamagedColor()
+    {
+        curTime += Time.deltaTime;
+        mat = playerRenderer.materials[0];
+        mat.color = colorA;
+        StartCoroutine(Color());
+    }
+
+    IEnumerator Color()
+    {
+        yield return new WaitForSeconds(0.05f);
+        mat.color = colorB;
+        yield return new WaitForSeconds(0.05f);
+        mat.color = colorA;
+        yield return new WaitForSeconds(0.05f);
+        mat.color = colorB;
+        yield return new WaitForSeconds(3f);
+        mat.color = colorC;
     }
 
     //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
