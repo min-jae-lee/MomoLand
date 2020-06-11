@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 2f;
     public float rotateSpeed = 200f;
     public float jumpPower = 200f;
-
+    
     //공격력,체력,연타간격
     public int maxHp = 100;
     public int curHp;
@@ -33,8 +33,10 @@ public class Player : MonoBehaviour
     public Slider hpSlider;
     public Text hpText;
 
-    //게임오버UI
+    //UI
     public GameObject gameOverUI;
+    public GameObject dmgHud;
+    public Transform playerDmgHudPos;
 
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
@@ -166,7 +168,10 @@ public class Player : MonoBehaviour
     public void Damaged(int damage)
     {
         curHp -= damage;
-        if(curHp <= 0)
+        GameObject damageHud = Instantiate(dmgHud);
+        damageHud.transform.position = playerDmgHudPos.position;
+        damageHud.GetComponent<DmgTmp>().damage = damage;
+        if (curHp <= 0)
         {
             dead = true;
             playerAnimator.SetTrigger("Die");

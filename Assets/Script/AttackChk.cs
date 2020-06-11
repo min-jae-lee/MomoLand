@@ -13,8 +13,7 @@ public class AttackChk : MonoBehaviour
     public bool isAtk = true;
     public bool canAttack = true;
     public bool canAttackSpeed = true;
-    public GameObject dmgHud;
-    public Transform playerDmgHudPos;
+    
 
     void Start()
     {
@@ -56,10 +55,6 @@ public class AttackChk : MonoBehaviour
 
     private void Attack()
     {
-        GameObject damageHud = Instantiate(dmgHud);
-        damageHud.transform.position = playerDmgHudPos.position;
-        damageHud.GetComponent<DmgTmp>().damage = turtleShell.damage;
-
         player.Damaged(turtleShell.damage);
         monAnimator.SetTrigger("Attack");
         if (player.curHp <= 0)
