@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23363714592162624}
   - component: {fileID: 1629050242}
   - component: {fileID: 1629050241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,3 +106,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed1: 3
   moveSpeed2: -3
+  damage: 30

@@ -187,6 +187,8 @@ public class Player : MonoBehaviour
     //발사체에 피격시 투명도조절과 일정시간 무적
     public void DamagedColor()
     {
+        //피격시 레이어 변경으로 발사체와 충돌방지(무적)
+        gameObject.layer = 9;
         //material의 rendering mode중 Opaque모드는 투명도 조절이 안되기 때문에 피격순간에만 Fade 모드의 투명도 옵션으로 적용
         playerRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         playerRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -223,9 +225,11 @@ public class Player : MonoBehaviour
         shieldRenderer.material.color = new Color(0, 0, 0, 0.3f);
         swordRenderer.material.color = new Color(0, 0, 0, 0.3f);
         yield return new WaitForSeconds(3f);
+        //무적타임 끝난뒤 컬러, 레이어 원상 복귀
         playerRenderer.material.color = new Color(0, 0, 0, 1f);
         shieldRenderer.material.color = new Color(0, 0, 0, 1f);
         swordRenderer.material.color = new Color(0, 0, 0, 1f);
+        gameObject.layer = 0;
     }
 
     //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
