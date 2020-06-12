@@ -40,11 +40,9 @@ public class Player : MonoBehaviour
 
     //컬러
     public SkinnedMeshRenderer playerRenderer;
-    private Material mat;
+    public MeshRenderer shieldRenderer;
+    public MeshRenderer swordRenderer;
     public Color colorA;
-    public Color colorB;
-    public Color colorC;
-    private float curTime;
 
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
@@ -61,8 +59,6 @@ public class Player : MonoBehaviour
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        mat = playerRenderer.materials[0];
-
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
     }
@@ -188,25 +184,48 @@ public class Player : MonoBehaviour
             gameOverUI.SetActive(true);
         }
     }
-
+    //발사체에 피격시 투명도조절과 일정시간 무적
     public void DamagedColor()
     {
-        curTime += Time.deltaTime;
-        mat = playerRenderer.materials[0];
-        mat.color = colorA;
+        //material의 rendering mode중 Opaque모드는 투명도 조절이 안되기 때문에 피격순간에만 Fade 모드의 투명도 옵션으로 적용
+        playerRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        playerRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        playerRenderer.material.EnableKeyword("_ALPHABLEND_ON");
+        playerRenderer.material.renderQueue = 3000;
+        shieldRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        shieldRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        shieldRenderer.material.EnableKeyword("_ALPHABLEND_ON");
+        shieldRenderer.material.renderQueue = 3000;
+        swordRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        swordRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        swordRenderer.material.EnableKeyword("_ALPHABLEND_ON");
+        swordRenderer.material.renderQueue = 3000;
+        //레드 컬러로 피격순간 강조
+        playerRenderer.material.color = colorA;
+        shieldRenderer.material.color = colorA;
+        swordRenderer.material.color = colorA;
         StartCoroutine(Color());
     }
 
     IEnumerator Color()
     {
         yield return new WaitForSeconds(0.05f);
-        mat.color = colorB;
+        playerRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        shieldRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        swordRenderer.material.color = new Color(0, 0, 0, 0.3f);
         yield return new WaitForSeconds(0.05f);
-        mat.color = colorA;
+        playerRenderer.material.color = colorA;
+        shieldRenderer.material.color = colorA;
+        swordRenderer.material.color = colorA;
         yield return new WaitForSeconds(0.05f);
-        mat.color = colorB;
+        //투명도 설정하여 플레이어에게 무적시간 3초 인지시킴
+        playerRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        shieldRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        swordRenderer.material.color = new Color(0, 0, 0, 0.3f);
         yield return new WaitForSeconds(3f);
-        mat.color = colorC;
+        playerRenderer.material.color = new Color(0, 0, 0, 1f);
+        shieldRenderer.material.color = new Color(0, 0, 0, 1f);
+        swordRenderer.material.color = new Color(0, 0, 0, 1f);
     }
 
     //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
