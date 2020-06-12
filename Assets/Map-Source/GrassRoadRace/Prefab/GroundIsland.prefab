@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420504}
-  m_Layer: 0
+  - component: {fileID: 879331170}
+  m_Layer: 8
   m_Name: GroundIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,9 +31,24 @@ Transform:
   - {fileID: 420506}
   - {fileID: 420508}
   - {fileID: 420510}
+  - {fileID: 852466105}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &879331170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0bc71f53a2c1149bcc503105400002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 852466105}
+  apple: {fileID: 1829371231341652, guid: 426b44a7575f71e479fab4f4e8431989, type: 3}
 --- !u!1 &120506
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +60,7 @@ GameObject:
   - component: {fileID: 420506}
   - component: {fileID: 3320506}
   - component: {fileID: 2320506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120506}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
-  m_LocalPosition: {x: -0.069257736, y: 1.0469438, z: -0.015473415}
+  m_LocalPosition: {x: -0.069257736, y: 0.73, z: -0.015473415}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.0254}
   m_Children: []
   m_Father: {fileID: 420504}
@@ -121,7 +137,7 @@ GameObject:
   - component: {fileID: 420508}
   - component: {fileID: 3320508}
   - component: {fileID: 2320508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 120508}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
   m_LocalPosition: {x: -0.004145435, y: 0.024967661, z: -0.036309354}
-  m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.0254}
+  m_LocalScale: {x: 0.0254, y: 0.02, z: 0.0254}
   m_Children: []
   m_Father: {fileID: 420504}
   m_RootOrder: 1
@@ -198,7 +214,7 @@ GameObject:
   - component: {fileID: 420510}
   - component: {fileID: 3320510}
   - component: {fileID: 2320510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PalmTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,8 +229,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120510}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
-  m_LocalPosition: {x: -0.11658508, y: 1.0984964, z: -0.1598367}
-  m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.0254}
+  m_LocalPosition: {x: -0.11658508, y: 0.94, z: -0.1598367}
+  m_LocalScale: {x: 0.0254, y: 0.02, z: 0.0254}
   m_Children: []
   m_Father: {fileID: 420504}
   m_RootOrder: 2
@@ -264,3 +280,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &852466104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852466105}
+  m_Layer: 8
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852466105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852466104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.45, z: -0.22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 420504}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
