@@ -76,10 +76,22 @@
     <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\TowerTrigger.cs" />
     <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawn.cs" />
     <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawnTanks.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Demo\DemoScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireBaseScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireCollisionForwardScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireLightScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\MeteorSwarmScript.cs" />
+    <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Script\AttackChk.cs" />
+    <Compile Include="Assets\Script\BridgeManager.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
+    <Compile Include="Assets\Script\EnterBoss.cs" />
     <Compile Include="Assets\Script\ExclamationChk.cs" />
+    <Compile Include="Assets\Script\ExitBoss.cs" />
     <Compile Include="Assets\Script\Fruit.cs" />
     <Compile Include="Assets\Script\FruitTree.cs" />
     <Compile Include="Assets\Script\GroundCheck.cs" />
@@ -99,6 +111,7 @@
     <Compile Include="Assets\Script\TouchText.cs" />
     <Compile Include="Assets\Script\TurtleShell.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
+    <Compile Include="Assets\Script\WallOfFireManager.cs" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
@@ -107,6 +120,7 @@
     <None Include="Assets\Character-etc\Character-SdChan\Readme_Optimize_SD Kohaku-Chanz.txt" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Object-Source\WallOfFire\Prefab\Materials\AdditiveTintable.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Map-Source\Skybox\Fog and Ambient references.txt" />
     <None Include="Assets\Map-Source\Baker House\Readme.txt" />
@@ -115,6 +129,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Object-Source\WallOfFire\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
