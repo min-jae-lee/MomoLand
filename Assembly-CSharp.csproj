@@ -63,8 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
-    <Compile Include="Assets\GE Common Assets\Scripts\GE_UIResponder.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\BulletTank.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\EngineTank.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\Enemy.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\Enemy_tanks\TankEnemy.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\Enemy_tanks\TankEnemyBullet.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\EnemyBullet.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\EnemyHp.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\Tower.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\TowerBullet.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\TowerHP.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\TowerTrigger.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawn.cs" />
+    <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawnTanks.cs" />
     <Compile Include="Assets\Script\AttackChk.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
@@ -99,6 +110,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Map-Source\Skybox\Fog and Ambient references.txt" />
     <None Include="Assets\Map-Source\Baker House\Readme.txt" />
+    <None Include="Assets\Map-Source\TowerDefence_Vsquad\INFO\Info.txt" />
     <None Include="Assets\Map-Source\ForestGround\Materials\Scene\sky.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -110,7 +122,6 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-    <None Include="Assets\GE Common Assets\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Character-etc\Character-Avelyn\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
