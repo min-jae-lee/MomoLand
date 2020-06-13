@@ -11,6 +11,8 @@ TagManager:
   - DieGround
   - Sky1
   - Sky2
+  - stage2Floor
+  - stage4Floor
   - GroundUpDown
   layers:
   - Default

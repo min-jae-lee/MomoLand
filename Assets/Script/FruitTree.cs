@@ -12,7 +12,7 @@ public class FruitTree : MonoBehaviour
     void Start()
     {
         ranTime = Random.Range(1.5f, 3f);
-        Debug.Log(ranTime);
+        
     }
 
  
@@ -30,7 +30,7 @@ public class FruitTree : MonoBehaviour
             fruit.transform.position = spawnPoint.position;
             spawnTime = 0;
             ranTime = Random.Range(1.5f, 3f);
-            Debug.Log(ranTime);
+            
         }
     }
 }
