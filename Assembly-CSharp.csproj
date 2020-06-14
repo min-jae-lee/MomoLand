@@ -90,6 +90,7 @@
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
     <Compile Include="Assets\Script\EnterBoss.cs" />
+    <Compile Include="Assets\Script\EnterHome.cs" />
     <Compile Include="Assets\Script\ExclamationChk.cs" />
     <Compile Include="Assets\Script\ExitBoss.cs" />
     <Compile Include="Assets\Script\Fruit.cs" />
@@ -109,9 +110,9 @@
     <Compile Include="Assets\Script\StartManager.cs" />
     <Compile Include="Assets\Script\Sword.cs" />
     <Compile Include="Assets\Script\TouchText.cs" />
+    <Compile Include="Assets\Script\TreeManager.cs" />
     <Compile Include="Assets\Script\TurtleShell.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
-    <Compile Include="Assets\Script\WallOfFireManager.cs" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

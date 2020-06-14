@@ -15,6 +15,7 @@ public class ExitBoss : MonoBehaviour
         if(other.tag == "Player")
         {
             bridgeManager.bridgeOn = true;
+            bridgeManager.BridgeActive();
         }
     }
 
