@@ -13,7 +13,7 @@ public class BridgeManager : MonoBehaviour
     {
 
         meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.material.color = new Color(150/255f, 150 / 255f, 150 / 255f, 0);
+        meshRenderer.material.color = new Color(150 / 255f, 150 / 255f, 150 / 255f, 0);
         gameObject.SetActive(false);
         fence.SetActive(false);
     }

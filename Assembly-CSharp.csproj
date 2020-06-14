@@ -100,6 +100,7 @@
     <Compile Include="Assets\Script\GroundUpDown.cs" />
     <Compile Include="Assets\Script\HealthPotion.cs" />
     <Compile Include="Assets\Script\HealTmp.cs" />
+    <Compile Include="Assets\Script\HouseManager.cs" />
     <Compile Include="Assets\Script\HpBarCanvas.cs" />
     <Compile Include="Assets\Script\HpSlider.cs" />
     <Compile Include="Assets\Script\HurdleManager.cs" />
