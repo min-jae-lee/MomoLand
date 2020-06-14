@@ -102,6 +102,7 @@
     <Compile Include="Assets\Script\HealTmp.cs" />
     <Compile Include="Assets\Script\HpBarCanvas.cs" />
     <Compile Include="Assets\Script\HpSlider.cs" />
+    <Compile Include="Assets\Script\HurdleManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\Player.cs" />

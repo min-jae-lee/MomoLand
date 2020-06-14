@@ -12,6 +12,7 @@ public class TurtleShell : Monster
 {
     public override string Name { get => "거북이"; }
     public float moveSpeed;
+    public HurdleManager hurdleManager;
     //플레이어 인식 범위
     public float reactRange;
     //버서커모드시 몬스터 컬러 변경 변수들   
@@ -140,6 +141,11 @@ public class TurtleShell : Monster
             if(curHp <= 0)
             {
                 mat.color = colorA;
+                if(hurdleManager != null)
+                {
+                    hurdleManager.HurdleOff = true;
+                }
+                
                 return;
             }
 
