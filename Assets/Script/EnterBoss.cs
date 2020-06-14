@@ -6,7 +6,8 @@ public class EnterBoss : MonoBehaviour
 {
 
     public GameObject wallOfFire;
-   
+    public UIManager uiManager;
+
     void Update()
     {
         
@@ -17,6 +18,7 @@ public class EnterBoss : MonoBehaviour
         if(other.tag == "Player")
         {
             wallOfFire.SetActive(true);
+            uiManager.enterBoss = true;
         }
     }
 }

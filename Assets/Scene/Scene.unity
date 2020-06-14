@@ -4370,8 +4370,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.098924, y: 0.8575591, z: -0.17986535, w: 0.4716513}
-  m_LocalPosition: {x: -11.932999, y: 8.03, z: 13.18}
+  m_LocalRotation: {x: 0.098923795, y: 0.8575591, z: -0.17986543, w: 0.47165126}
+  m_LocalPosition: {x: -5.112999, y: 6.8599997, z: 30.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12898,7 +12898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494314, guid: 8c51d7df2d29ba8449f85eb74c672555, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.674082
+      value: 21.98
       objectReference: {fileID: 0}
     - target: {fileID: 494314, guid: 8c51d7df2d29ba8449f85eb74c672555, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19638,15 +19638,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.02
+      value: 5.8
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.26
+      value: 23.22
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalRotation.x
@@ -20630,6 +20630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41947b2f16517c84ba3b874eb538ea85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enterBoss: 0
+  player: {fileID: 1462647738}
+  playerCs: {fileID: 1462647739}
+  gameOverUI: {fileID: 1063390581}
+  playerAnimator: {fileID: 1462647743}
 --- !u!1001 &1121499838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21666,8 +21671,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.098924, y: 0.8575591, z: -0.17986535, w: 0.4716513}
-  m_LocalPosition: {x: -11.932999, y: 8.03, z: 13.18}
+  m_LocalRotation: {x: 0.098923795, y: 0.8575591, z: -0.17986543, w: 0.47165126}
+  m_LocalPosition: {x: -5.112999, y: 6.8599997, z: 30.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2039695939}
@@ -27889,6 +27894,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 905e121def2d7f44fac07f3e9d083c00, type: 3}
+--- !u!1 &1462647738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1556040939566342, guid: c20397bf1592dc040b827e8716b0bd41,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087316233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1462647739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087316233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462647738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21b2e1039fd41d47afb10c71fecc828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1462647743 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95922273507661854, guid: c20397bf1592dc040b827e8716b0bd41,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087316233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1463143145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36815,7 +36844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929427388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.7, y: 13.5, z: -22.9}
+  m_LocalPosition: {x: 19.89, y: 13.5, z: -22.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 173894933}
@@ -36834,6 +36863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallOfFire: {fileID: 2123635111}
+  uiManager: {fileID: 1114237257}
 --- !u!65 &1929427391
 BoxCollider:
   m_ObjectHideFlags: 0

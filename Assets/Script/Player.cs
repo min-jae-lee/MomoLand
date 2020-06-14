@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public AnimationClip attack2Anim; //공격2 애니메이션
 
     private bool isMovable = true; // 이동 컨트롤 플레그 변수
-    private bool dead = false;
+    public bool dead = false;
 
     //무기 콜라이더
     public BoxCollider attackCheckCol;
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(gameObject.transform.position);
         curHp = maxHp;
 
         //각 컴퍼넌트 가져오기
