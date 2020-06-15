@@ -86,6 +86,7 @@
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Script\AttackChk.cs" />
+    <Compile Include="Assets\Script\Box.cs" />
     <Compile Include="Assets\Script\BridgeManager.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />

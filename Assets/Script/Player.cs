@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(gameObject.transform.position);
         curHp = maxHp;
 
         //각 컴퍼넌트 가져오기
