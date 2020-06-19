@@ -100,13 +100,15 @@
     <Compile Include="Assets\Script\HealthPotion.cs" />
     <Compile Include="Assets\Script\HealTmp.cs" />
     <Compile Include="Assets\Script\HouseManager.cs" />
-    <Compile Include="Assets\Script\HpBarCanvas.cs" />
     <Compile Include="Assets\Script\HpSlider.cs" />
     <Compile Include="Assets\Script\HurdleManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MonsterAttack.cs" />
     <Compile Include="Assets\Script\MonsterExclamationChk.cs" />
+    <Compile Include="Assets\Script\MonsterHpBar.cs" />
+    <Compile Include="Assets\Script\MonsterSlime.cs" />
+    <Compile Include="Assets\Script\MonsterTurtleShell.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\Scrolling.cs" />
@@ -114,7 +116,6 @@
     <Compile Include="Assets\Script\Sword.cs" />
     <Compile Include="Assets\Script\TouchText.cs" />
     <Compile Include="Assets\Script\TreeManager.cs" />
-    <Compile Include="Assets\Script\TurtleShell.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <None Include="Assets\Character-etc\Character-SdChan\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

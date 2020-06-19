@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 
 //Monster 상속
-public class TurtleShell : Monster
+public class MonsterTurtleShell : Monster
 {
     public override string Name { get => "거북이"; }
     public HurdleManager hurdleManager; //1스테이지 거북이 사망시 스테이지 입구 제거 위한 HurdleManager

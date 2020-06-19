@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HpBarCanvas : MonoBehaviour
+public class MonsterHpBar : MonoBehaviour
 {
     Transform cam;
     void Start()

@@ -98,7 +98,7 @@ public class Monster : MonoBehaviour
                 StartCoroutine(Die());
                 _boxCollider.enabled = false;
                 GameObject heallingPotion = Instantiate(healPotion);
-                heallingPotion.transform.position = GetComponent<TurtleShell>().monPos;
+                heallingPotion.transform.position = monPos;
                 
             }
         }
