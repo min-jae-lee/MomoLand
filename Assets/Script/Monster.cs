@@ -81,6 +81,8 @@ public class Monster : MonoBehaviour
         nav.enabled = false;
         monsterAnimator.SetTrigger("Die");
         attackChk.isAtk = false;
+        attackChk.canAttack = false;
+        attackChk.canAttackSpeed = false;
         dead = true;
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
