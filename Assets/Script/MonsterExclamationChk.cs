@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExclamationChk : MonoBehaviour
+public class MonsterExclamationChk : MonoBehaviour
 {
-    public Image exclamation;
- 
+    public Image exclamation; //느낌표 이미지
 
     void Start()
     {
-        exclamation.enabled = false;
+        exclamation.enabled = false; //게임 시작시 느낌표 비활성화
     }
 
-   
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
+    //플레이어가 몬스터에게 인접할시 몬스터 오브젝트에 느낌표 띄워줌
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
         {
@@ -33,7 +27,4 @@ public class ExclamationChk : MonoBehaviour
         yield return new WaitForSeconds(1f);
         exclamation.enabled = false;
     }
-
-
-
 }

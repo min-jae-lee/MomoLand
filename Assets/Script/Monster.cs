@@ -8,33 +8,62 @@ public class Monster : MonoBehaviour
 {
     public virtual string Name { get; }
 
-    public int maxHp = 100;
-    public Image hpBar;
-    public Text hpText;
-    public Transform dmgHudPos;
-    public GameObject dmgHud;
-    public GameObject healPotion;
-    public float attackDelay;
+    public int maxHp = 100; //최대 HP
+    public float moveSpeed; //무빙 속도
+    public float reactRange; // 플레이어 인지 범위
+    public Vector3 monPos; //몬스터 위치
+    public Image hpBar; //몬스터 hp바 이미지
+    public Text hpText; //몬스터 hp바 텍스트
+    public Transform dmgHudPos; //데미지 HUD 생성 위치
+    public GameObject dmgHud; //데미지 HUD
+    public GameObject healPotion; //힐 포션 프리팹
+    public float attackDelay; //공격딜레이
     public int damage;
     public BoxCollider _boxCollider;
+    //버서커모드시 몬스터 컬러 변경 변수들   
+    public SkinnedMeshRenderer _skinnedMeshRenderer;
+    public Color colorA;
+    public Color colorB;
+    public float colorT;
+    protected Material mat;
+    protected bool colorBool = false;
+    protected int burserkDmg; //버서크모드 공격력
+    protected Transform _transform; //몬스터 transform
+    protected GameObject player; //플레이어 오브젝트
+    protected Vector3 playerPos; //플레이어 위치
+    protected float playerDist; //몬스터와 플레이어와의 거리
+    protected float monFromStartPos; //몬스터와 몬스터의 초기생성위치 거리
+    protected float moveRanTime; //자동순찰 간격시간 랜덤 변수
+    protected int moveType = 0; //자동순찰 랜덤 행동 변수 0:휴식, 1~2:순찰 (순찰 횟수의 확률을 높이고자 선택지를 2개로 주었음)
+    protected Vector3 startPos; //몬스터의 생성 위치
+    protected Vector3 targetPos; //타겟지점 위치
+    protected Vector3 targetLook; //타겟지점 방향값
+    protected bool patrolOnOff = true; //순찰 유무
     protected int curHp;
     protected bool dead = false;
     protected Animator monsterAnimator;
     protected Rigidbody monsterRigidbody;
     protected Transform monsterTransform;
-    protected NavMeshAgent nav;
-    protected int getDmg;
-    protected AttackChk attackChk;
+    protected NavMeshAgent nav; //네비메쉬
+    protected int getDmg; //플레이어 sword의 공격력 저장 변수
+    protected MonsterAttack monsterAttack; //공격범위 콜라이더 컨트롤하는 스크립트
     
 
     protected virtual void Start()
     {
         monsterAnimator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        attackChk = transform.Find("AttackChkCol").GetComponent<AttackChk> ();
+        monsterAttack = transform.Find("MonsterAttack").GetComponent<MonsterAttack> (); 
         curHp = maxHp;
         hpText.text = Name+"\n"+curHp.ToString() + "/" + maxHp.ToString();
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+        mat = _skinnedMeshRenderer.material; //몬스터 렌더러 메터리얼
+        burserkDmg = damage * 2; //버스크 모드의 데미지는 평상시 데미지의 *2
+        _transform = GetComponent<Transform>();
+        player = GameObject.FindWithTag("Player");
+        playerPos = player.transform.position;
+        playerDist = Vector3.Distance(_transform.position, playerPos); //몬스터와 플레이어와의 거리
+        startPos = _transform.position;
     }
 
 
@@ -80,9 +109,9 @@ public class Monster : MonoBehaviour
     {
         nav.enabled = false;
         monsterAnimator.SetTrigger("Die");
-        attackChk.isAtk = false;
-        attackChk.canAttack = false;
-        attackChk.canAttackSpeed = false;
+        monsterAttack.isAtk = false;
+        monsterAttack.canAttack = false;
+        monsterAttack.attackRange = false;
         dead = true;
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);

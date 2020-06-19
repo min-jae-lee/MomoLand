@@ -85,14 +85,12 @@
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireProjectileScript.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\SingleLineAttribute.cs" />
-    <Compile Include="Assets\Script\AttackChk.cs" />
     <Compile Include="Assets\Script\Box.cs" />
     <Compile Include="Assets\Script\BridgeManager.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
     <Compile Include="Assets\Script\EnterBoss.cs" />
     <Compile Include="Assets\Script\EnterHome.cs" />
-    <Compile Include="Assets\Script\ExclamationChk.cs" />
     <Compile Include="Assets\Script\ExitBoss.cs" />
     <Compile Include="Assets\Script\Fruit.cs" />
     <Compile Include="Assets\Script\FruitTree.cs" />
@@ -107,6 +105,8 @@
     <Compile Include="Assets\Script\HurdleManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
+    <Compile Include="Assets\Script\MonsterAttack.cs" />
+    <Compile Include="Assets\Script\MonsterExclamationChk.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\Scrolling.cs" />
