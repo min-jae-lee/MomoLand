@@ -14,7 +14,7 @@ public class Box : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Sword")
         {
             GameObject _potion = Instantiate(potion);
             _potion.transform.position = gameObject.transform.position;
