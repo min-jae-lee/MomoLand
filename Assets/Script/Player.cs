@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 2f;
     public float rotateSpeed = 200f;
     public float jumpPower = 200f;
+   
     
     //공격력,체력,연타간격
     public int maxHp = 100;
@@ -44,6 +45,13 @@ public class Player : MonoBehaviour
     public MeshRenderer swordRenderer;
     public Color colorA;
 
+    //사운드
+    public AudioClip jump;
+    public AudioClip attack1;
+    public AudioClip attack2;
+    public AudioClip getHit;
+    private AudioSource audioSource;
+
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
     private Sword sword;
@@ -59,6 +67,7 @@ public class Player : MonoBehaviour
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
     }
@@ -126,6 +135,8 @@ public class Player : MonoBehaviour
                 //가속도가 점프에 영향 없도록 점프전 velocity값 제로
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
+                audioSource.clip = jump;
+                audioSource.Play();
                 jumpCount++;
             }
         }
@@ -152,10 +163,12 @@ public class Player : MonoBehaviour
             //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
             if (Input.GetButton("Fire1") && attackCheckCol.enabled == false)
             {
+                audioSource.clip = attack1;
+                audioSource.Play(); //공격1 효과음 재생
                 sword.hittedMonsters.Clear();
                 playerAnimator.SetTrigger("Attack1");
                 attackCheckCol.enabled = true;
-                sword.SetDamage(attack1Power);
+                sword.SetDamage(attack1Power,1);
                 StartCoroutine(AttackOff(attack1Anim.length));
             }
             else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false)
@@ -163,8 +176,16 @@ public class Player : MonoBehaviour
                 sword.hittedMonsters.Clear();
                 playerAnimator.SetTrigger("Attack2");
                 attackCheckCol.enabled = true;
-                sword.SetDamage(attack2Power);
+                sword.SetDamage(attack2Power,2);
                 StartCoroutine(AttackOff(attack2Anim.length));
+                StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
+                IEnumerator Attack2Sound()
+                {
+                    audioSource.clip = attack2;
+                    audioSource.Play();
+                    yield return new WaitForSeconds(0.5f);
+                    audioSource.Play();
+                }
             }
         }
 

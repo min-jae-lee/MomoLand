@@ -6,6 +6,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     private int damage;
+    private int attackType;
     public List<Monster> hittedMonsters = new List<Monster>();
     
     public int GetDamage()
@@ -13,10 +14,17 @@ public class Sword : MonoBehaviour
         return damage;
     }
 
+    public int GetAttackType()
+    {
+        return attackType;
+    }
+
     //플레이어의 공격력
-    public void SetDamage(int dmg)
+    public void SetDamage(int dmg, int atkType)
     {
         damage = dmg;
+        attackType = atkType;
+
     }
 
 }

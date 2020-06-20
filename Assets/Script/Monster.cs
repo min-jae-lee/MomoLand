@@ -25,6 +25,7 @@ public class Monster : MonoBehaviour
     public Color colorA;
     public Color colorB;
     public float colorT;
+    protected AudioSource audioSource;
     protected Material mat;
     protected bool colorBool = false;
     protected int burserkDmg; //버서크모드 공격력
@@ -46,11 +47,13 @@ public class Monster : MonoBehaviour
     protected Transform monsterTransform;
     protected NavMeshAgent nav; //네비메쉬
     protected int getDmg; //플레이어 sword의 공격력 저장 변수
+    protected int getAttackType; //플레이어의 공격타입 저장 변수
     protected MonsterAttack monsterAttack; //공격범위 콜라이더 컨트롤하는 스크립트
     
 
     protected virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         monsterAnimator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         monsterAttack = transform.Find("MonsterAttack").GetComponent<MonsterAttack> (); 
@@ -78,29 +81,91 @@ public class Monster : MonoBehaviour
             if (script.hittedMonsters.Contains(this) == true)
                 return;
             script.hittedMonsters.Add(this);
+            getAttackType = script.GetAttackType();
 
-            monsterAnimator.SetTrigger("GetHit");            
-            getDmg = script.GetDamage();
-            curHp -= getDmg;
-
-            ///curHp가 음수로 가는 걸 방지
-            curHp = Mathf.Max(curHp, 0);            
-
-            GameObject damageHud = Instantiate(dmgHud);
-            damageHud.transform.position = dmgHudPos.position;
-            damageHud.GetComponent<DmgTmp>().damage = getDmg;
-            //HP바에 HP값 적용
-            hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
-            hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
-            //HP가 0이 되었을시 Die메소드 실행
-            if (curHp <= 0)
+            //플레이어의 공격타입이 1이면 1회 피격
+            if (getAttackType == 1)
             {
-                StartCoroutine(Die());
-                _boxCollider.enabled = false;
-                GameObject heallingPotion = Instantiate(healPotion);
-                heallingPotion.transform.position = monPos;
+                audioSource.Play();
+                monsterAnimator.SetTrigger("GetHit");
+                getDmg = script.GetDamage();
+                curHp -= getDmg;
+
+                ///curHp가 음수로 가는 걸 방지
+                curHp = Mathf.Max(curHp, 0);
+
+                GameObject damageHud = Instantiate(dmgHud);
+                damageHud.transform.position = dmgHudPos.position;
+                damageHud.GetComponent<DmgTmp>().damage = getDmg;
+                //HP바에 HP값 적용
+                hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+                hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
+                //HP가 0이 되었을시 Die메소드 실행
+                if (curHp <= 0)
+                {
+                    StartCoroutine(Die());
+                    _boxCollider.enabled = false;
+                    GameObject heallingPotion = Instantiate(healPotion);
+                    heallingPotion.transform.position = monPos;
+
+                }
+            }
+
+            //플레이어의 공격타입이 2이면 2회 피격
+            if (getAttackType == 2)
+            {
+                StartCoroutine(GetAttack2());
+                IEnumerator GetAttack2()
+                {
+                    audioSource.Play();
+                    monsterAnimator.SetTrigger("GetHit");
+                    getDmg = script.GetDamage();
+                    curHp -= getDmg;
+                    ///curHp가 음수로 가는 걸 방지
+                    curHp = Mathf.Max(curHp, 0);
+                    GameObject damageHud = Instantiate(dmgHud);
+                    damageHud.transform.position = dmgHudPos.position;
+                    damageHud.GetComponent<DmgTmp>().damage = getDmg;
+                    //HP바에 HP값 적용
+                    hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+                    hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
+                    //HP가 0이 되었을시 Die메소드 실행
+                    if (curHp <= 0)
+                    {
+                        StartCoroutine(Die());
+                        _boxCollider.enabled = false;
+                        GameObject heallingPotion = Instantiate(healPotion);
+                        heallingPotion.transform.position = monPos;
+
+                    }
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    audioSource.Play();
+                    monsterAnimator.SetTrigger("GetHit");
+                    getDmg = script.GetDamage();
+                    curHp -= getDmg;
+                    ///curHp가 음수로 가는 걸 방지
+                    curHp = Mathf.Max(curHp, 0);
+                    damageHud = Instantiate(dmgHud);
+                    damageHud.transform.position = dmgHudPos.position;
+                    damageHud.GetComponent<DmgTmp>().damage = getDmg;
+                    //HP바에 HP값 적용
+                    hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+                    hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
+                    //HP가 0이 되었을시 Die메소드 실행
+                    if (curHp <= 0)
+                    {
+                        StartCoroutine(Die());
+                        _boxCollider.enabled = false;
+                        GameObject heallingPotion = Instantiate(healPotion);
+                        heallingPotion.transform.position = monPos;
+
+                    }
+                }
                 
             }
+
         }
     }
 
