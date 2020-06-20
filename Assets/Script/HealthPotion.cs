@@ -14,12 +14,6 @@ public class HealthPotion : MonoBehaviour
         playerDmgHudPos = GameObject.Find("PlayerDmgHudPos").transform;
     }
 
-    
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
@@ -27,7 +21,6 @@ public class HealthPotion : MonoBehaviour
             GameObject heallingHud = Instantiate(healHud);
             heallingHud.transform.position = playerDmgHudPos.position;
             heallingHud.GetComponent<HealTmp>().heal = healValue;
-
             player = other.GetComponent<Player>();
             player.curHp += healValue;
             Destroy(gameObject);

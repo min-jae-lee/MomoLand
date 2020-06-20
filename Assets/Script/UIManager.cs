@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     public Animator playerAnimator;
     public GameObject buttonBoss;
 
-
     void Update()
     {
         buttonBoss.SetActive(enterBoss);
@@ -27,6 +26,7 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
     //보스재도전(보스방 입구에서 재시작)
     public void GameRestartBoss()
     {

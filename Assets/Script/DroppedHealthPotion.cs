@@ -21,11 +21,6 @@ public class DroppedHealthPotion : HealthPotion
         StartCoroutine(ColOnOff());
     }
 
-    
-    void Update()
-    {
-        
-    }
 
     IEnumerator ColOnOff()
     {

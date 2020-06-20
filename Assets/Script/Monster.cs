@@ -136,31 +136,33 @@ public class Monster : MonoBehaviour
                         _boxCollider.enabled = false;
                         GameObject heallingPotion = Instantiate(healPotion);
                         heallingPotion.transform.position = monPos;
-
+                        
                     }
-
+                    
                     yield return new WaitForSeconds(0.5f);
 
-                    audioSource.Play();
-                    monsterAnimator.SetTrigger("GetHit");
-                    getDmg = script.GetDamage();
-                    curHp -= getDmg;
-                    ///curHp가 음수로 가는 걸 방지
-                    curHp = Mathf.Max(curHp, 0);
-                    damageHud = Instantiate(dmgHud);
-                    damageHud.transform.position = dmgHudPos.position;
-                    damageHud.GetComponent<DmgTmp>().damage = getDmg;
-                    //HP바에 HP값 적용
-                    hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
-                    hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
-                    //HP가 0이 되었을시 Die메소드 실행
-                    if (curHp <= 0)
+                    if(curHp > 0)
                     {
-                        StartCoroutine(Die());
-                        _boxCollider.enabled = false;
-                        GameObject heallingPotion = Instantiate(healPotion);
-                        heallingPotion.transform.position = monPos;
-
+                        audioSource.Play();
+                        monsterAnimator.SetTrigger("GetHit");
+                        getDmg = script.GetDamage();
+                        curHp -= getDmg;
+                        ///curHp가 음수로 가는 걸 방지
+                        curHp = Mathf.Max(curHp, 0);
+                        damageHud = Instantiate(dmgHud);
+                        damageHud.transform.position = dmgHudPos.position;
+                        damageHud.GetComponent<DmgTmp>().damage = getDmg;
+                        //HP바에 HP값 적용
+                        hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+                        hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
+                        //HP가 0이 되었을시 Die메소드 실행
+                        if (curHp <= 0)
+                        {
+                            StartCoroutine(Die());
+                            _boxCollider.enabled = false;
+                            GameObject heallingPotion = Instantiate(healPotion);
+                            heallingPotion.transform.position = monPos;
+                        }
                     }
                 }
                 

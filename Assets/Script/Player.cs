@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
     public AudioClip attack1;
     public AudioClip attack2;
     public AudioClip getHit;
+    public AudioClip getItem;
+    public AudioClip gameWinBGM;
+    public AudioClip gameOverBGM;
+    public AudioSource mainAudio;
     private AudioSource audioSource;
 
     //각 컴퍼넌트 변수선언
@@ -199,6 +203,8 @@ public class Player : MonoBehaviour
         damageHud.GetComponent<DmgTmp>().damage = damage;
         if (curHp <= 0)
         {
+            mainAudio.clip = gameOverBGM;
+            mainAudio.Play();
             dead = true;
             tag = "Untagged";
             playerAnimator.SetTrigger("Die");
@@ -280,9 +286,18 @@ public class Player : MonoBehaviour
     {
         if(other.tag == "DieGround")
         {
+            mainAudio.clip = gameOverBGM;
+            mainAudio.Play();
             dead = true;
+            curHp = 0;
             playerAnimator.SetTrigger("Die");
             gameOverUI.SetActive(true);
+        }
+
+        if (other.tag == "Item")
+        {
+            audioSource.clip = getItem;
+            audioSource.Play();
         }
     }
 

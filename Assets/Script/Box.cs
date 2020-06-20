@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    public GameObject potion;
-    private GameObject box;
+    private AudioSource audioSource;
 
     void Start()
     {
-        box = gameObject;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Sword")
+        if (other.tag == "Sword")
         {
-            GameObject _potion = Instantiate(potion);
-            _potion.transform.position = gameObject.transform.position;
-            Destroy(gameObject);
+            audioSource.Play();
+            StartCoroutine(Dest());
+            IEnumerator Dest()
+            {
+                yield return new WaitForSeconds(1f);
+                Destroy(gameObject);
+            }
         }
 
     }
