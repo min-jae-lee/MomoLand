@@ -90,9 +90,9 @@
     <Compile Include="Assets\Script\BridgeManager.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
-    <Compile Include="Assets\Script\Enter2Stage.cs" />
     <Compile Include="Assets\Script\EnterBoss.cs" />
     <Compile Include="Assets\Script\EnterHome.cs" />
+    <Compile Include="Assets\Script\EnterStage.cs" />
     <Compile Include="Assets\Script\ExitBoss.cs" />
     <Compile Include="Assets\Script\Fruit.cs" />
     <Compile Include="Assets\Script\FruitTree.cs" />

@@ -15,6 +15,10 @@ TagManager:
   - stage4Floor
   - GroundUpDown
   - Item
+  - Stage2
+  - Stage3
+  - Stage4
+  - StageBoss
   layers:
   - Default
   - TransparentFX
