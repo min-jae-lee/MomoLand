@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    //피격, 사망
     public void Damaged(int damage)
     {
         curHp -= damage;
@@ -211,6 +211,15 @@ public class Player : MonoBehaviour
             gameOverUI.SetActive(true);
         }
     }
+
+    //승리
+    public void Win()
+    {
+        mainAudio.clip = gameWinBGM;
+        mainAudio.Play();
+        dead = true;
+    }
+
     //발사체에 피격시 투명도조절과 일정시간 무적
     public void DamagedColor()
     {

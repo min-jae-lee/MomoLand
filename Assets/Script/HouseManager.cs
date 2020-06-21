@@ -45,7 +45,7 @@ public class HouseManager : MonoBehaviour
         if(other.tag == "Player")
         {
             gameClearUI.SetActive(true);
-            player.dead = true;
+            player.Win();
         }    
     }
 }

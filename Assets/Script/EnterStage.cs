@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnterStage : MonoBehaviour
 {
+    public AudioClip goHome;
     public AudioClip stage2Clip;
     public AudioClip stage3Clip;
     public AudioClip stage4Clip;
@@ -27,13 +28,19 @@ public class EnterStage : MonoBehaviour
             }
             if (gameObject.tag == "Stage4")
             {
-                audioSource.clip = stage3Clip;
+                audioSource.clip = stage4Clip;
                 audioSource.Play();
                 Destroy(gameObject);
             }
-            if (gameObject.tag == "Stage5")
+            if (gameObject.tag == "StageBoss")
             {
                 audioSource.clip = BossClip;
+                audioSource.Play();
+                Destroy(gameObject);
+            }
+            if (gameObject.tag == "GoHome")
+            {
+                audioSource.clip = goHome;
                 audioSource.Play();
                 Destroy(gameObject);
             }
