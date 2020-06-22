@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     public AudioClip gameWinBGM;
     public AudioClip gameOverBGM;
     public AudioSource mainAudio;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     //각 컴퍼넌트 변수선언
     private PlayerInput playerInput;
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
         attackCheckCol.enabled = false;
     }
@@ -221,8 +220,11 @@ public class Player : MonoBehaviour
     }
 
     //발사체에 피격시 투명도조절과 일정시간 무적
-    public void DamagedColor()
+    public void DamagedTransparent()
     {
+        //피격음
+        audioSource.clip = getHit;
+        audioSource.Play();
         //피격시 레이어 변경으로 발사체와 충돌방지(무적)
         gameObject.layer = 9;
         //material의 rendering mode중 Opaque모드는 투명도 조절이 안되기 때문에 피격순간에만 Fade 모드의 투명도 옵션으로 적용

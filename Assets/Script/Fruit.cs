@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-
     public float moveSpeed1;
     public float moveSpeed2;
     public int damage=30;
     private bool leftRight;
     private Player player;
     
-
     void Start()
     {
         if (transform.position.z >= -13.5f)
         {
             leftRight = true;
         }
-        else leftRight = false;
-        
+        else leftRight = false;  
     }
 
-    // Update is called once per frame
     void Update()
     {  
         Move();
     }
+
     void Move()
     {
         if (leftRight == true)
@@ -53,11 +50,8 @@ public class Fruit : MonoBehaviour
         {
             player = other.GetComponent<Player>();
             player.Damaged(damage);
-            player.DamagedColor();
+            player.DamagedTransparent();
             Destroy(gameObject);
-            
-            
         }
     }
-
 }

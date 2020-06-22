@@ -20,6 +20,10 @@ TagManager:
   - Stage4
   - StageBoss
   - Stage1
+  - Tank
+  - Fire
+  - trapL
+  - trapR
   layers:
   - Default
   - TransparentFX
