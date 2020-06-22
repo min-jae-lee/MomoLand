@@ -5,11 +5,12 @@ using UnityEngine;
 public class MonsterAttack : MonoBehaviour
 {
     private Monster monster;
+    private MonsterBoss monsterBoss;
     private float _attackDelay; //공격 딜레이
     private Animator monAnimator;
     private Animator playerAnimator;
     private Player player;
-    public bool isAtk = true; //코루틴내의 반복문 On/Off변수
+     public bool isAtk = true; //코루틴내의 반복문 On/Off변수
     public bool canAttack = true; //코루틴 반복문내의 공격 함수 On/Off 변수
     public bool attackRange = true; //공격범위 유무
     
@@ -28,6 +29,11 @@ public class MonsterAttack : MonoBehaviour
             playerAnimator = other.GetComponent<Animator>();
             if (player.curHp > 0)
             {
+                if(gameObject.tag == "StageBoss")
+                {
+                    monsterBoss = transform.parent.GetComponent<MonsterBoss>();
+                    monsterBoss.run = false;
+                }
                 isAtk = true;
                 attackRange = true;
                 StartCoroutine(AttackRoutine());
@@ -69,6 +75,7 @@ public class MonsterAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            monsterBoss.run = true;
             attackRange = false;
             isAtk = false;
         }

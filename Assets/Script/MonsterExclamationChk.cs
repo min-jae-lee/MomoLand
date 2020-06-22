@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MonsterExclamationChk : MonoBehaviour
 {
     public Image exclamation; //느낌표 이미지
+    private MonsterBoss monsterBoss;
 
     void Start()
     {
@@ -17,6 +18,11 @@ public class MonsterExclamationChk : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if(gameObject.tag == "StageBoss")
+            {
+                monsterBoss = transform.parent.GetComponent<MonsterBoss>();
+                monsterBoss.run = true;
+            }
             StartCoroutine(Exclamation());
         }
     }
@@ -26,5 +32,7 @@ public class MonsterExclamationChk : MonoBehaviour
         exclamation.enabled = true;
         yield return new WaitForSeconds(1f);
         exclamation.enabled = false;
+        if (gameObject.tag == "StageBoss")
+            Destroy(gameObject);
     }
 }

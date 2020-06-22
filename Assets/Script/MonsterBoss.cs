@@ -13,6 +13,8 @@ public class MonsterBoss : Monster
     public override string Name { get => "보스몬스터"; }
     public GameObject fireWall;
     public GameObject exitBoss;
+    public Animator anim;
+    public bool run = false;
     IEnumerator coroutine;
 
 
@@ -33,9 +35,11 @@ public class MonsterBoss : Monster
         monPos = _transform.position;
         DistChk();
         Burserk();
+        RunAnim();
         playerDist = Vector3.Distance(_transform.position, playerPos); //플레이어와 몬스터 거리값
         monFromStartPos = Vector3.Distance(_transform.position, startPos);  //몬스터의 생성위치와 현재위치의 거리(순찰범위 벗어나지 않기 위해)
         playerPos = player.transform.position; //플레이어 위치
+
     }
 
     IEnumerator Patrol()
@@ -72,25 +76,14 @@ public class MonsterBoss : Monster
     //플레이어 추적 범위
     void DistChk()
     {
-        if (dead == false)
+        if (dead == false && playerDist <= reactRange)
         {
-            //범위안에 플레이어 들어올시 추적
-            if (playerDist <= reactRange)
-            {
-                moveType = 0;
-                patrolOnOff = false;
-                nav.SetDestination(playerPos);
-            }
-            //범위에서 플레이어 나갈시 생성위치로 복귀
-            else if (playerDist > reactRange)
-            {
-
-                if (monFromStartPos >= 0.5f)
-                {
-                    nav.SetDestination(startPos);
-                }
-                patrolOnOff = true;
-            }
+            moveType = 0;
+            patrolOnOff = false;
+        }
+        if (dead == false && !patrolOnOff)
+        {
+            nav.SetDestination(playerPos);
         }
     }
 
@@ -133,6 +126,13 @@ public class MonsterBoss : Monster
                 damage *= 2;
             }
         }
+    }
+    void RunAnim()
+    {
+        if (run == true)
+            anim.SetBool("Run", true);
+        else
+            anim.SetBool("Run", false);
     }
 
 
