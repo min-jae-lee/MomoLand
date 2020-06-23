@@ -6,6 +6,7 @@ public class EnterBoss : MonoBehaviour
 {
 
     public GameObject wallOfFire;
+    public GameObject bossHpBarUI;
     public UIManager uiManager;
 
     void Update()
@@ -17,6 +18,7 @@ public class EnterBoss : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            bossHpBarUI.SetActive(true);
             wallOfFire.SetActive(true);
             uiManager.enterBoss = true;
         }

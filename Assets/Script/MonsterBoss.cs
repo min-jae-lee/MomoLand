@@ -13,8 +13,12 @@ public class MonsterBoss : Monster
     public override string Name { get => "보스몬스터"; }
     public GameObject fireWall;
     public GameObject exitBoss;
+    public GameObject signPost1;
+    public GameObject signPost2;
     public Animator anim;
     public bool run = false;
+    public Slider bossHpSlider;
+    public Text bossHpText;
     IEnumerator coroutine;
 
 
@@ -36,6 +40,8 @@ public class MonsterBoss : Monster
         DistChk();
         Burserk();
         RunAnim();
+        HpSlider();
+        DieChk();
         playerDist = Vector3.Distance(_transform.position, playerPos); //플레이어와 몬스터 거리값
         monFromStartPos = Vector3.Distance(_transform.position, startPos);  //몬스터의 생성위치와 현재위치의 거리(순찰범위 벗어나지 않기 위해)
         playerPos = player.transform.position; //플레이어 위치
@@ -142,4 +148,19 @@ public class MonsterBoss : Monster
         hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
     }
 
+    void HpSlider()
+    {
+        bossHpSlider.maxValue = maxHp;
+        bossHpSlider.value = curHp;
+        bossHpText.text = "HP:" + curHp.ToString() + "/" + maxHp.ToString();
+    }   
+
+    void DieChk()
+    {
+        if(curHp <= 0)
+        {
+            signPost1.SetActive(true);
+            signPost2.SetActive(true);
+        }
+    }
 }

@@ -24,6 +24,7 @@ TagManager:
   - Fire
   - trapL
   - trapR
+  - GoHome
   layers:
   - Default
   - TransparentFX

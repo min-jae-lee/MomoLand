@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     public Vector3 monPos; //몬스터 위치
     public Image hpBar; //몬스터 hp바 이미지
     public Text hpText; //몬스터 hp바 텍스트
+    public GameObject bossHpBar; //보스몬스터 HP바 UI
     public Transform dmgHudPos; //데미지 HUD 생성 위치
     public GameObject dmgHud; //데미지 HUD
     public GameObject healPotion; //힐 포션 프리팹
@@ -181,6 +182,10 @@ public class Monster : MonoBehaviour
         monsterAttack.attackRange = false;
         dead = true;
         yield return new WaitForSeconds(3.5f);
+        if(gameObject.tag == "StageBoss")
+        {
+            Destroy(bossHpBar);
+        }
         Destroy(gameObject);
     }
 }

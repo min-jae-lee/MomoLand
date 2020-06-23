@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterStage : MonoBehaviour
+public class EnterStageAudio : MonoBehaviour
 {
     public AudioClip goHome;
     public AudioClip stage2Clip;
