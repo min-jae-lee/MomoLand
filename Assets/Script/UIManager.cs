@@ -8,11 +8,10 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public bool enterBoss = false;
-    public GameObject player;
     public Player playerCs;
     public GameObject gameOverUI;
-    public Animator playerAnimator;
     public GameObject buttonBoss;
+    public MonsterBoss monsterBoss;
 
     void Update()
     {
@@ -30,10 +29,8 @@ public class UIManager : MonoBehaviour
     //보스재도전(보스방 입구에서 재시작)
     public void GameRestartBoss()
     {
-        player.transform.position = new Vector3(-3.5f, 0.5f, 23.2f);
-        playerCs.dead = false;
-        playerCs.curHp = 70;
-        playerAnimator.SetTrigger("Revival");
+        monsterBoss.BossRestart();
+        playerCs.BossRestart();
         gameOverUI.SetActive(false);
     }
 }

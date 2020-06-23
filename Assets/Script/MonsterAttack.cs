@@ -10,7 +10,7 @@ public class MonsterAttack : MonoBehaviour
     private Animator monAnimator;
     private Animator playerAnimator;
     private Player player;
-     public bool isAtk = true; //코루틴내의 반복문 On/Off변수
+    public bool isAtk = true; //코루틴내의 반복문 On/Off변수
     public bool canAttack = true; //코루틴 반복문내의 공격 함수 On/Off 변수
     public bool attackRange = true; //공격범위 유무
     
@@ -60,8 +60,8 @@ public class MonsterAttack : MonoBehaviour
 
     private void Attack()
     {
-        player.Damaged(monster.damage);
         monAnimator.SetTrigger("Attack");
+        player.Damaged(monster.damage);
         if (player.curHp <= 0) //플레이어 사망시 공격 코루틴을 실행케 하는 모든 bool값 false 변경
         {
             isAtk = false;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.Animations;
 
 public class Player : MonoBehaviour
 {
@@ -200,9 +201,13 @@ public class Player : MonoBehaviour
         GameObject damageHud = Instantiate(dmgHud);
         damageHud.transform.position = playerDmgHudPos.position;
         damageHud.GetComponent<DmgTmp>().damage = damage;
+        playerAnimator.SetTrigger("GetHit");
+        audioSource.clip = getHit;
+        audioSource.Play();
         if (curHp <= 0)
         {
             mainAudio.clip = gameOverBGM;
+            mainAudio.loop = false;
             mainAudio.Play();
             dead = true;
             tag = "Untagged";
@@ -298,6 +303,7 @@ public class Player : MonoBehaviour
         if(other.tag == "DieGround")
         {
             mainAudio.clip = gameOverBGM;
+            mainAudio.loop = false;
             mainAudio.Play();
             dead = true;
             curHp = 0;
@@ -312,5 +318,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void BossRestart()
+    {
+        tag = "Player";
+        transform.position = new Vector3(-1.63f, 0.5f, 23.2f);
+        dead = false;
+        curHp = 70;
+        playerAnimator.SetTrigger("Revival");
+    }
 
 }

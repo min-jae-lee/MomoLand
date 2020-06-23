@@ -3931,7 +3931,7 @@ Light:
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.079864e+28, y: 1.8056947e+28, z: 7.316095e+28, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5214,8 +5214,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.09892327, y: 0.8575592, z: -0.1798657, w: 0.4716512}
-  m_LocalPosition: {x: -24.532999, y: 7.0799994, z: 32.43}
+  m_LocalRotation: {x: 0.098923214, y: 0.8575592, z: -0.17986576, w: 0.47165114}
+  m_LocalPosition: {x: -12.542999, y: 7.0799994, z: 30.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22810,7 +22810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.62
+      value: -1.63
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22818,7 +22818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.51
+      value: 23.56
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalRotation.x
@@ -23464,11 +23464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterBoss: 0
-  player: {fileID: 1462647738}
   playerCs: {fileID: 1462647739}
   gameOverUI: {fileID: 1063390581}
-  playerAnimator: {fileID: 1462647743}
   buttonBoss: {fileID: 857251560}
+  monsterBoss: {fileID: 8422892625981724861}
 --- !u!1 &1119488229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1203938125, guid: 3aec22b5d3f3c2947bb81040b56e5f96,
@@ -24631,8 +24630,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.09892327, y: 0.8575592, z: -0.1798657, w: 0.4716512}
-  m_LocalPosition: {x: -24.532999, y: 7.0799994, z: 32.43}
+  m_LocalRotation: {x: 0.098923214, y: 0.8575592, z: -0.17986576, w: 0.47165114}
+  m_LocalPosition: {x: -12.542999, y: 7.0799994, z: 30.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2039695939}
@@ -31328,19 +31327,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1475322845}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1462647738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1556040939566342, guid: c20397bf1592dc040b827e8716b0bd41,
-    type: 3}
-  m_PrefabInstance: {fileID: 1087316233}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1462647739 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41,
     type: 3}
   m_PrefabInstance: {fileID: 1087316233}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462647738}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b21b2e1039fd41d47afb10c71fecc828, type: 3}
@@ -31349,12 +31342,6 @@ MonoBehaviour:
 --- !u!82 &1462647741 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1462647744, guid: c20397bf1592dc040b827e8716b0bd41,
-    type: 3}
-  m_PrefabInstance: {fileID: 1087316233}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1462647743 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95922273507661854, guid: c20397bf1592dc040b827e8716b0bd41,
     type: 3}
   m_PrefabInstance: {fileID: 1087316233}
   m_PrefabAsset: {fileID: 0}
@@ -48516,7 +48503,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6937cd5b5e4dc499f994890ed832259b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -48630,7 +48617,7 @@ NavMeshAgent:
   m_Speed: 5
   m_Acceleration: 1
   avoidancePriority: 50
-  m_AngularSpeed: 5000
+  m_AngularSpeed: 500
   m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1

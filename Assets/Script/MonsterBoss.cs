@@ -121,10 +121,8 @@ public class MonsterBoss : Monster
             }
             mat.color = Color.Lerp(colorA, colorB, colorT);
 
-            if (damage < burserkDmg) //버서커 모드 공격력까지만 UP
-            {
-                damage *= 2;
-            }
+            damage = burserkDmg; //버서커 모드 공격력UP
+
         }
     }
     void RunAnim()
@@ -135,5 +133,13 @@ public class MonsterBoss : Monster
             anim.SetBool("Run", false);
     }
 
+    public void BossRestart()
+    {
+        mat.color = colorA;
+        damage = burserkDmg/2;
+        curHp = maxHp;
+        hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
+        hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+    }
 
 }
