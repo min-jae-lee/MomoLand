@@ -1737,6 +1737,7 @@ MonoBehaviour:
   gameWinBGM: {fileID: 8300000, guid: 168647f9fee82e3438427a080e32aba3, type: 3}
   gameOverBGM: {fileID: 8300000, guid: b48833ff7c0cc4e42b17ef1b20f9ecf4, type: 3}
   mainAudio: {fileID: 0}
+  audioSource: {fileID: 1462647744}
 --- !u!82 &1462647744
 AudioSource:
   m_ObjectHideFlags: 0
