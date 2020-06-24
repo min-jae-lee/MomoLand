@@ -13,7 +13,9 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public RectTransform rectJoyBack; //조이스틱배경
     public RectTransform rectJoystick; //조이스틱핸들러
     public Transform playerTransform; //플레이어
-    float backRadius; //조이스틱배경의 반지름
+    public Animator playerAnim; //플레이어 애니메이터
+    private float animValue;  //플레이어 이동애니메이션 블렌드트리 플룻값
+    private float backRadius; //조이스틱배경의 반지름
     float moveSpeed = 2.5f; //무브 스피드
     Vector3 playerPosition; //플레이어 포지션값
     bool touchOn = false; //터치 유무
@@ -28,6 +30,7 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if (touchOn)
         {
             playerTransform.localPosition += playerPosition;
+            playerAnim.SetFloat("Move", animValue * 1.1f);
         }
 
     }
@@ -67,6 +70,9 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         // 핸들러의 중심점으로부터의 거리값
         float lengthRatio = (rectJoyBack.position - rectJoystick.position).sqrMagnitude / (backRadius * backRadius);
+
+        //플레이어 이동애니메이션 블렌드 트리값에 대입
+        animValue = lengthRatio;
 
         // 핸들러 벡터값을 정규와 (1,1) 혹은 (-1,0)등과 같이
         Vector2 vecNormal = vec.normalized;

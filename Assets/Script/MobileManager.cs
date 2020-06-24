@@ -5,20 +5,28 @@ using UnityEngine.UI;
 
 public class MobileManager : MonoBehaviour
 {
-    public Button buttonMobile;
-    public Button buttonPc;
+    public GameObject buttonMobile;
+    public GameObject buttonPc;
     public GameObject joystickUI;
+
+    void Start()
+    {
+        buttonPc.SetActive(false);
+    }
+
 
     public void MobileOn()
     {
-        buttonMobile.enabled = false;
-        buttonPc.enabled = true;
+        buttonMobile.SetActive(false);
+        joystickUI.SetActive(false);
+        buttonPc.SetActive(true);
     }
 
     public void PcOn()
     {
-        buttonPc.enabled = false;
-        buttonMobile.enabled = true;
+        buttonPc.SetActive(false);
+        joystickUI.SetActive(true);
+        buttonMobile.SetActive(true);
     }
 
 }
