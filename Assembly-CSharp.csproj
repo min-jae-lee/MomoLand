@@ -106,6 +106,7 @@
     <Compile Include="Assets\Script\HurdleManager.cs" />
     <Compile Include="Assets\Script\JoystickManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
+    <Compile Include="Assets\Script\MobileManager.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MonsterAttack.cs" />
     <Compile Include="Assets\Script\MonsterBoss.cs" />
