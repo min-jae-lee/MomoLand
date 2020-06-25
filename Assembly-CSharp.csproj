@@ -77,7 +77,6 @@
     <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawn.cs" />
     <Compile Include="Assets\Map-Source\TowerDefence_Vsquad\Scripts\Scripts_towers_enemies\WaveSpawnTanks.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Demo\DemoScript.cs" />
-    <Compile Include="Assets\Object-Source\WallOfFire\Demo\DemoScriptEditor.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireBaseScript.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireCollisionForwardScript.cs" />
     <Compile Include="Assets\Object-Source\WallOfFire\Prefab\Script\FireConstantBaseScript.cs" />

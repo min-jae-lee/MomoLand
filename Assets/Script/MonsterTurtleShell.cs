@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditorInternal;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
