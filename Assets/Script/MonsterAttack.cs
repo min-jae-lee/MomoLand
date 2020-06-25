@@ -75,7 +75,7 @@ public class MonsterAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            monsterBoss.run = true;
+            if(gameObject.tag == "stageBoss") monsterBoss.run = true;
             attackRange = false;
             isAtk = false;
         }
