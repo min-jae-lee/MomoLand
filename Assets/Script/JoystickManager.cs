@@ -33,6 +33,7 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
             playerAnim.SetFloat("Move", animValue * 1.1f);
         }
 
+
     }
 
     //드레그시

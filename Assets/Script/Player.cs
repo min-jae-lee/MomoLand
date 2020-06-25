@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public float moveSpeed = 2f;
     public float rotateSpeed = 200f;
     public float jumpPower = 200f;
-   
-    
+
+
     //공격력,체력,연타간격
     public int maxHp = 100;
     public int curHp;
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if(dead == false)
+        if (dead == false)
         {
             if (isMovable == false) return;
             //앞뒤이동, 물리처리무시(벽뚫고나감 등)를 방지하기 위해 Rigidbody.MovePosition 사용
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 
     void Rotate()
     {
-        if(dead == false)
+        if (dead == false)
         {
             if (isMovable == false) return;
             //회전값 저장
@@ -129,20 +129,28 @@ public class Player : MonoBehaviour
     //점프-연속점프 2회로 제한
     void Jump()
     {
-        if(dead == false)
+        if (dead == false)
         {
             if (isMovable == false) return;
 
-            if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (jumpCount == 0) playerAnimator.SetTrigger("Jump");
-                //가속도가 점프에 영향 없도록 점프전 velocity값 제로
-                playerRigidbody.velocity = Vector3.zero;
-                playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
-                audioSource.clip = jump;
-                audioSource.Play();
-                jumpCount++;
+                JumpPlay();
             }
+        }
+    }
+
+    public void JumpPlay() //모바일 버튼용 함수
+    {
+        if(jumpCount < 2)
+        {
+            if (jumpCount == 0) playerAnimator.SetTrigger("Jump");
+            //가속도가 점프에 영향 없도록 점프전 velocity값 제로
+            playerRigidbody.velocity = Vector3.zero;
+            playerRigidbody.AddForce(new Vector3(0, jumpPower, 0));
+            audioSource.clip = jump;
+            audioSource.Play();
+            jumpCount++;
         }
 
     }
@@ -162,38 +170,48 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
-        if(dead == false)
+        if (dead == false)
         {
             //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
             if (Input.GetButton("Fire1") && attackCheckCol.enabled == false)
             {
-                audioSource.clip = attack1;
-                audioSource.Play(); //공격1 효과음 재생
-                sword.hittedMonsters.Clear();
-                playerAnimator.SetTrigger("Attack1");
-                attackCheckCol.enabled = true;
-                sword.SetDamage(attack1Power,1);
-                StartCoroutine(AttackOff(attack1Anim.length));
+                Attack1();
             }
             else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false)
             {
-                sword.hittedMonsters.Clear();
-                playerAnimator.SetTrigger("Attack2");
-                attackCheckCol.enabled = true;
-                sword.SetDamage(attack2Power,2);
-                StartCoroutine(AttackOff(attack2Anim.length));
-                StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
-                IEnumerator Attack2Sound()
-                {
-                    audioSource.clip = attack2;
-                    audioSource.Play();
-                    yield return new WaitForSeconds(0.5f);
-                    audioSource.Play();
-                }
+                Attack2();
             }
         }
-
     }
+
+    public void Attack1() //모바일 버튼용 함수
+    {
+        audioSource.clip = attack1;
+        audioSource.Play(); //공격1 효과음 재생
+        sword.hittedMonsters.Clear();
+        playerAnimator.SetTrigger("Attack1");
+        attackCheckCol.enabled = true;
+        sword.SetDamage(attack1Power, 1);
+        StartCoroutine(AttackOff(attack1Anim.length));
+    }
+
+    public void Attack2() //모바일 버튼용 함수
+    {
+        sword.hittedMonsters.Clear();
+        playerAnimator.SetTrigger("Attack2");
+        attackCheckCol.enabled = true;
+        sword.SetDamage(attack2Power, 2);
+        StartCoroutine(AttackOff(attack2Anim.length));
+        StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
+        IEnumerator Attack2Sound()
+        {
+            audioSource.clip = attack2;
+            audioSource.Play();
+            yield return new WaitForSeconds(0.5f);
+            audioSource.Play();
+        }
+    }
+
     //피격, 사망
     public void Damaged(int damage)
     {
@@ -300,7 +318,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "DieGround")
+        if (other.tag == "DieGround")
         {
             mainAudio.clip = gameOverBGM;
             mainAudio.loop = false;

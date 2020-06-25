@@ -25,6 +25,8 @@ TagManager:
   - trapL
   - trapR
   - GoHome
+  - attack1Button
+  - attack2Button
   layers:
   - Default
   - TransparentFX
