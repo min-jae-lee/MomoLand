@@ -24331,7 +24331,6 @@ GameObject:
   - component: {fileID: 1114237254}
   - component: {fileID: 1114237253}
   - component: {fileID: 1114237257}
-  - component: {fileID: 1114237258}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -24441,22 +24440,6 @@ MonoBehaviour:
   gameOverUI: {fileID: 1063390581}
   buttonBoss: {fileID: 857251560}
   monsterBoss: {fileID: 8422892625981724861}
---- !u!114 &1114237258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114237252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27135d58139e4404ba9f50ff25a1f794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectJoyBack: {fileID: 1424556058}
-  rectJoystick: {fileID: 1245231974}
-  playerTransform: {fileID: 2043341292}
-  playerAnim: {fileID: 1164724145}
 --- !u!1 &1119488229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1203938125, guid: 3aec22b5d3f3c2947bb81040b56e5f96,
@@ -32457,6 +32440,7 @@ GameObject:
   - component: {fileID: 1424556058}
   - component: {fileID: 1424556060}
   - component: {fileID: 1424556059}
+  - component: {fileID: 1424556061}
   m_Layer: 5
   m_Name: JoyBack
   m_TagString: Untagged
@@ -32521,6 +32505,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424556057}
   m_CullTransparentMesh: 0
+--- !u!114 &1424556061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424556057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27135d58139e4404ba9f50ff25a1f794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectJoyBack: {fileID: 1424556058}
+  rectJoystick: {fileID: 1245231974}
+  playerTransform: {fileID: 2043341292}
+  playerAnim: {fileID: 1164724145}
 --- !u!1 &1429700940
 GameObject:
   m_ObjectHideFlags: 0
