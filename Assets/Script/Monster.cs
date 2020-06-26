@@ -26,6 +26,7 @@ public class Monster : MonoBehaviour
     public Color colorA;
     public Color colorB;
     public float colorT;
+    protected bool dead = false;
     protected AudioSource audioSource;
     protected Material mat;
     protected bool colorBool = false;
@@ -42,7 +43,6 @@ public class Monster : MonoBehaviour
     protected Vector3 targetLook; //타겟지점 방향값
     protected bool patrolOnOff = true; //순찰 유무
     protected int curHp;
-    protected bool dead = false;
     protected Animator monsterAnimator;
     protected Rigidbody monsterRigidbody;
     protected Transform monsterTransform;
@@ -69,7 +69,6 @@ public class Monster : MonoBehaviour
         playerDist = Vector3.Distance(_transform.position, playerPos); //몬스터와 플레이어와의 거리
         startPos = _transform.position;
     }
-
 
     //충돌체 태그가 Sword이고 몬스터가 살아있을 경우 피격과 애니메이션,HP값 적용
     protected virtual void OnTriggerEnter(Collider other)

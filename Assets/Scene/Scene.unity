@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.25336102, g: 0.42827916, b: 0.6032436, a: 1}
+  m_IndirectSpecularColor: {r: 0.25516036, g: 0.4297503, b: 0.60437566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32521,6 +32521,7 @@ MonoBehaviour:
   rectJoystick: {fileID: 1245231974}
   playerTransform: {fileID: 2043341292}
   playerAnim: {fileID: 1164724145}
+  player: {fileID: 1462647739}
 --- !u!1 &1429700940
 GameObject:
   m_ObjectHideFlags: 0

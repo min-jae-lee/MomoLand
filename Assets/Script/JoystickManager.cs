@@ -14,9 +14,10 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public RectTransform rectJoystick; //조이스틱핸들러
     public Transform playerTransform; //플레이어
     public Animator playerAnim; //플레이어 애니메이터
+    public Player player;
     private float animValue;  //플레이어 이동애니메이션 블렌드트리 플룻값
     private float backRadius; //조이스틱배경의 반지름
-    float moveSpeed = 2.5f; //무브 스피드
+    float moveSpeed = 4f; //무브 스피드
     Vector3 playerPosition; //플레이어 포지션값
     bool touchOn = false; //터치 유무
 
@@ -27,10 +28,10 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     void Update()
     {
-        if (touchOn)
+        if (touchOn && player.isMovable)
         {
             playerTransform.localPosition += playerPosition;
-            playerAnim.SetFloat("Move", animValue * 1.1f);
+            playerAnim.SetFloat("Move", animValue * 1.5f);
         }
 
 

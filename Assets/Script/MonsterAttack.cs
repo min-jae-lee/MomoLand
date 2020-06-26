@@ -13,7 +13,7 @@ public class MonsterAttack : MonoBehaviour
     public bool isAtk = true; //코루틴내의 반복문 On/Off변수
     public bool canAttack = true; //코루틴 반복문내의 공격 함수 On/Off 변수
     public bool attackRange = true; //공격범위 유무
-    
+
     void Start()
     {
         monster = transform.parent.GetComponent<Monster>();
@@ -29,7 +29,7 @@ public class MonsterAttack : MonoBehaviour
             playerAnimator = other.GetComponent<Animator>();
             if (player.curHp > 0)
             {
-                if(gameObject.tag == "StageBoss")
+                if (gameObject.tag == "StageBoss")
                 {
                     monsterBoss = transform.parent.GetComponent<MonsterBoss>();
                     monsterBoss.run = false;
@@ -73,9 +73,9 @@ public class MonsterAttack : MonoBehaviour
     //몬스터의 공격 범위를 플레이어가 벗어날시 공격중지
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            if(gameObject.tag == "stageBoss") monsterBoss.run = true;
+            if (gameObject.tag == "stageBoss") monsterBoss.run = true;
             attackRange = false;
             isAtk = false;
         }

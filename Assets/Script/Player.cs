@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public AnimationClip attack1Anim; //공격1 애니메이션
     public AnimationClip attack2Anim; //공격2 애니메이션
 
-    private bool isMovable = true; // 이동 컨트롤 플레그 변수
+    public bool isMovable = true; // 이동 컨트롤 플레그 변수
     public bool dead = false;
 
     //무기 콜라이더
@@ -68,7 +68,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         curHp = maxHp;
-
         //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
@@ -101,9 +100,6 @@ public class Player : MonoBehaviour
             //Move 애니메이션에 Input값 적용
             playerAnimator.SetFloat("Move", playerInput.move);
         }
-
-
-
     }
 
     void Rotate()
@@ -115,10 +111,7 @@ public class Player : MonoBehaviour
             float rotateValue = playerInput.rotate * rotateSpeed * Time.deltaTime;
             //리지드바디에 회전값 저장
             playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0, rotateValue, 0);
-
         }
-
-
     }
 
     void Update()
@@ -214,6 +207,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
+    IEnumerator AttackOff(float attackSpeed)
+    {
+        isMovable = false;
+        yield return new WaitForSeconds(attackSpeed);
+        isMovable = true;
+        attackCheckCol.enabled = false;
+        playerAnimator.ResetTrigger("Drop");
+        playerAnimator.ResetTrigger("Jump");
+    }
+
     //피격, 사망
     public void Damaged(int damage)
     {
@@ -295,17 +299,7 @@ public class Player : MonoBehaviour
         gameObject.layer = 0;
     }
 
-    //공격시 약간의 경직효과, 무기 콜라이더가 몬스터 충돌하기 전 OFF되는 것 방지
-    IEnumerator AttackOff(float attackSpeed)
-    {
-        isMovable = false;
-        yield return new WaitForSeconds(attackSpeed);
-        isMovable = true;
-        attackCheckCol.enabled = false;
-        playerAnimator.ResetTrigger("Drop");
-        playerAnimator.ResetTrigger("Jump");
 
-    }
 
     void HpSlider()
     {

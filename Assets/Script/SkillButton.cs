@@ -25,7 +25,7 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             attack1Touch = true;
             StartCoroutine(AttackCor1());
         }
-        if (gameObject.tag == "attack2Button" && attack2time >= player.attack1Anim.length) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
+        if (gameObject.tag == "attack2Button" && attack2time >= player.attack2Anim.length) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
         {
             attack2time = 0;
             attack2Touch = true;
