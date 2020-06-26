@@ -16,6 +16,7 @@ public class BridgeManager : MonoBehaviour
         meshRenderer.material.color = new Color(150 / 255f, 150 / 255f, 150 / 255f, 0);
         gameObject.SetActive(false);
         fence.SetActive(false);
+
     }
 
 
@@ -23,14 +24,10 @@ public class BridgeManager : MonoBehaviour
     {
         if(bridgeOn && alpha*70 <= 255f)
         {
+            fence.SetActive(true);
             alpha += Time.deltaTime;
             meshRenderer.material.color = new Color(150 / 255f, 150 / 255f, 150 / 255f, alpha * 70 / 255f);
         }
-        if(alpha * 70 >= 255f)
-        {
-            fence.SetActive(true);
-        }
-        
     }
 
     public void BridgeActive()
