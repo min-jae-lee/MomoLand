@@ -7,17 +7,27 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool attack1Touch = false;
     private bool attack2Touch = false;
+    private float attack1time;
+    private float attack2time;
     public Player player; //플레이어 스크립트
+
+    void Update()
+    {
+        attack1time += Time.deltaTime;
+        attack2time += Time.deltaTime;
+    }
 
     public void OnPointerDown(PointerEventData eventData) // UI 터치시
     {
-        if (gameObject.tag == "attack1Button") //터치된 UI가 공격버튼 1일경우
+        if (gameObject.tag == "attack1Button" && attack1time >= player.attack1Anim.length) //터치된 UI가 공격버튼 1인경우와 연타방지조건
         {
+            attack1time = 0;
             attack1Touch = true;
             StartCoroutine(AttackCor1());
         }
-        if (gameObject.tag == "attack2Button") //터치된 UI가 공격버튼 2일경우
+        if (gameObject.tag == "attack2Button" && attack2time >= player.attack1Anim.length) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
         {
+            attack2time = 0;
             attack2Touch = true;
             StartCoroutine(AttackCor2());
         }
@@ -34,7 +44,7 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         while (attack1Touch)
         {
             player.Attack1();
-            yield return new WaitForSeconds(player.attack1Anim.length); //UI 1회터치시 연타실행 방지 및 공격딜레이
+            yield return new WaitForSeconds(player.attack1Anim.length); //공격딜레이
         }
     }
     
@@ -43,7 +53,7 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         while (attack2Touch)
         {
             player.Attack2();
-            yield return new WaitForSeconds(player.attack2Anim.length); //UI 1회터치시 연타실행 방지 및 공격딜레이
+            yield return new WaitForSeconds(player.attack2Anim.length); //공격딜레이
         }
     }
 }
