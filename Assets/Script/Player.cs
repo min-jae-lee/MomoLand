@@ -46,7 +46,9 @@ public class Player : MonoBehaviour
     public SkinnedMeshRenderer playerRenderer;
     public MeshRenderer shieldRenderer;
     public MeshRenderer swordRenderer;
-    public Color colorA;
+    public Material playerMat;
+    public Material playerRed;
+    public Material playerWhite;
 
     //사운드
     public AudioClip jump;
@@ -264,84 +266,47 @@ public class Player : MonoBehaviour
         audioSource.Play();
         //피격시 레이어 변경으로 발사체와 충돌방지(무적)
         gameObject.layer = 9;
-        //material의 rendering mode중 Opaque모드는 투명도 조절이 안되기 때문에 피격순간에만 Fade 모드의 투명도 옵션으로 적용
-        //스크립트상으로 rendering mode를 변경하는 방법이 없음, 직접 속성값을 수정해줘야함
-        playerRenderer.material.SetFloat("_Mode", 2);
-        playerRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        playerRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        playerRenderer.material.SetInt("_ZWrite", 0);
-        playerRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        playerRenderer.material.EnableKeyword("_ALPHABLEND_ON");
-        playerRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        playerRenderer.material.renderQueue = 3000;
-        shieldRenderer.material.SetFloat("_Mode", 2);
-        shieldRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        shieldRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        shieldRenderer.material.SetInt("_ZWrite", 0);
-        shieldRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        shieldRenderer.material.EnableKeyword("_ALPHABLEND_ON");
-        shieldRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        shieldRenderer.material.renderQueue = 3000;
-        swordRenderer.material.SetFloat("_Mode", 2);
-        swordRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        swordRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        swordRenderer.material.SetInt("_ZWrite", 0);
-        swordRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        swordRenderer.material.EnableKeyword("_ALPHABLEND_ON");
-        swordRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        swordRenderer.material.renderQueue = 3000;
-        //레드 컬러로 피격순간 강조
-        playerRenderer.material.color = colorA;
-        shieldRenderer.material.color = colorA;
-        swordRenderer.material.color = colorA;
+        //피격시 메터리얼 컬러를 레드와 투명을 스위칭후 투명으로 3초의 무적시간을 표현
+        playerRenderer.material = playerRed;
+        shieldRenderer.material = playerRed;
+        swordRenderer.material = playerRed;
         StartCoroutine(Color());
     }
 
     IEnumerator Color()
     {
         yield return new WaitForSeconds(0.05f);
-        playerRenderer.material.color = new Color(0, 0, 0, 0.3f);
-        shieldRenderer.material.color = new Color(0, 0, 0, 0.3f);
-        swordRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        playerRenderer.material = playerMat;
+        shieldRenderer.material = playerMat;
+        swordRenderer.material = playerMat;
         yield return new WaitForSeconds(0.05f);
-        playerRenderer.material.color = colorA;
-        shieldRenderer.material.color = colorA;
-        swordRenderer.material.color = colorA;
+        playerRenderer.material = playerRed;
+        shieldRenderer.material = playerRed;
+        swordRenderer.material = playerRed;
         yield return new WaitForSeconds(0.05f);
-        //투명도 설정하여 플레이어에게 무적시간 3초 인지시킴
-        playerRenderer.material.color = new Color(0, 0, 0, 0.3f);
-        shieldRenderer.material.color = new Color(0, 0, 0, 0.3f);
-        swordRenderer.material.color = new Color(0, 0, 0, 0.3f);
+        playerRenderer.material = playerMat;
+        shieldRenderer.material = playerMat;
+        swordRenderer.material = playerMat;
+        yield return new WaitForSeconds(0.05f);
+        playerRenderer.material = playerRed;
+        shieldRenderer.material = playerRed;
+        swordRenderer.material = playerRed;
+        yield return new WaitForSeconds(0.05f);
+        playerRenderer.material = playerMat;
+        shieldRenderer.material = playerMat;
+        swordRenderer.material = playerMat;
+        yield return new WaitForSeconds(0.05f);
+        playerRenderer.material = playerRed;
+        shieldRenderer.material = playerRed;
+        swordRenderer.material = playerRed;
+        yield return new WaitForSeconds(0.05f);
+        playerRenderer.material = playerWhite;
+        shieldRenderer.material = playerWhite;
+        swordRenderer.material = playerWhite;
         yield return new WaitForSeconds(3f);
-        //무적타임 끝난뒤 컬러, 레이어 원상 복귀
-        playerRenderer.material.color = new Color(0, 0, 0, 1f);
-        shieldRenderer.material.color = new Color(0, 0, 0, 1f);
-        swordRenderer.material.color = new Color(0, 0, 0, 1f);
-        //rendering mode를 다시 opaque로 복귀
-        playerRenderer.material.SetFloat("_Mode", 0);
-        playerRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        playerRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-        playerRenderer.material.SetInt("_ZWrite", 1);
-        playerRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        playerRenderer.material.DisableKeyword("_ALPHABLEND_ON");
-        playerRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        playerRenderer.material.renderQueue = -1;
-        shieldRenderer.material.SetFloat("_Mode", 0);
-        shieldRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        shieldRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-        shieldRenderer.material.SetInt("_ZWrite", 1);
-        shieldRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        shieldRenderer.material.DisableKeyword("_ALPHABLEND_ON");
-        shieldRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        shieldRenderer.material.renderQueue = -1;
-        swordRenderer.material.SetFloat("_Mode", 0);
-        swordRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        swordRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-        swordRenderer.material.SetInt("_ZWrite", 1);
-        swordRenderer.material.DisableKeyword("_ALPHATEST_ON");
-        swordRenderer.material.DisableKeyword("_ALPHABLEND_ON");
-        swordRenderer.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        swordRenderer.material.renderQueue = -1;
+        playerRenderer.material = playerMat;
+        shieldRenderer.material = playerMat;
+        swordRenderer.material = playerMat;
         gameObject.layer = 0;
     }
 
