@@ -19,13 +19,13 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData) // UI 터치시
     {
-        if (gameObject.tag == "attack1Button" && attack1time >= player.attack1Anim.length) //터치된 UI가 공격버튼 1인경우와 연타방지조건
+        if (player.dead == false && gameObject.tag == "attack1Button" && attack1time >= player.attack1Anim.length) //터치된 UI가 공격버튼 1인경우와 연타방지조건
         {
             attack1time = 0;
             attack1Touch = true;
             StartCoroutine(AttackCor1());
         }
-        if (gameObject.tag == "attack2Button" && attack2time >= player.attack2Anim.length) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
+        if (player.dead == false && gameObject.tag == "attack2Button" && attack2time >= player.attack2Anim.length) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
         {
             attack2time = 0;
             attack2Touch = true;

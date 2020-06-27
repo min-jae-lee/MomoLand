@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.25336102, g: 0.42827916, b: 0.6032436, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5315,7 +5315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.09892407, y: 0.8575591, z: -0.17986527, w: 0.47165135}
+  m_LocalRotation: {x: 0.09892406, y: 0.8575591, z: -0.17986526, w: 0.47165135}
   m_LocalPosition: {x: -13.579273, y: 7.9799995, z: 12.881878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -17877,6 +17877,7 @@ MonoBehaviour:
   buttonMobile: {fileID: 745957635}
   buttonPc: {fileID: 1369572731}
   joystickUI: {fileID: 999701655}
+  skillButtonUI: {fileID: 1976512161}
 --- !u!1001 &805492603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23840,6 +23841,14 @@ PrefabInstance:
       propertyPath: mainAudio
       value: 
       objectReference: {fileID: 234568131}
+    - target: {fileID: 294322590, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043341295, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
 --- !u!1001 &1096639782
@@ -25608,7 +25617,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.09892407, y: 0.8575591, z: -0.17986527, w: 0.47165135}
+  m_LocalRotation: {x: 0.09892406, y: 0.8575591, z: -0.17986526, w: 0.47165135}
   m_LocalPosition: {x: -13.579273, y: 7.9799995, z: 12.881878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

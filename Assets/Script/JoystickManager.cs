@@ -28,20 +28,21 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     void Update()
     {
-        if (touchOn && player.isMovable)
+        if (player.dead == false && touchOn && player.isMovable)
         {
             playerTransform.localPosition += playerPosition;
             playerAnim.SetFloat("Move", animValue * 1.5f);
         }
-
-
     }
 
     //드레그시
     public void OnDrag(PointerEventData eventData)
     {
-        OnTouch(eventData.position);
-        touchOn = true;
+        if(player.dead == false)
+        {
+            OnTouch(eventData.position);
+            touchOn = true;
+        }
     }
 
     //터치시

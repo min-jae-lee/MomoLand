@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
 
     public void JumpPlay() //모바일 버튼용 함수
     {
-        if(jumpCount < 2)
+        if(dead == false && jumpCount < 2)
         {
             if (jumpCount == 0) playerAnimator.SetTrigger("Jump");
             //가속도가 점프에 영향 없도록 점프전 velocity값 제로
@@ -151,11 +151,11 @@ public class Player : MonoBehaviour
     }
 
     //바닥 접촉 체크,점프횟수 초기화
-    public void OnGround(int layer)
+    public void OnGround(int layer, string tag)
     {
         if (jumpCount != 0)
         {
-            if (layer == LayerMask.NameToLayer("Floor"))
+            if (layer == LayerMask.NameToLayer("Floor") || tag == "DieGround")
             {
                 jumpCount = 0;
                 playerAnimator.SetTrigger("Drop");

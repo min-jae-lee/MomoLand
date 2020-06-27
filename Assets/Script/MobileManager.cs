@@ -8,6 +8,7 @@ public class MobileManager : MonoBehaviour
     public GameObject buttonMobile;
     public GameObject buttonPc;
     public GameObject joystickUI;
+    public GameObject skillButtonUI;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class MobileManager : MonoBehaviour
     {
         buttonMobile.SetActive(false);
         joystickUI.SetActive(false);
+        skillButtonUI.SetActive(false);
         buttonPc.SetActive(true);
     }
 
@@ -26,6 +28,7 @@ public class MobileManager : MonoBehaviour
     {
         buttonPc.SetActive(false);
         joystickUI.SetActive(true);
+        skillButtonUI.SetActive(true);
         buttonMobile.SetActive(true);
     }
 

@@ -10,7 +10,7 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.tag == "GroundUpDown")
         {
-            player.OnGround(other.gameObject.layer);
+            player.OnGround(other.gameObject.layer, other.tag);
             var script = other.GetComponent<GroundUpDown>();
             if (script != null)
             {
@@ -18,9 +18,15 @@ public class GroundCheck : MonoBehaviour
             }
             return;
         }
+
+        if (other.tag == "DieGround")
+        {
+            player.OnGround(other.gameObject.layer, other.tag);
+        }
+
         else
         {
-            player.OnGround(other.gameObject.layer);
+            player.OnGround(other.gameObject.layer, other.tag);
             var script = other.GetComponent<GroundMove>();
             if (script != null)
             {

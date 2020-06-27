@@ -48,6 +48,7 @@ public class LoadingScene : MonoBehaviour
         asyncScene.allowSceneActivation = false;
         float timer = 0;
         float fakeTimer = 95;
+        float progressValue;
         while (!asyncScene.isDone)
         {
             //AsyncOperation의 progress가 0.9가 되면 95부터 100까지 초단위로 로딩을 흐르게하여 유저가 배경화면의 정보를 취득할 시간을 줌
@@ -67,7 +68,8 @@ public class LoadingScene : MonoBehaviour
             }
             else
             {
-                loadingValue.text = "Loading:" + asyncScene.progress * 100 + "%";
+                progressValue = asyncScene.progress;
+                loadingValue.text = "Loading:" + (int)progressValue * 100 + "%";
                 loadingBar.value = Mathf.Lerp(loadingBar.value, asyncScene.progress, timer);
                 if(loadingBar.value >= asyncScene.progress)
                 {
