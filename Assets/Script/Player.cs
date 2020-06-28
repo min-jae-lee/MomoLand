@@ -30,8 +30,9 @@ public class Player : MonoBehaviour
     //무기 콜라이더
     public BoxCollider attackCheckCol;
 
-    //케릭터 점프 횟수
+    //케릭터 공격2의 딜레이타임, 점프 횟수용 변수
     private int jumpCount = 0;
+    private float attack2Time=3f;
 
     //HP슬라이더
     public Slider hpSlider;
@@ -120,6 +121,7 @@ public class Player : MonoBehaviour
     {
         Jump();
         Attack();
+        attack2Time += Time.deltaTime;
         HpSlider();
     }
 
@@ -194,18 +196,22 @@ public class Player : MonoBehaviour
 
     public void Attack2() //모바일 버튼용 함수
     {
-        sword.hittedMonsters.Clear();
-        playerAnimator.SetTrigger("Attack2");
-        attackCheckCol.enabled = true;
-        sword.SetDamage(attack2Power, 2);
-        StartCoroutine(AttackOff(attack2Anim.length));
-        StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
-        IEnumerator Attack2Sound()
+        if(attack2Time >= 3f)
         {
-            audioSource.clip = attack2;
-            audioSource.Play();
-            yield return new WaitForSeconds(0.5f);
-            audioSource.Play();
+            sword.hittedMonsters.Clear();
+            playerAnimator.SetTrigger("Attack2");
+            attackCheckCol.enabled = true;
+            sword.SetDamage(attack2Power, 2);
+            StartCoroutine(AttackOff(attack2Anim.length));
+            StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
+            IEnumerator Attack2Sound()
+            {
+                audioSource.clip = attack2;
+                audioSource.Play();
+                yield return new WaitForSeconds(0.5f);
+                audioSource.Play();
+            }
+            attack2Time = 0;
         }
     }
 
