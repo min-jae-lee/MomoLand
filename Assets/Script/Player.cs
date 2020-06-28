@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public int curHp;
     public int attack1Power = 10;
     public int attack2Power = 20;
-
+    public SkillButton skillButton;
     public AnimationClip attack1Anim; //공격1 애니메이션
     public AnimationClip attack2Anim; //공격2 애니메이션
 
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     //케릭터 공격2의 딜레이타임, 점프 횟수용 변수
     private int jumpCount = 0;
-    private float attack2Time=3f;
+    private float attack2Time;
 
     //HP슬라이더
     public Slider hpSlider;
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         curHp = maxHp;
+        attack2Time = skillButton.coolTime;
         //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
@@ -196,7 +197,7 @@ public class Player : MonoBehaviour
 
     public void Attack2() //모바일 버튼용 함수
     {
-        if(attack2Time >= 3f)
+        if(attack2Time >= skillButton.coolTime)
         {
             sword.hittedMonsters.Clear();
             playerAnimator.SetTrigger("Attack2");

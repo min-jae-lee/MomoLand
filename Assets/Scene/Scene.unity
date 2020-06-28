@@ -5346,7 +5346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.098923765, y: 0.8575591, z: -0.17986545, w: 0.47165132}
+  m_LocalRotation: {x: 0.09892376, y: 0.85755914, z: -0.17986548, w: 0.47165126}
   m_LocalPosition: {x: -13.944344, y: 8.03, z: 13.069557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23623,6 +23623,10 @@ PrefabInstance:
       propertyPath: playerWhite
       value: 
       objectReference: {fileID: 2100000, guid: c7b68ff432db83c46940cc337f755d41, type: 2}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 1316467657}
     - target: {fileID: 294322590, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -25503,7 +25507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.098923765, y: 0.8575591, z: -0.17986545, w: 0.47165132}
+  m_LocalRotation: {x: 0.09892376, y: 0.85755914, z: -0.17986548, w: 0.47165126}
   m_LocalPosition: {x: -13.944344, y: 8.03, z: 13.069557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
