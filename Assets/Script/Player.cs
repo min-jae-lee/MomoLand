@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private float attack2Time;
     public int skillMp;
     private float curTime=0f;
+    public GameObject speechBubble;
 
     //HP,MP슬라이더
     public Slider hpSlider;
@@ -211,6 +212,7 @@ public class Player : MonoBehaviour
         {
             sword.hittedMonsters.Clear();
             playerAnimator.SetTrigger("Attack2");
+            speechBubble.SetActive(true);
             curMp -= skillMp;
             attackCheckCol.enabled = true;
             sword.SetDamage(attack2Power, 2);
@@ -226,6 +228,8 @@ public class Player : MonoBehaviour
                 audioSource.Play();
                 GameObject skillEffectObj2 = Instantiate(skillEffect);
                 skillEffectObj2.transform.position = skillEffectPos2.position;
+                yield return new WaitForSeconds(1f);
+                speechBubble.SetActive(false);
             }
             attack2Time = 0;
         }
