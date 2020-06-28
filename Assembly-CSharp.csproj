@@ -89,6 +89,7 @@
     <Compile Include="Assets\Script\BridgeManager.cs" />
     <Compile Include="Assets\Script\DmgTmp.cs" />
     <Compile Include="Assets\Script\DroppedHealthPotion.cs" />
+    <Compile Include="Assets\Script\DroppedManaPotion.cs" />
     <Compile Include="Assets\Script\EnterBoss.cs" />
     <Compile Include="Assets\Script\EnterHome.cs" />
     <Compile Include="Assets\Script\EnterStageAudio.cs" />
@@ -105,6 +106,8 @@
     <Compile Include="Assets\Script\HurdleManager.cs" />
     <Compile Include="Assets\Script\JoystickManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
+    <Compile Include="Assets\Script\ManaPotion.cs" />
+    <Compile Include="Assets\Script\ManaTmp.cs" />
     <Compile Include="Assets\Script\MobileManager.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MonsterAttack.cs" />

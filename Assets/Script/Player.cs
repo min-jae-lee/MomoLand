@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
 
     //공격력,체력,연타간격
     public int maxHp = 100;
+    public int maxMp = 100;
     public int curHp;
+    public int curMp;
     public int attack1Power = 10;
     public int attack2Power = 20;
     public SkillButton skillButton;
@@ -32,13 +34,17 @@ public class Player : MonoBehaviour
     //무기 콜라이더
     public BoxCollider attackCheckCol;
 
-    //케릭터 공격2의 딜레이타임, 점프 횟수용 변수
+    //공격타입2관련 변수
     private int jumpCount = 0;
     private float attack2Time;
+    public int skillMp;
+    private float curTime=0f;
 
-    //HP슬라이더
+    //HP,MP슬라이더
     public Slider hpSlider;
+    public Slider mpSlider;
     public Text hpText;
+    public Text mpText;
 
     //UI
     public GameObject gameOverUI;
@@ -125,7 +131,9 @@ public class Player : MonoBehaviour
         Jump();
         Attack();
         attack2Time += Time.deltaTime;
+        curTime += Time.deltaTime;
         HpSlider();
+        MpSlider();
     }
 
     //점프-연속점프 2회로 제한
@@ -201,10 +209,9 @@ public class Player : MonoBehaviour
     {
         if(attack2Time >= skillButton.coolTime)
         {
-            
-
             sword.hittedMonsters.Clear();
             playerAnimator.SetTrigger("Attack2");
+            curMp -= skillMp;
             attackCheckCol.enabled = true;
             sword.SetDamage(attack2Power, 2);
             StartCoroutine(AttackOff(attack2Anim.length));
@@ -334,6 +341,25 @@ public class Player : MonoBehaviour
             curHp = 0;
         if (curHp >= 100)
             curHp = 100;
+    }
+
+    void MpSlider()
+    {
+        if(curMp < maxMp)
+        {
+            if (curTime >= 1f)
+            {
+                curMp += 1;
+                curTime = 0;
+            }
+        }
+        mpSlider.maxValue = maxMp;
+        mpSlider.value = curMp;
+        mpText.text = "MP: " + curMp.ToString() + "/" + maxMp.ToString();
+        if (curMp <= 0)
+            curMp = 0;
+        if (curMp >= 100)
+            curMp = 100;
     }
 
     void OnTriggerEnter(Collider other)

@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour
     public Color colorA;
     public Color colorB;
     public float colorT;
-    protected bool dead = false;
+    public bool dead = false;
     protected AudioSource audioSource;
     protected Material mat;
     protected bool colorBool = false;

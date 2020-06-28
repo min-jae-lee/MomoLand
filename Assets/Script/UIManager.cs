@@ -29,6 +29,12 @@ public class UIManager : MonoBehaviour
     //보스재도전(보스방 입구에서 재시작)
     public void GameRestartBoss()
     {
+        if(monsterBoss.dead == true)
+        {
+            playerCs.BossRestart();
+            gameOverUI.SetActive(false);
+            return;
+        }
         monsterBoss.BossRestart();
         playerCs.BossRestart();
         gameOverUI.SetActive(false);
