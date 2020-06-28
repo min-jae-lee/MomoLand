@@ -23,7 +23,9 @@ public class Player : MonoBehaviour
     public SkillButton skillButton;
     public AnimationClip attack1Anim; //공격1 애니메이션
     public AnimationClip attack2Anim; //공격2 애니메이션
-
+    public GameObject skillEffect;
+    public Transform skillEffectPos1;
+    public Transform skillEffectPos2;
     public bool isMovable = true; // 이동 컨트롤 플레그 변수
     public bool dead = false;
 
@@ -199,6 +201,8 @@ public class Player : MonoBehaviour
     {
         if(attack2Time >= skillButton.coolTime)
         {
+            
+
             sword.hittedMonsters.Clear();
             playerAnimator.SetTrigger("Attack2");
             attackCheckCol.enabled = true;
@@ -209,8 +213,12 @@ public class Player : MonoBehaviour
             {
                 audioSource.clip = attack2;
                 audioSource.Play();
+                GameObject skillEffectObj1 = Instantiate(skillEffect);
+                skillEffectObj1.transform.position = skillEffectPos1.position;
                 yield return new WaitForSeconds(0.5f);
                 audioSource.Play();
+                GameObject skillEffectObj2 = Instantiate(skillEffect);
+                skillEffectObj2.transform.position = skillEffectPos2.position;
             }
             attack2Time = 0;
         }

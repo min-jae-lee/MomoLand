@@ -5346,7 +5346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.09892376, y: 0.85755914, z: -0.17986548, w: 0.47165126}
+  m_LocalRotation: {x: 0.09892376, y: 0.8575591, z: -0.17986545, w: 0.4716513}
   m_LocalPosition: {x: -13.944344, y: 8.03, z: 13.069557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23627,6 +23627,22 @@ PrefabInstance:
       propertyPath: skillButton
       value: 
       objectReference: {fileID: 1316467657}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: skillEffect
+      value: 
+      objectReference: {fileID: 100008, guid: f3613b78354895b469b7da1f0a90e686, type: 3}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: skillEffectPos1
+      value: 
+      objectReference: {fileID: 1733303861}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: skillEffectPos2
+      value: 
+      objectReference: {fileID: 1946469555}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: attack2
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
     - target: {fileID: 294322590, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -25507,7 +25523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.09892376, y: 0.85755914, z: -0.17986548, w: 0.47165126}
+  m_LocalRotation: {x: 0.09892376, y: 0.8575591, z: -0.17986545, w: 0.4716513}
   m_LocalPosition: {x: -13.944344, y: 8.03, z: 13.069557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -39062,6 +39078,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1732023522}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1733303860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733303861}
+  m_Layer: 0
+  m_Name: SkillEffect1Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733303861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733303860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0.98, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2043341292}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1733450663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43590,6 +43636,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1942703450}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1946469554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946469555}
+  m_Layer: 0
+  m_Name: SkillEffect2Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946469555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946469554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.57, y: 0.51, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2043341292}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946679672
 GameObject:
   m_ObjectHideFlags: 0
