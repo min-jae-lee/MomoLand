@@ -716,17 +716,19 @@ MonoBehaviour:
   monPos: {x: 0, y: 0, z: 0}
   hpBar: {fileID: 30094786}
   hpText: {fileID: 1799869451}
+  bossHpBar: {fileID: 0}
   dmgHudPos: {fileID: 548306193}
   dmgHud: {fileID: 4123880007559542278, guid: 2ca23781b9d53a24ba81bcf93484cead, type: 3}
   healPotion: {fileID: 8721733648630143618, guid: 0c19afcdc7f840145b69a068d929181c,
     type: 3}
   attackDelay: 1.5
-  damage: 10
+  damage: 7
   _boxCollider: {fileID: 937613686}
   _skinnedMeshRenderer: {fileID: 137967903436195398}
   colorA: {r: 1, g: 1, b: 1, a: 1}
   colorB: {r: 1, g: 0.050980393, b: 0, a: 1}
   colorT: 0
+  dead: 0
 --- !u!54 &937613687
 Rigidbody:
   m_ObjectHideFlags: 0

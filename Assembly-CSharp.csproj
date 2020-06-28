@@ -114,6 +114,7 @@
     <Compile Include="Assets\Script\MonsterBoss.cs" />
     <Compile Include="Assets\Script\MonsterExclamationChk.cs" />
     <Compile Include="Assets\Script\MonsterHpBar.cs" />
+    <Compile Include="Assets\Script\MonsterMiniSlime.cs" />
     <Compile Include="Assets\Script\MonsterSlime.cs" />
     <Compile Include="Assets\Script\MonsterTurtleShell.cs" />
     <Compile Include="Assets\Script\Player.cs" />

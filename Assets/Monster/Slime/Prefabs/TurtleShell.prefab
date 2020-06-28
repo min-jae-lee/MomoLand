@@ -268,9 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtk: 1
   canAttack: 1
-  canAttackSpeed: 1
-  dmgHud: {fileID: 4123880007559542278, guid: 2ca23781b9d53a24ba81bcf93484cead, type: 3}
-  playerDmgHudPos: {fileID: 0}
+  attackRange: 1
 --- !u!1 &1440759450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,22 +1483,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  moveSpeed: 0.7
+  reactRange: 3
+  monPos: {x: 0, y: 0, z: 0}
   hpBar: {fileID: 2095777869}
   hpText: {fileID: 1464757596}
+  bossHpBar: {fileID: 0}
   dmgHudPos: {fileID: 602564555}
   dmgHud: {fileID: 4123880007559542278, guid: 2ca23781b9d53a24ba81bcf93484cead, type: 3}
   healPotion: {fileID: 8721733648630143618, guid: 0c19afcdc7f840145b69a068d929181c,
     type: 3}
   attackDelay: 1.5
-  damage: 5
+  damage: 3
   _boxCollider: {fileID: 219856179}
-  moveSpeed: 0.7
-  reactRange: 3
   _skinnedMeshRenderer: {fileID: 137359634230426430}
   colorA: {r: 1, g: 1, b: 1, a: 1}
   colorB: {r: 1, g: 0.051847838, b: 0, a: 1}
   colorT: 0
-  monPos: {x: 0, y: 0, z: 0}
+  dead: 0
+  hurdleManager: {fileID: 0}
 --- !u!195 &219856180
 NavMeshAgent:
   m_ObjectHideFlags: 0

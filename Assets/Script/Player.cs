@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
 
     public void Attack2() //모바일 버튼용 함수
     {
-        if(attack2Time >= skillButton.coolTime)
+        if(attack2Time >= skillButton.coolTime && curMp >= skillMp)
         {
             sword.hittedMonsters.Clear();
             playerAnimator.SetTrigger("Attack2");

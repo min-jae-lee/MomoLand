@@ -10,31 +10,20 @@ using UnityEngine.AI;
 
 
 //Monster 상속
-public class MonsterBoss : Monster
+public class MonsterMiniSlime : Monster
 {
-    public override string Name { get => "보스몬스터"; }
-    public GameObject fireWall;
-    public GameObject exitBoss;
-    public GameObject signPost1;
-    public GameObject signPost2;
-    public Animator anim;
-    public bool run = false;
-    public Slider bossHpSlider;
-    public Text bossHpText;
-    public GameObject miniSlime;
-    public Transform spawnPos1;
-    public Transform spawnPos2;
-    public Transform spawnPos3;
-    public Transform spawnPos4;
-    public Transform spawnPos5;
-    private bool flag = true;
+    public override string Name { get => "꼬마슬라임"; }
     IEnumerator coroutine;
+    private MonsterBoss monsterBoss;
+    private bool flag = true;
 
     protected override void Start()
     {
         base.Start();
         coroutine = Patrol();
         StartCoroutine(coroutine); //순찰 코루틴 시작
+        monsterBoss = GameObject.Find("Boss").GetComponent<MonsterBoss>();
+        destroyTime = 1f;
     }
 
     void FixedUpdate()
@@ -44,12 +33,17 @@ public class MonsterBoss : Monster
 
     void Update()
     {
+        if (monsterBoss.dead == true && flag == true)
+        {
+            flag = false;
+            _boxCollider.enabled = false;
+            GameObject heallingPotion = Instantiate(healPotion);
+            heallingPotion.transform.position = monPos;
+            StartCoroutine(Die());
+        }
         monPos = _transform.position;
         DistChk();
         Burserk();
-        RunAnim();
-        HpSlider();
-        DieChk();
         playerDist = Vector3.Distance(_transform.position, playerPos); //플레이어와 몬스터 거리값
         monFromStartPos = Vector3.Distance(_transform.position, startPos);  //몬스터의 생성위치와 현재위치의 거리(순찰범위 벗어나지 않기 위해)
         playerPos = player.transform.position; //플레이어 위치
@@ -89,14 +83,25 @@ public class MonsterBoss : Monster
     //플레이어 추적 범위
     void DistChk()
     {
-        if (dead == false && playerDist <= reactRange)
+        if (dead == false)
         {
-            moveType = 0;
-            patrolOnOff = false;
-        }
-        if (dead == false && !patrolOnOff)
-        {
-            nav.SetDestination(playerPos);
+            //범위안에 플레이어 들어올시 추적
+            if (playerDist <= reactRange)
+            {
+                moveType = 0;
+                patrolOnOff = false;
+                nav.SetDestination(playerPos);
+            }
+            //범위에서 플레이어 나갈시 생성위치로 복귀
+            else if (playerDist > reactRange)
+            {
+
+                if (monFromStartPos >= 0.5f)
+                {
+                    nav.SetDestination(startPos);
+                }
+                patrolOnOff = true;
+            }
         }
     }
 
@@ -108,19 +113,7 @@ public class MonsterBoss : Monster
             if (curHp <= 0)
             {
                 mat.color = colorA;
-                fireWall.SetActive(false);
-                exitBoss.SetActive(true);
                 return;
-            }
-
-            if (flag)
-            {
-                flag = false;
-                GameObject miniSlime1 = Instantiate(miniSlime, spawnPos1.position, transform.rotation);
-                GameObject miniSlime2 = Instantiate(miniSlime, spawnPos2.position, transform.rotation);
-                GameObject miniSlime3 = Instantiate(miniSlime, spawnPos3.position, transform.rotation);
-                GameObject miniSlime4 = Instantiate(miniSlime, spawnPos4.position, transform.rotation);
-                GameObject miniSlime5 = Instantiate(miniSlime, spawnPos5.position, transform.rotation);
             }
 
             if (colorBool == false)
@@ -144,40 +137,12 @@ public class MonsterBoss : Monster
             }
             mat.color = Color.Lerp(colorA, colorB, colorT);
 
-            damage = burserkDmg; //버서커 모드 공격력UP
-
+            if (damage < burserkDmg) //버서커 모드 공격력까지만 UP
+            {
+                damage *= 2;
+            }
         }
     }
-    void RunAnim()
-    {
-        if (run == true)
-            anim.SetBool("Run", true);
-        else
-            anim.SetBool("Run", false);
-    }
 
-    public void BossRestart()
-    {
-        mat.color = colorA;
-        damage = burserkDmg/2;
-        curHp = maxHp;
-        hpText.text = Name + "\n" + curHp.ToString() + "/" + maxHp.ToString();
-        hpBar.rectTransform.localScale = new Vector3(1f, 1f, 1f);
-    }
 
-    void HpSlider()
-    {
-        bossHpSlider.maxValue = maxHp;
-        bossHpSlider.value = curHp;
-        bossHpText.text = "HP:" + curHp.ToString() + "/" + maxHp.ToString();
-    }   
-
-    void DieChk()
-    {
-        if(curHp <= 0)
-        {
-            signPost1.SetActive(true);
-            signPost2.SetActive(true);
-        }
-    }
 }

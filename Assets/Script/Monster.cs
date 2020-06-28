@@ -27,6 +27,7 @@ public class Monster : MonoBehaviour
     public Color colorB;
     public float colorT;
     public bool dead = false;
+    public float destroyTime = 3.5f;
     protected AudioSource audioSource;
     protected Material mat;
     protected bool colorBool = false;
@@ -180,7 +181,7 @@ public class Monster : MonoBehaviour
         monsterAttack.canAttack = false;
         monsterAttack.attackRange = false;
         dead = true;
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(destroyTime);
         if(gameObject.tag == "StageBoss")
         {
             Destroy(bossHpBar);
