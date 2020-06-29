@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     public AudioClip getItem;
     public AudioClip gameWinBGM;
     public AudioClip gameOverBGM;
+    public AudioClip potion;
     public AudioSource mainAudio;
     public AudioSource audioSource;
 

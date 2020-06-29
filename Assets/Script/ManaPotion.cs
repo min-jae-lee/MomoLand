@@ -20,9 +20,8 @@ public class ManaPotion : MonoBehaviour
         {
             GameObject _manaHud = Instantiate(manaHud);
             _manaHud.transform.position = playerDmgHudPos.position;
-            _manaHud.GetComponent<ManaTmp>().mana = manaValue;
             player = other.GetComponent<Player>();
-            player.curMp += manaValue;
+            player.mpPotion += 1;
             Destroy(gameObject);
         }
     }

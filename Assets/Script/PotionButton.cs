@@ -29,6 +29,8 @@ public class PotionButton : MonoBehaviour, IPointerDownHandler
             GameObject heallingHud = Instantiate(healHud);
             heallingHud.transform.position = playerDmgHudPos.position;
             heallingHud.GetComponent<HealTmp>().text.text = healthPotion.healValue.ToString();
+            player.audioSource.clip = player.potion;
+            player.audioSource.Play();
             player.curHp += healthPotion.healValue;
             player.hpPotion -= 1;
         }
@@ -36,7 +38,9 @@ public class PotionButton : MonoBehaviour, IPointerDownHandler
         {
             GameObject _manaHud = Instantiate(manaHud);
             _manaHud.transform.position = playerDmgHudPos.position;
-            _manaHud.GetComponent<ManaTmp>().mana = manaPotion.manaValue;
+            _manaHud.GetComponent<ManaTmp>().text.text = manaPotion.manaValue.ToString();
+            player.audioSource.clip = player.potion;
+            player.audioSource.Play();
             player.curMp += manaPotion.manaValue;
             player.mpPotion -= 1;
         }

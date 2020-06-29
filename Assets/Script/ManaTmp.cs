@@ -9,13 +9,11 @@ public class ManaTmp : MonoBehaviour
     public float alphaSpeed;
     public float desTime;
     public int mana;
-    TextMeshPro text;
+    public TextMeshPro text;
     Color alpha;
 
     void Start()
     {
-        text = GetComponent<TextMeshPro>();
-        text.text = mana.ToString();
         alpha = text.color;
         StartCoroutine(DestroyObject());
     }

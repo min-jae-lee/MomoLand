@@ -14,7 +14,6 @@ public class HealTmp : MonoBehaviour
 
     void Start()
     {
-        text = GetComponent<TextMeshPro>();
         alpha = text.color;
         StartCoroutine(DestroyObject());
     }
