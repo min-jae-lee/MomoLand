@@ -9573,7 +9573,7 @@ GameObject:
   - component: {fileID: 631934536}
   - component: {fileID: 631934537}
   m_Layer: 0
-  m_Name: Bottle_Health
+  m_Name: HealthPotion
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9621,4 +9621,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healValue: 30
-  healHud: {fileID: 5977068248128603472, guid: 111f5065458a78140874dbbe29a0a2dd, type: 3}
+  healHud: {fileID: 2229333713339549541, guid: 9cadfdddb3079494883f8268831948d3, type: 3}

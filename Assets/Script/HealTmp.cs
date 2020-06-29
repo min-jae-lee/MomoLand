@@ -9,13 +9,12 @@ public class HealTmp : MonoBehaviour
     public float alphaSpeed;
     public float desTime;
     public int heal;
-    TextMeshPro text;
+    public TextMeshPro text;
     Color alpha;
 
     void Start()
     {
         text = GetComponent<TextMeshPro>();
-        text.text = heal.ToString();
         alpha = text.color;
         StartCoroutine(DestroyObject());
     }

@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     public Slider mpSlider;
     public Text hpText;
     public Text mpText;
+    public int hpPotion;
+    public int mpPotion;
 
     //UI
     public GameObject gameOverUI;
@@ -79,6 +81,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        hpPotion = 0;
+        mpPotion = 0;
         curHp = maxHp;
         attack2Time = skillButton.coolTime;
         //각 컴퍼넌트 가져오기

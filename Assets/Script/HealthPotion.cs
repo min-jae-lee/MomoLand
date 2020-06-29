@@ -20,9 +20,8 @@ public class HealthPotion : MonoBehaviour
         {
             GameObject heallingHud = Instantiate(healHud);
             heallingHud.transform.position = playerDmgHudPos.position;
-            heallingHud.GetComponent<HealTmp>().heal = healValue;
             player = other.GetComponent<Player>();
-            player.curHp += healValue;
+            player.hpPotion += 1;
             Destroy(gameObject);
         }
     }

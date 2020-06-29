@@ -27,6 +27,8 @@ TagManager:
   - GoHome
   - attack1Button
   - attack2Button
+  - hpPotionButton
+  - mpPotionButton
   layers:
   - Default
   - TransparentFX
