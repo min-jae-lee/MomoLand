@@ -34,9 +34,8 @@ public class Player : MonoBehaviour
     //무기 콜라이더
     public BoxCollider attackCheckCol;
 
-    //공격타입2관련 변수
+ 
     private int jumpCount = 0;
-    private float attack2Time;
     public int skillMp;
     private float curTime=0f;
     public GameObject speechBubble;
@@ -89,7 +88,6 @@ public class Player : MonoBehaviour
         hpPotion = 0;
         mpPotion = 0;
         curHp = maxHp;
-        attack2Time = skillButton.coolTime;
         //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
@@ -140,7 +138,6 @@ public class Player : MonoBehaviour
     {
         Jump();
         Attack();
-        attack2Time += Time.deltaTime;
         curTime += Time.deltaTime;
         HpSlider();
         MpSlider();
@@ -198,9 +195,10 @@ public class Player : MonoBehaviour
             {
                 Attack1();
             }
-            else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false)
+            else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false && skillButton.curTime >= skillButton.coolTime && curMp >= skillMp)
             {
                 Attack2();
+                skillButton.SkillCool();
             }
         }
     }
@@ -218,30 +216,27 @@ public class Player : MonoBehaviour
 
     public void Attack2() //모바일 버튼용 함수
     {
-        if(attack2Time >= skillButton.coolTime && curMp >= skillMp)
+        skillButton.curTime = 0f;
+        sword.hittedMonsters.Clear();
+        playerAnimator.SetTrigger("Attack2");
+        speechBubble.SetActive(true);
+        curMp -= skillMp;
+        attackCheckCol.enabled = true;
+        sword.SetDamage(attack2Power, 2);
+        StartCoroutine(AttackOff(attack2Anim.length));
+        StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
+        IEnumerator Attack2Sound()
         {
-            sword.hittedMonsters.Clear();
-            playerAnimator.SetTrigger("Attack2");
-            speechBubble.SetActive(true);
-            curMp -= skillMp;
-            attackCheckCol.enabled = true;
-            sword.SetDamage(attack2Power, 2);
-            StartCoroutine(AttackOff(attack2Anim.length));
-            StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
-            IEnumerator Attack2Sound()
-            {
-                audioSource.clip = attack2;
-                audioSource.Play();
-                GameObject skillEffectObj1 = Instantiate(skillEffect);
-                skillEffectObj1.transform.position = skillEffectPos1.position;
-                yield return new WaitForSeconds(0.5f);
-                audioSource.Play();
-                GameObject skillEffectObj2 = Instantiate(skillEffect);
-                skillEffectObj2.transform.position = skillEffectPos2.position;
-                yield return new WaitForSeconds(1f);
-                speechBubble.SetActive(false);
-            }
-            attack2Time = 0;
+            audioSource.clip = attack2;
+            audioSource.Play();
+            GameObject skillEffectObj1 = Instantiate(skillEffect);
+            skillEffectObj1.transform.position = skillEffectPos1.position;
+            yield return new WaitForSeconds(0.5f);
+            audioSource.Play();
+            GameObject skillEffectObj2 = Instantiate(skillEffect);
+            skillEffectObj2.transform.position = skillEffectPos2.position;
+            yield return new WaitForSeconds(1f);
+            speechBubble.SetActive(false);
         }
     }
 

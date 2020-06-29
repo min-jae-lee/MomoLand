@@ -8,7 +8,6 @@ public class MobilePcButton : MonoBehaviour
     public GameObject buttonMobile;
     public GameObject buttonPc;
     public GameObject joystickUI;
-    public GameObject skillButtonUI;
     public GameObject pcUI;
 
     void Start()
@@ -21,7 +20,6 @@ public class MobilePcButton : MonoBehaviour
     {
         buttonMobile.SetActive(false);
         joystickUI.SetActive(false);
-        skillButtonUI.SetActive(false);
         buttonPc.SetActive(true);
         pcUI.SetActive(true);
     }
@@ -30,7 +28,6 @@ public class MobilePcButton : MonoBehaviour
     {
         buttonPc.SetActive(false);
         joystickUI.SetActive(true);
-        skillButtonUI.SetActive(true);
         buttonMobile.SetActive(true);
         pcUI.SetActive(false);
     }

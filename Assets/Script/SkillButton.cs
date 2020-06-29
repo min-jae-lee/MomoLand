@@ -13,7 +13,7 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Image coolTimeImg;
     public Text coolTimeText;
     public float coolTime = 5f;
-    private float curTime;
+    public float curTime;
 
     void Start()
     {
@@ -38,15 +38,11 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             attack1Touch = true;
             StartCoroutine(AttackCor1());
           }
-        if (player.dead == false && gameObject.tag == "attack2Button" && curTime >= coolTime) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
+        if (player.dead == false && gameObject.tag == "attack2Button" && curTime >= coolTime && player.curMp >= player.skillMp) ////터치된 UI가 공격버튼 2인경우와 연타방지조건
         {
-            curTime = 0f;
             attack2Touch = true;
-            coolTimeImg.enabled = true;
-            coolTimeText.enabled = true;
-            coolTimeImg.fillAmount = 1f;
             StartCoroutine(AttackCor2());
-            StartCoroutine(CoolTime(coolTime));
+            SkillCool();
         }
     }
 
@@ -56,6 +52,14 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (gameObject.tag == "attack2Button") attack2Touch = false;
     }
     
+    public void SkillCool()
+    {
+        coolTimeImg.enabled = true;
+        coolTimeText.enabled = true;
+        coolTimeImg.fillAmount = 1f;
+        StartCoroutine(CoolTime(coolTime));
+    }
+
     IEnumerator AttackCor1()
     {
         while (attack1Touch)
@@ -70,7 +74,8 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         while (attack2Touch)
         {
             player.Attack2();
-            yield return new WaitForSeconds(player.attack2Anim.length); //공격딜레이
+            yield return new WaitForSeconds(coolTime); //공격딜레이
+            attack2Touch = false;
 
         }
     }
