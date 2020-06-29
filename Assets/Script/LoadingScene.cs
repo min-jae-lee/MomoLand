@@ -11,7 +11,6 @@ public class LoadingScene : MonoBehaviour
     public Text loadingValue;
     public Image image1;
     public Image image2;
-    public Image image3;
     private int ranNumber;
 
     //로딩 슬라이더 인스펙터에 공개
@@ -23,16 +22,13 @@ public class LoadingScene : MonoBehaviour
     {
         image1.enabled = false;
         image2.enabled = false;
-        image3.enabled = false;
         //3개의 이미지중 랜덤으로 1개의 이미지를 로딩씬의 배경이미지로 사용
-        ranNumber = Random.Range(0, 3);
+        ranNumber = Random.Range(0, 2);
         switch (ranNumber)
         {
             case 0: image1.enabled = true;
                 break;
             case 1: image2.enabled = true;
-                break;
-            case 2: image3.enabled = true;
                 break;
         }
         loadingBar.value = 0;
