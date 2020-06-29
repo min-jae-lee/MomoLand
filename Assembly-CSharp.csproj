@@ -108,7 +108,7 @@
     <Compile Include="Assets\Script\LoadingScene.cs" />
     <Compile Include="Assets\Script\ManaPotion.cs" />
     <Compile Include="Assets\Script\ManaTmp.cs" />
-    <Compile Include="Assets\Script\MobileManager.cs" />
+    <Compile Include="Assets\Script\MobilePcButton.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MonsterAttack.cs" />
     <Compile Include="Assets\Script\MonsterBoss.cs" />

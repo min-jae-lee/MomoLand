@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MobileManager : MonoBehaviour
+public class MobilePcButton : MonoBehaviour
 {
     public GameObject buttonMobile;
     public GameObject buttonPc;
     public GameObject joystickUI;
     public GameObject skillButtonUI;
+    public GameObject pcUI;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class MobileManager : MonoBehaviour
         joystickUI.SetActive(false);
         skillButtonUI.SetActive(false);
         buttonPc.SetActive(true);
+        pcUI.SetActive(true);
     }
 
     public void PcOn()
@@ -30,6 +32,7 @@ public class MobileManager : MonoBehaviour
         joystickUI.SetActive(true);
         skillButtonUI.SetActive(true);
         buttonMobile.SetActive(true);
+        pcUI.SetActive(false);
     }
 
 }

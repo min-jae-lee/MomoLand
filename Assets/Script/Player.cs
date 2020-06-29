@@ -41,13 +41,17 @@ public class Player : MonoBehaviour
     private float curTime=0f;
     public GameObject speechBubble;
 
-    //HP,MP슬라이더
+    //HP,MP슬라이더,포션
     public Slider hpSlider;
     public Slider mpSlider;
     public Text hpText;
     public Text mpText;
     public int hpPotion;
     public int mpPotion;
+    public GameObject healHud;
+    public GameObject manaHud;
+    public HealthPotion healthPotion;
+    public ManaPotion manaPotion;
 
     //UI
     public GameObject gameOverUI;
@@ -140,6 +144,7 @@ public class Player : MonoBehaviour
         curTime += Time.deltaTime;
         HpSlider();
         MpSlider();
+        Potion();
     }
 
     //점프-연속점프 2회로 제한
@@ -369,6 +374,40 @@ public class Player : MonoBehaviour
             curMp = 0;
         if (curMp >= 100)
             curMp = 100;
+    }
+
+    void Potion()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && dead == false && hpPotion >= 1)
+        {
+            HpPotion();
+        }
+        if (Input.GetKeyDown(KeyCode.S) && dead == false && mpPotion >= 1)
+        {
+            MpPotion();
+        }
+    }
+
+    public void HpPotion()
+    {
+        GameObject heallingHud = Instantiate(healHud);
+        heallingHud.transform.position = playerDmgHudPos.position;
+        heallingHud.GetComponent<HealTmp>().text.text = healthPotion.healValue.ToString();
+        audioSource.clip = potion;
+        audioSource.Play();
+        curHp += healthPotion.healValue;
+        hpPotion -= 1;
+    }
+
+    public void MpPotion()
+    {
+        GameObject _manaHud = Instantiate(manaHud);
+        _manaHud.transform.position = playerDmgHudPos.position;
+        _manaHud.GetComponent<ManaTmp>().text.text = manaPotion.manaValue.ToString();
+        audioSource.clip = potion;
+        audioSource.Play();
+        curMp += manaPotion.manaValue;
+        mpPotion -= 1;
     }
 
     void OnTriggerEnter(Collider other)
