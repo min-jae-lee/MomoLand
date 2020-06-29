@@ -8,7 +8,6 @@ public class MonsterAttack : MonoBehaviour
     private MonsterBoss monsterBoss;
     private float _attackDelay; //공격 딜레이
     private Animator monAnimator;
-    private Animator playerAnimator;
     private Player player;
     public bool isAtk = true; //코루틴내의 반복문 On/Off변수
     public bool canAttack = true; //코루틴 반복문내의 공격 함수 On/Off 변수
@@ -23,11 +22,10 @@ public class MonsterAttack : MonoBehaviour
     //몬스터 공격범위 콜라이더안에 접근
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && monster.dead == false)
         {
             player = other.GetComponent<Player>();
-            playerAnimator = other.GetComponent<Animator>();
-            if (player.curHp > 0)
+             if (player.curHp > 0)
             {
                 if (gameObject.tag == "StageBoss")
                 {

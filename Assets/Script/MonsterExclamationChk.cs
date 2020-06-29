@@ -7,16 +7,18 @@ public class MonsterExclamationChk : MonoBehaviour
 {
     public Image exclamation; //느낌표 이미지
     private MonsterBoss monsterBoss;
+    private Monster monster;
 
     void Start()
     {
+        monster = transform.parent.GetComponent<Monster>();
         exclamation.enabled = false; //게임 시작시 느낌표 비활성화
     }
 
     //플레이어가 몬스터에게 인접할시 몬스터 오브젝트에 느낌표 띄워줌
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && monster.dead == false)
         {
             if(gameObject.tag == "StageBoss")
             {

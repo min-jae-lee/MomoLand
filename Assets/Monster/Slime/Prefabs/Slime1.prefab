@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2111d73a3f45be74b98ea58c75f819f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 120
+  maxHp: 110
   moveSpeed: 0.7
   reactRange: 3
   monPos: {x: 0, y: 0, z: 0}
@@ -458,6 +458,7 @@ MonoBehaviour:
   colorB: {r: 1, g: 0.050980393, b: 0, a: 1}
   colorT: 0
   dead: 0
+  destroyTime: 3.5
 --- !u!54 &4304968131458567514
 Rigidbody:
   m_ObjectHideFlags: 0
