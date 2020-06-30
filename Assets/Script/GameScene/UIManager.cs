@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
+//UI관련
 public class UIManager : MonoBehaviour
 {
-    public bool enterBoss = false;
-    public Player playerCs;
-    public GameObject gameOverUI;
-    public GameObject buttonBoss;
+    public bool enterBoss = false; //플레이어가 보스방에 입장했는지 유무
+    public Player player;
+    public GameObject gameOverUI; //게임오버시 노출할 UI
+    public GameObject buttonBoss; //보스방 입장후에 죽으면 노출될 보스방 전용 리스타트 버튼
     public MonsterBoss monsterBoss;
 
     void Update()
     {
-        buttonBoss.SetActive(enterBoss);
+        buttonBoss.SetActive(enterBoss); //플레이어가 
     }
 
     public void GameRestart()
@@ -26,17 +25,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //보스재도전(보스방 입구에서 재시작)
+    //보스방 입장후 사망하게 되면 노출되는 UI의 보스재도전 버튼 터치시
     public void GameRestartBoss()
     {
-        if(monsterBoss.dead == true)
+        if(monsterBoss.dead == true) //보스 퇴치후에 플레이어가 사망했다면 플레이어의 부활만 작동
         {
-            playerCs.BossRestart();
+            player.BossRestart();
             gameOverUI.SetActive(false);
             return;
         }
+        //보스 퇴치전에 보스방에서 플레이어가 사망시 플레이어와 보스 모두 재시작
         monsterBoss.BossRestart();
-        playerCs.BossRestart();
+        player.BossRestart();
         gameOverUI.SetActive(false);
     }
 }

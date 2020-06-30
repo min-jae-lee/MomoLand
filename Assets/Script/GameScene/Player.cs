@@ -30,34 +30,32 @@ public class Player : MonoBehaviour
     private int jumpCount = 0; //점프 횟수
     public int skillMp; //스킬 mp소모량
     private float curTime=0f; //초당 mp 1씩 증가연산에 사용할 변수
-    public GameObject speechBubble;
-
-    //HP,MP슬라이더,포션
-    public Slider hpSlider;
+    public GameObject speechBubble; //스킬사용시 노출할 말풍선(스킬명)
+    public Slider hpSlider; 
     public Slider mpSlider;
     public Text hpText;
     public Text mpText;
-    public int hpPotion;
-    public int mpPotion;
-    public GameObject healHud;
+    public int hpPotion; //힐링포션 보유량
+    public int mpPotion; //마나포션 보유량
+    public GameObject healHud; //포션사용시 회복량 표시해줄 hud
     public GameObject manaHud;
     public HealthPotion healthPotion;
     public ManaPotion manaPotion;
+    public GameObject gameOverUI; //게임오버시 노출할 UI
+    public GameObject dmgHud; //데미지 입을시 노출할 Hud
+    public Transform playerDmgHudPos; //데미지 Hud가 노출될시의 위치 (플레이어 케릭터 위)
+    public SkinnedMeshRenderer playerRenderer; //플레이어 메쉬렌더러
+    public MeshRenderer shieldRenderer; //방패 메쉬렌더러
+    public MeshRenderer swordRenderer; //소드 메쉬렌더러
+    public Material playerMat; //플레이어의 본래 material
+    public Material playerRed; //플레이어 피격시 노출할 red컬러의 material
+    public Material playerWhite; //플레이어 피격후 무적시에 노출할 반투명의 material
+    private PlayerInput playerInput; //플레이어 입력값 프로퍼티가 들어간 스크립트
+    private Sword sword; //소드 스크립트
+    private Rigidbody playerRigidbody; 
+    private Animator playerAnimator;
 
-    //UI
-    public GameObject gameOverUI;
-    public GameObject dmgHud;
-    public Transform playerDmgHudPos;
-
-    //컬러
-    public SkinnedMeshRenderer playerRenderer;
-    public MeshRenderer shieldRenderer;
-    public MeshRenderer swordRenderer;
-    public Material playerMat;
-    public Material playerRed;
-    public Material playerWhite;
-
-    //사운드
+    //사운드관련
     public AudioClip jump;
     public AudioClip attack1;
     public AudioClip attack2;
@@ -69,24 +67,16 @@ public class Player : MonoBehaviour
     public AudioSource mainAudio;
     public AudioSource audioSource;
 
-    //각 컴퍼넌트 변수선언
-    private PlayerInput playerInput;
-    private Sword sword;
-    private Rigidbody playerRigidbody;
-    private Animator playerAnimator;
-
     void Start()
     {
         hpPotion = 0;
         mpPotion = 0;
         curHp = maxHp;
-        //각 컴퍼넌트 가져오기
         playerInput = GetComponent<PlayerInput>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
-        swordCol.enabled = false;
+        swordCol.enabled = false; //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
     }
 
     //Rigidbody를 이용한 움직임을 위해 물리갱신주기(기본0.02초) FixedUpdate 사용 
@@ -128,9 +118,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        curTime += Time.deltaTime; //초당 mp회복에 사용하는 연산
         Jump();
         Attack();
-        curTime += Time.deltaTime;
         HpSlider();
         MpSlider();
         Potion();
@@ -150,7 +140,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void JumpPlay() //모바일 버튼용 함수
+    public void JumpPlay() //모바일 버튼 터치시에도 구동
     {
         if(dead == false && jumpCount < 2)
         {
@@ -195,7 +185,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Attack1() //모바일 버튼용 함수
+    public void Attack1() //모바일 버튼 터치시에도 구동
     {
         audioSource.clip = attack1;
         audioSource.Play(); //공격1 효과음 재생
@@ -206,7 +196,7 @@ public class Player : MonoBehaviour
         StartCoroutine(AttackOff(attack1Anim.length));
     }
 
-    public void Attack2() //모바일 버튼용 함수
+    public void Attack2() //모바일 버튼 터치시에도 구동
     {
         skillButton.curTime = 0f;
         sword.hittedMonsters.Clear();
@@ -296,6 +286,7 @@ public class Player : MonoBehaviour
         StartCoroutine(Color());
     }
 
+    //피격시 피격효과를 위해 material 변경 
     IEnumerator Color()
     {
         yield return new WaitForSeconds(0.05f);
@@ -346,6 +337,7 @@ public class Player : MonoBehaviour
 
     void MpSlider()
     {
+        //초당 1씩 mp 자연 회복
         if(curMp < maxMp)
         {
             if (curTime >= 1f)
@@ -363,6 +355,7 @@ public class Player : MonoBehaviour
             curMp = 100;
     }
 
+    //포션 섭취
     void Potion()
     {
         if (Input.GetKeyDown(KeyCode.A) && dead == false && hpPotion >= 1)
@@ -399,7 +392,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "DieGround")
+        if (other.tag == "DieGround") //추락 바닥 접촉시 사망
         {
             mainAudio.clip = gameOverBGM;
             mainAudio.loop = false;
@@ -410,13 +403,15 @@ public class Player : MonoBehaviour
             gameOverUI.SetActive(true);
         }
 
-        if (other.tag == "Item")
+        if (other.tag == "Item") //아이템 접촉시 Get사운드 재생
         {
             audioSource.clip = getItem;
             audioSource.Play();
         }
     }
 
+    //보스방에서 사망시 구현되는 UI에서 리스타트 버튼 누르면 작동
+    //위치는 보스방 입구로, hp는 70으로 재시작
     public void BossRestart()
     {
         tag = "Player";
@@ -425,5 +420,4 @@ public class Player : MonoBehaviour
         curHp = 70;
         playerAnimator.SetTrigger("Revival");
     }
-
 }

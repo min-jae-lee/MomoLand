@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//스테이지 4의 트랩
 public class TrapManager : MonoBehaviour
 {
     public float moveSpeed1;
@@ -19,6 +20,7 @@ public class TrapManager : MonoBehaviour
         StartCoroutine(Move2());
     }
 
+    //상승
     IEnumerator Move1()
     {
         if (gameObject.tag == "trapL")
@@ -37,6 +39,8 @@ public class TrapManager : MonoBehaviour
             }
         }
     }
+
+    //하강
     IEnumerator Move2()
     {
         while (true)
@@ -52,6 +56,7 @@ public class TrapManager : MonoBehaviour
         }
     }
 
+    //플레이어 접촉시 플레이의 투명도, 무적변경과 데미지 전달
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

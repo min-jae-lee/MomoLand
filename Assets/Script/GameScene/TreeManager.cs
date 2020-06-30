@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//홈스테이지의 사라지는 나무
 public class TreeManager : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
@@ -13,7 +14,7 @@ public class TreeManager : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-
+    //보스퇴치후 홈스테이지로 오는 다리에 있는 트리거 충돌시 길을 막고 있는 나무를 사라지게 함
     void Update()
     {
         if (TreeOff)
@@ -27,7 +28,5 @@ public class TreeManager : MonoBehaviour
             alpha = 0;
             Destroy(gameObject);
         }
-
     }
-
 }
