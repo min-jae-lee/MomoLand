@@ -6,18 +6,12 @@ using UnityEngine.UI;
 public class TouchText : MonoBehaviour
 {
     public Text startText;
-    public Color colorA;
-    public Color colorB;
+    public Color colorA; //알파값 투명
+    public Color colorB; //일반 컬러
     private bool colorBool = false;
     private float colorT;
-
-    void Start()
-    {
-        
-    }
-
     
-    void Update()
+    void Update() 
     {
         if (colorBool == false)
         {

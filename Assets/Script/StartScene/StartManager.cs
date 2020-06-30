@@ -5,22 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
-
-    
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //마우스버튼, 터치시 로딩씬 호출
         {
-
             SceneManager.LoadScene("Loading");
         }
     }
-
-   
 }

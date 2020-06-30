@@ -8,10 +8,10 @@ public class LoadingScene : MonoBehaviour
 {
 
     //로딩씬
-    public Text loadingValue;
-    public Image image1;
-    public Image image2;
-    private int ranNumber;
+    public Text loadingValue; //로딩%
+    public Image image1; //로딩씬 배경 이미지 1
+    public Image image2; //로딩씬 배경 이미지 2
+    private int ranNumber; //랜덤값 담을 변수
 
     //로딩 슬라이더 인스펙터에 공개
     [SerializeField]
@@ -38,7 +38,6 @@ public class LoadingScene : MonoBehaviour
     //AsyncOperation으로 비동기적 로딩씬 구현
     IEnumerator LoadAsyncScene()
     {
-        
         yield return null;
         AsyncOperation asyncScene = SceneManager.LoadSceneAsync("Scene");
         asyncScene.allowSceneActivation = false;

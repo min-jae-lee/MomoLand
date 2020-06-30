@@ -5552,7 +5552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.098923385, y: 0.85755914, z: -0.17986564, w: 0.47165117}
+  m_LocalRotation: {x: 0.09892339, y: 0.85755914, z: -0.17986567, w: 0.47165114}
   m_LocalPosition: {x: -13.970324, y: 7.9299994, z: 13.084557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -13139,6 +13139,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 696142692874329367, guid: 46242550387236b4a8a3f464d553f406,
     type: 3}
   m_PrefabInstance: {fileID: 1563584544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &550716050 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1686627457, guid: c20397bf1592dc040b827e8716b0bd41,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087316233}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &551093525 stripped
 Transform:
@@ -25066,6 +25072,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 75262573483857126, guid: 82b79ef9aedb87546987b5e3baf5f518,
         type: 3}
+    - target: {fileID: 2043341294, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
+      propertyPath: swordCol
+      value: 
+      objectReference: {fileID: 550716050}
     - target: {fileID: 294322590, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -27137,7 +27147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.098923385, y: 0.85755914, z: -0.17986564, w: 0.47165117}
+  m_LocalRotation: {x: 0.09892339, y: 0.85755914, z: -0.17986567, w: 0.47165114}
   m_LocalPosition: {x: -13.970324, y: 7.9299994, z: 13.084557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

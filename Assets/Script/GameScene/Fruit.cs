@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//스테이지 3- 나무에서 발사되는 열매 프리팹
 public class Fruit : MonoBehaviour
 {
     public float moveSpeed1;
     public float moveSpeed2;
     public int damage=30;
-    private bool leftRight;
+    private bool leftRight; //왼쪽, 오른쪽 발사지점 구분
     private Player player;
     
+    //생성위치에 따라 bool값 차이
     void Start()
     {
         if (transform.position.z >= -13.5f)
@@ -44,6 +46,7 @@ public class Fruit : MonoBehaviour
         }
     }
 
+    //플레이어 접촉시
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")

@@ -11,8 +11,6 @@ public class Scrolling : MonoBehaviour
     private float move3=2f;
     RectTransform rectTransform;
 
-
-
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -38,9 +36,7 @@ public class Scrolling : MonoBehaviour
         //꽉찬 화면을 위해 앵커를 걸었기 때문에 포지션은 anchoredPosition으로 계산
         if (rectTransform.anchoredPosition.x <= -width)
         {
-
             Reposition(move3);
-            
         }
     }
 

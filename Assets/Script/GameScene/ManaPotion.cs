@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//마나 포션
 public class ManaPotion : MonoBehaviour
 {
     public int manaValue = 30;
@@ -14,6 +15,7 @@ public class ManaPotion : MonoBehaviour
         playerDmgHudPos = GameObject.Find("PlayerDmgHudPos").transform;
     }
 
+    //접촉시 플레이어 케릭터 위에 Hud 생성(+1)
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

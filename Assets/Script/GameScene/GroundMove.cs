@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//평행이동 바닥
 public class GroundMove : MonoBehaviour
 {
     public float moveSpeed1;
@@ -26,9 +27,9 @@ public class GroundMove : MonoBehaviour
             StartCoroutine(Move3());
             StartCoroutine(Move4());
         }
-
     }
 
+    //플레이어의 바닥 콜라이더에서 전달 되는 player 스크립트
     public void SetPlayer(Player _player)
     {
         player = _player;
@@ -39,7 +40,7 @@ public class GroundMove : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitUntil(() => move1Bool);
+            yield return new WaitUntil(() => move1Bool); //람다식 사용
             yield return new WaitForSeconds(0.01f);
             _transform.Translate(new Vector3(moveSpeed1 * Time.deltaTime, 0, 0));
             if(player != null)
@@ -68,14 +69,12 @@ public class GroundMove : MonoBehaviour
                 move1Bool = true;
             }
         }
-
     }
 
     IEnumerator Move3()
     {
         while (true)
         {
-            
             yield return new WaitUntil(() => move1Bool);
             yield return new WaitForSeconds(0.01f);
             _transform.Translate(new Vector3(moveSpeed1 * Time.deltaTime, 0, 0));
@@ -89,11 +88,11 @@ public class GroundMove : MonoBehaviour
             }
         }
     }
+
     IEnumerator Move4()
     {
         while (true)
         {
-            
             yield return new WaitUntil(() => move2Bool);
             yield return new WaitForSeconds(0.01f);
             _transform.Translate(new Vector3(moveSpeed2 * Time.deltaTime, 0, 0));
@@ -106,6 +105,5 @@ public class GroundMove : MonoBehaviour
                 move1Bool = true;
             }
         }
-
     }
 }

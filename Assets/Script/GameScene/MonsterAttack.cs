@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//몬스터의 공격 범위
 public class MonsterAttack : MonoBehaviour
 {
     private Monster monster;
@@ -19,7 +20,8 @@ public class MonsterAttack : MonoBehaviour
         _attackDelay = monster.attackDelay;
         monAnimator = transform.parent.GetComponent<Animator>();
     }
-    //몬스터 공격범위 콜라이더안에 접근
+
+    //몬스터 공격범위 콜라이더안에 접근시
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && monster.dead == false)
@@ -27,7 +29,7 @@ public class MonsterAttack : MonoBehaviour
             player = other.GetComponent<Player>();
              if (player.curHp > 0)
             {
-                if (gameObject.tag == "StageBoss")
+                if (gameObject.tag == "StageBoss") //보스의 공격범위에 플레이어가 접근시 뛰는 애니메이션 정지
                 {
                     monsterBoss = transform.parent.GetComponent<MonsterBoss>();
                     monsterBoss.run = false;
@@ -38,13 +40,14 @@ public class MonsterAttack : MonoBehaviour
             }
         }
     }
+
     //공격 코루틴 시작
     IEnumerator AttackRoutine()
     {
         while (isAtk)
         {
-            yield return new WaitUntil(() => canAttack);
-            Attack();
+            yield return new WaitUntil(() => canAttack); //람다식으로 코루틴 시작,정지
+            Attack(); //공격함수
             StartCoroutine(AttackSpeedRoutine()); //공격 딜레이 코루틴
         }
     }
@@ -59,15 +62,15 @@ public class MonsterAttack : MonoBehaviour
     private void Attack()
     {
         monAnimator.SetTrigger("Attack");
-        player.Damaged(monster.damage);
+        player.Damaged(monster.damage); //플레이어에게 몬스터의 데미지 전달
         if (player.curHp <= 0) //플레이어 사망시 공격 코루틴을 실행케 하는 모든 bool값 false 변경
         {
             isAtk = false;
             attackRange = false;
         }
-
         canAttack = false;
     }
+
     //몬스터의 공격 범위를 플레이어가 벗어날시 공격중지
     void OnTriggerExit(Collider other)
     {
@@ -78,5 +81,4 @@ public class MonsterAttack : MonoBehaviour
             isAtk = false;
         }
     }
-
 }

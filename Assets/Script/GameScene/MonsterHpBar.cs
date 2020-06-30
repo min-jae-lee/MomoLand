@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//몬스터의 HP바
 public class MonsterHpBar : MonoBehaviour
 {
     Transform cam;

@@ -9,21 +9,18 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 
 
-//Monster 상속
-public class MonsterMiniSlime : Monster
+//거북이 몬스터 스크립트(몬스터 공통속성을 갖고 있는 Monster 스크립트 상속)
+public class MonsterTurtleShell : Monster
 {
-    public override string Name { get => "꼬마슬라임"; }
+    public override string Name { get => "거북이"; }
+    public HurdleManager hurdleManager; //1스테이지 거북이 사망시 스테이지 입구 제거 위한 HurdleManager
     IEnumerator coroutine;
-    private MonsterBoss monsterBoss;
-    private bool flag = true;
 
     protected override void Start()
     {
         base.Start();
         coroutine = Patrol();
         StartCoroutine(coroutine); //순찰 코루틴 시작
-        monsterBoss = GameObject.Find("Boss").GetComponent<MonsterBoss>();
-        destroyTime = 1f;
     }
 
     void FixedUpdate()
@@ -33,17 +30,9 @@ public class MonsterMiniSlime : Monster
 
     void Update()
     {
-        if (monsterBoss.dead == true && flag == true)
-        {
-            flag = false;
-            _boxCollider.enabled = false;
-            GameObject heallingPotion = Instantiate(healPotion);
-            heallingPotion.transform.position = monPos;
-            StartCoroutine(Die());
-        }
         monPos = _transform.position;
-        DistChk();
-        Burserk();
+        DistChk(); //플레이어 추적 범위 체크
+        Burserk(); //버서커모드(hp일정이하) 체크
         playerDist = Vector3.Distance(_transform.position, playerPos); //플레이어와 몬스터 거리값
         monFromStartPos = Vector3.Distance(_transform.position, startPos);  //몬스터의 생성위치와 현재위치의 거리(순찰범위 벗어나지 않기 위해)
         playerPos = player.transform.position; //플레이어 위치
@@ -63,9 +52,7 @@ public class MonsterMiniSlime : Monster
             moveRanTime = Random.Range(3, 5); //행동 후 잠시 멈춤 시간
             yield return new WaitForSeconds(moveRanTime);
         }
-
     }
-
 
     void Move()
     {
@@ -75,7 +62,6 @@ public class MonsterMiniSlime : Monster
             _transform.position = Vector3.MoveTowards(_transform.position, targetPos, moveSpeed * Time.deltaTime);
             _transform.rotation = Quaternion.LookRotation(targetLook);
         }
-
         else
             _transform.position += Vector3.zero;
     }
@@ -110,9 +96,13 @@ public class MonsterMiniSlime : Monster
     {
         if (curHp <= 40)
         {
-            if (curHp <= 0)
+            if(curHp <= 0)
             {
                 mat.color = colorA;
+                if(hurdleManager != null)
+                {
+                    hurdleManager.HurdleOff = true;
+                }
                 return;
             }
 
@@ -143,6 +133,4 @@ public class MonsterMiniSlime : Monster
             }
         }
     }
-
-
 }

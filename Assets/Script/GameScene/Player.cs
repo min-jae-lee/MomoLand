@@ -9,35 +9,27 @@ using UnityEditor.Animations;
 
 public class Player : MonoBehaviour
 {
-    //움직임,회전 속도, 점프 강도
-    public float moveSpeed = 2f;
-    public float rotateSpeed = 200f;
-    public float jumpPower = 200f;
-
-
-    //공격력,체력,연타간격
-    public int maxHp = 100;
-    public int maxMp = 100;
-    public int curHp;
-    public int curMp;
-    public int attack1Power = 10;
-    public int attack2Power = 20;
-    public SkillButton skillButton;
+    public float moveSpeed = 2f; //무브 스피드
+    public float rotateSpeed = 200f; //회전 스피드
+    public float jumpPower = 200f; //점프값
+    public int maxHp = 100; //최대 hp
+    public int maxMp = 100; //최대 mp
+    public int curHp; //현재 hp
+    public int curMp; //현재 mp
+    public int attack1Power = 10; //공격1 데미지
+    public int attack2Power = 20; //공격2 데미지
+    public SkillButton skillButton; //공격버튼 UI 스크립트
     public AnimationClip attack1Anim; //공격1 애니메이션
     public AnimationClip attack2Anim; //공격2 애니메이션
-    public GameObject skillEffect;
-    public Transform skillEffectPos1;
-    public Transform skillEffectPos2;
+    public GameObject skillEffect; //스킬이펙트
+    public Transform skillEffectPos1; //스킬이펙트 생성위치1
+    public Transform skillEffectPos2; //스킬이펙트 생성위치2
     public bool isMovable = true; // 이동 컨트롤 플레그 변수
-    public bool dead = false;
-
-    //무기 콜라이더
-    public BoxCollider attackCheckCol;
-
- 
-    private int jumpCount = 0;
-    public int skillMp;
-    private float curTime=0f;
+    public bool dead = false; //사망 유무
+    public BoxCollider swordCol; //소드(검)콜라이더
+    private int jumpCount = 0; //점프 횟수
+    public int skillMp; //스킬 mp소모량
+    private float curTime=0f; //초당 mp 1씩 증가연산에 사용할 변수
     public GameObject speechBubble;
 
     //HP,MP슬라이더,포션
@@ -94,7 +86,7 @@ public class Player : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         //무기 콜라이더 비활성화(몬스터 접촉시에만 활성화)
-        attackCheckCol.enabled = false;
+        swordCol.enabled = false;
     }
 
     //Rigidbody를 이용한 움직임을 위해 물리갱신주기(기본0.02초) FixedUpdate 사용 
@@ -191,11 +183,11 @@ public class Player : MonoBehaviour
         if (dead == false)
         {
             //공격키 누르고 연타간격 체크후 애니메이션과 무기콜라이더 활성화
-            if (Input.GetButton("Fire1") && attackCheckCol.enabled == false)
+            if (Input.GetButton("Fire1") && swordCol.enabled == false)
             {
                 Attack1();
             }
-            else if (Input.GetButton("Fire2") && attackCheckCol.enabled == false && skillButton.curTime >= skillButton.coolTime && curMp >= skillMp)
+            else if (Input.GetButton("Fire2") && swordCol.enabled == false && skillButton.curTime >= skillButton.coolTime && curMp >= skillMp)
             {
                 Attack2();
                 skillButton.SkillCool();
@@ -209,7 +201,7 @@ public class Player : MonoBehaviour
         audioSource.Play(); //공격1 효과음 재생
         sword.hittedMonsters.Clear();
         playerAnimator.SetTrigger("Attack1");
-        attackCheckCol.enabled = true;
+        swordCol.enabled = true;
         sword.SetDamage(attack1Power, 1);
         StartCoroutine(AttackOff(attack1Anim.length));
     }
@@ -221,7 +213,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetTrigger("Attack2");
         speechBubble.SetActive(true);
         curMp -= skillMp;
-        attackCheckCol.enabled = true;
+        swordCol.enabled = true;
         sword.SetDamage(attack2Power, 2);
         StartCoroutine(AttackOff(attack2Anim.length));
         StartCoroutine(Attack2Sound()); //공격2 효과음 (2회 공격이라 코루틴 사용)
@@ -246,7 +238,7 @@ public class Player : MonoBehaviour
         isMovable = false;
         yield return new WaitForSeconds(attackSpeed);
         isMovable = true;
-        attackCheckCol.enabled = false;
+        swordCol.enabled = false;
         playerAnimator.ResetTrigger("Drop");
         playerAnimator.ResetTrigger("Jump");
     }
@@ -387,7 +379,7 @@ public class Player : MonoBehaviour
     {
         GameObject heallingHud = Instantiate(healHud);
         heallingHud.transform.position = playerDmgHudPos.position;
-        heallingHud.GetComponent<HealTmp>().text.text = healthPotion.healValue.ToString();
+        heallingHud.GetComponent<HealHud>().text.text = healthPotion.healValue.ToString();
         audioSource.clip = potion;
         audioSource.Play();
         curHp += healthPotion.healValue;
@@ -398,7 +390,7 @@ public class Player : MonoBehaviour
     {
         GameObject _manaHud = Instantiate(manaHud);
         _manaHud.transform.position = playerDmgHudPos.position;
-        _manaHud.GetComponent<ManaTmp>().text.text = manaPotion.manaValue.ToString();
+        _manaHud.GetComponent<ManaHud>().text.text = manaPotion.manaValue.ToString();
         audioSource.clip = potion;
         audioSource.Play();
         curMp += manaPotion.manaValue;
