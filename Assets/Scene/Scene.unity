@@ -5552,8 +5552,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234568129}
-  m_LocalRotation: {x: 0.09892339, y: 0.85755914, z: -0.17986567, w: 0.47165114}
-  m_LocalPosition: {x: -13.970324, y: 7.9299994, z: 13.084557}
+  m_LocalRotation: {x: 0.09892327, y: 0.8575592, z: -0.1798657, w: 0.4716512}
+  m_LocalPosition: {x: -13.475087, y: 8.039999, z: 12.602333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24934,15 +24934,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.81
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.73
+      value: -5.06
       objectReference: {fileID: 0}
     - target: {fileID: 4086279202973348, guid: c20397bf1592dc040b827e8716b0bd41, type: 3}
       propertyPath: m_LocalRotation.x
@@ -25785,7 +25785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterBoss: 0
-  playerCs: {fileID: 1462647739}
+  player: {fileID: 1462647739}
   gameOverUI: {fileID: 1063390581}
   buttonBoss: {fileID: 857251560}
   monsterBoss: {fileID: 8422892625981724861}
@@ -27147,8 +27147,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177448032}
-  m_LocalRotation: {x: 0.09892339, y: 0.85755914, z: -0.17986567, w: 0.47165114}
-  m_LocalPosition: {x: -13.970324, y: 7.9299994, z: 13.084557}
+  m_LocalRotation: {x: 0.09892327, y: 0.8575592, z: -0.1798657, w: 0.4716512}
+  m_LocalPosition: {x: -13.475087, y: 8.039999, z: 12.602333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2039695939}
