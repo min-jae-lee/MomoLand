@@ -83,7 +83,7 @@ public class MonsterBoss : Monster
             _transform.position += Vector3.zero;
     }
 
-    //플레이어 추적 범위
+    //플레이어 추적 범위, 보스몬스터는 일반 몬스터와 다르게 추적범위 안에 들어오면 죽을때까지 플레이어 추적
     void DistChk()
     {
         if (dead == false && playerDist <= reactRange)

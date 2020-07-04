@@ -9,6 +9,7 @@ public class MonsterExclamationChk : MonoBehaviour
     public Image exclamation; //느낌표 이미지
     private MonsterBoss monsterBoss;
     private Monster monster;
+    private bool runCor=true; //보스몬스터 느낌표 띄우기용
 
     void Start()
     {
@@ -32,10 +33,11 @@ public class MonsterExclamationChk : MonoBehaviour
     //느낌표 나타났다가 1초후에 사라짐
     IEnumerator Exclamation()
     {
+        yield return new WaitUntil( () => runCor );
         exclamation.enabled = true;
         yield return new WaitForSeconds(1f);
         exclamation.enabled = false;
-        if (gameObject.tag == "StageBoss") //보스의 경우 한정된 공간에서 전투하기 때문에 느낌표는 1회만 노출해주고 파괴
-            Destroy(gameObject);
+        if (gameObject.tag == "StageBoss") //보스의 경우 한정된 공간에서 전투하기 때문에 느낌표는 1회만 노출해주고 그 이후에는 코루틴 정지
+            runCor = false;
     }
 }
